@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "5.2"
+env:
+  - NODE_ENV=travis
+services:
+  - mongodb
+before_install:
+- npm install -g bower grunt-cli
+- npm install --prefix app/api
+install:
+- npm install --prefix app/api
+- npm install --dev
+- bower install
+script:
+- grunt
+# whitelist
+branches:
+  only:
+    - master
+    - gruntify
+notifications:
+  slack: afpa-dev-22:b6U2F36r33EG1VAhgRv3Cxqs

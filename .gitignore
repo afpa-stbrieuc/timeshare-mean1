@@ -1,5 +1,5 @@
 node_modules
 dist
-logs
 .tmp
+.sass-cache
 release.zip
