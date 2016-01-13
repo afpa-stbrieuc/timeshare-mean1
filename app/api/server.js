@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 
 app.use(require('./controllers'));
 
-
 var server;
 
 app.boot = function(config){

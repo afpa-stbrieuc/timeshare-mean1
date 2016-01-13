@@ -13,8 +13,9 @@ router.get('/account', function(req, res) {
 });
 
 //add account
-router.post('/account/:userid:solde:advertsid', function(req, res) {
+router.post('/account', function(req, res) {
 
+console.log(req.body);
 	var account = new Accountdb(); // create a new instance of the Account model
 	account.userid = req.body.userid; // set the Account userid (comes from the request)
 	account.solde = req.body.solde;
@@ -41,12 +42,12 @@ router.get('/account/:account_id', function(req, res) {
 
 });
 
-// update the Todo with this id
+// update the account with this id
 router.put('/account/:account_id', function(req, res) {
 
-	if (req.params.account_id === undefined) return res.send(400,'todo id empty');
+	if (req.params.account_id === undefined) return res.send(400,'account id empty');
 
-	Todo.findById(req.params.account_id, function(err, todo) {
+	Accountdb.findById(req.params.account_id, function(err, account) {
 
 		if (err)
 			res.send(err);
@@ -65,9 +66,9 @@ router.put('/account/:account_id', function(req, res) {
 // delete the Todo with this id
 router.delete('/account/:account_id', function(req, res) {
 
-	Todo.remove({
-		_id: req.params.todo_id
-	}, function(err, todo) {
+	Accountdb.remove({
+		_id: req.params.account_id
+	}, function(err, account) {
 		if (err)
 			res.send(err);
 
