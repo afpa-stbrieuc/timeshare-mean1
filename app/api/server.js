@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 3000;
-
+var config = require('./config');
 var mongoose   = require('mongoose');
 
 
@@ -15,11 +15,9 @@ app.use(require('./controllers'));
 
 var server;
 
-
-
 app.boot = function(config){
 
-
+mongoose.set('debug', true);
 	mongoose.connect(config.db.mongodb); // connect to our database
 
 	server = app.listen(port, function() {
