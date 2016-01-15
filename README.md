@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/afpa-stbrieuc/timeshare-mean1.svg?branch=gruntify)](https://travis-ci.org/afpa-stbrieuc/timeshare-mean1)
+[![Build Status](https://travis-ci.org/afpa-stbrieuc/timeshare-mean1.svg?branch=master)](https://travis-ci.org/afpa-stbrieuc/timeshare-mean1)
 
 ##install
  - go to project dir
