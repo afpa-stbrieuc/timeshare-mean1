@@ -7,9 +7,8 @@ services:
   - mongodb
 before_install:
 - npm install -g bower grunt-cli
-- npm install --prefix app/api
 install:
-- npm install --prefix app/api
+- npm install app/api/ --prefix app/api/
 - npm install --dev
 - bower install
 script:
