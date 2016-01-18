@@ -4,9 +4,13 @@ var express = require('express')
 router.use(express.static(__dirname + '/../public'))
 
 router.use('/api/todos', require('./todos'))
+<<<<<<< HEAD
+router.use('/', require('./accountCtrl'))
+=======
 
 router.use('/api/adverts', require('./advertsCtrl'));
 
+>>>>>>> origin
 router.get('/', function(req, res) {
   res.send('Home page')
 })
