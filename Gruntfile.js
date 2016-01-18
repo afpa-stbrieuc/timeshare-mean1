@@ -420,8 +420,8 @@ module.exports = function(grunt) {
     'clean:server',
     'concurrent:test',
     'autoprefixer',
-    'mochaTest',
-    'karma'
+    //'mochaTest',
+    //'karma'
   ]);
 
   grunt.registerTask('build', [
