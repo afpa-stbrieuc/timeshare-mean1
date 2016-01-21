@@ -3,7 +3,7 @@ var router = express.Router();
 
 var Accountdb = require('../models/account');
 
-router.get('/account', function(req, res) {
+router.get('/', function(req, res) {
 	Accountdb.find(function(err, account) {
 		if (err)
 			res.send(err);
@@ -13,7 +13,7 @@ router.get('/account', function(req, res) {
 });
 
 //add account
-router.post('/account', function(req, res) {
+router.post('/', function(req, res) {
 
 console.log(req.body);
 	var account = new Accountdb(); // create a new instance of the Account model
@@ -32,7 +32,7 @@ console.log(req.body);
 });
 
 // get the Account with that id
-router.get('/account/:account_id', function(req, res) {
+router.get('/:account_id', function(req, res) {
 
 		Accountdb.findById(req.params.account_id, function(err, account) {
 			if (err)
@@ -43,7 +43,7 @@ router.get('/account/:account_id', function(req, res) {
 });
 
 // update the account with this id
-router.put('/account/:account_id', function(req, res) {
+router.put('/:account_id', function(req, res) {
 
 	if (req.params.account_id === undefined) return res.send(400,'account id empty');
 
@@ -52,7 +52,9 @@ router.put('/account/:account_id', function(req, res) {
 		if (err)
 			res.send(err);
 
-		account.name = req.body.name;
+	account.userid = req.body.userid; // set the Account userid (comes from the request)
+	account.solde = req.body.solde;
+	account.advertsid = req.body.advertsid;
 		account.save(function(err) {
 			if (err)
 				res.send(err);
@@ -64,7 +66,7 @@ router.put('/account/:account_id', function(req, res) {
 });
 
 // delete the Todo with this id
-router.delete('/account/:account_id', function(req, res) {
+router.delete('/:account_id', function(req, res) {
 
 	Accountdb.remove({
 		_id: req.params.account_id

@@ -1,11 +1,11 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
-var db = mongoose.connection;
+//var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+//db.on('error', console.error.bind(console, 'connection error:'));
+//db.once('open', function() {
   // we're connected!
-});
+//});
 
 var AccountSchema   = new Schema({
 	userid: String,
@@ -18,4 +18,4 @@ var AccountSchema   = new Schema({
 	collection: 'account'
 });
 
-module.exports = mongoose.model('Account', AccountSchema);
+module.exports = mongoose.model('account', AccountSchema);

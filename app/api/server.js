@@ -5,7 +5,7 @@ var port = process.env.PORT || 3000;
 var config = require('./config');
 var mongoose   = require('mongoose');
 
-
+//app.use(express.static(__dirname + "/public/"));
 // configure body parser so we can get http body data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

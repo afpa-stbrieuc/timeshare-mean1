@@ -1,2 +1,8 @@
 node_modules
 cache
+*.cmd
+_mocha
+jade
+mkdirp
+mocha
+supports-color
