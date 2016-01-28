@@ -13,6 +13,7 @@ router.use('/api/account', require('./accountCtrl'))
 
 router.use('/api/adverts', require('./advertsCtrl'));
 
+router.use('/', require('./loginCtrl'));
 //router.get('/', function(req, res) {
 
 
@@ -20,8 +21,6 @@ router.use('/api/adverts', require('./advertsCtrl'));
   //res.render('index');
 //})
 
-router.get('/about', function(req, res) {
-  res.send('Learn about us')
-})
+
 
 module.exports = router

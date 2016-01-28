@@ -7,6 +7,7 @@ angular.module('mytodoApp', [
   'ngSanitize',
   'pascalprecht.translate',
   'ui.bootstrap',
+  'mytodoAppFilters',
   'dialogs.main' //https://github.com/m-e-conroy/angular-dialog-service
 ])
   .config(['$resourceProvider', function($resourceProvider) {

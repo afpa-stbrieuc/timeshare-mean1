@@ -2,7 +2,12 @@
   "name": "mean-todos",
   "private": true,
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "cookie-parser": "^1.4.1",
+    "crypto": "0.0.3",
+    "express-session": "^1.13.0",
+    "pure-validator-node": "^0.1.8"
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-autoprefixer": "~0.4.0",

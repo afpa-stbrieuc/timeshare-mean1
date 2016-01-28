@@ -5,7 +5,21 @@ var port = process.env.PORT || 3000;
 var config = require('./config');
 var mongoose   = require('mongoose');
 
-//app.use(express.static(__dirname + "/public/"));
+//Implementig session authentification
+
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+app.use(cookieParser('MAGICString'));
+//app.use(cookieParser());
+app.use(session({
+key: 'secret',
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { httpOnly: false }
+}));
+
 // configure body parser so we can get http body data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -13,6 +27,7 @@ app.use(bodyParser.json());
 app.use(require('./controllers'));
 
 var server;
+
 
 app.boot = function(config){
 
@@ -28,6 +43,13 @@ app.shutdown = function() {
 	console.log('Shutdown server on port ' + port)
 	server.close();
 }
+
+app.use('/log', function(req, res) {
+console.log(req.cookies);
+console.log(req.session);
+res.send('Home page');
+})
+
 
 //if launched via command line or used as a module (e.g tests) @see http://stackoverflow.com/questions/8864365/can-i-know-in-node-js-if-my-script-is-being-run-directly-or-being-loaded-by-an
 if (require.main === module) {

@@ -10,8 +10,6 @@
 	</thead>
     <tbody>
         <tr>
-            <td>{{cookies}}</td>
-
 <td>
 <input class="form-control" ng-model="account.userid">
 </td>
@@ -30,9 +28,9 @@
 </td>
         </tr>
         <tr ng-repeat="account in accountlist">
-            <td>{{account.userid}}  <i>{{account.userid | filtre}}</i></td>
-            <td>{{account.solde}}  <i>{{account.solde | filtre}}</i></td>
-            <td>{{account.advertsid}}  <i>{{account.advertsid | filtre}}</i></td>
+            <td>{{account.userid}}</td>
+            <td>{{account.solde}}</td>
+            <td>{{account.advertsid}}</td>
             <td><button class="btn btn-danger" ng-click="removeAccount(account._id)">Remove</button></td>
             <td>
 <button class="btn btn-warning" ng-click="editAccount(account._id)">Edit</button>

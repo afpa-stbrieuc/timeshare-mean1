@@ -1,12 +1,22 @@
 'use strict';
 //doc for dialog: https://github.com/m-e-conroy/angular-dialog-service
 angular.module('mytodoApp')
-  .controller('AccountCtrl', function($scope, $http, Todo, dialogs) {
+  .controller('AccountCtrl', function($scope, $http, Todo, dialogs, $cookies) {
 
-  console.log("Hello from Account controller"+" ./");
-  //console.log(.);
+  console.log("Hello from Account controller");
+ 
 var refresh = function(){
 $http.get('/api/account').success(function(response){
+  
+  console.log('Cookie: '+ $cookies);
+  var value = $cookies.get("secret");
+   console.log('Cookie Secret: '+ value);
+
+   if(value.user)
+   {
+console.log('Cookie User Name: '+ value.user.name);    
+   }
+   console.log('Scope: '+ $scope);
   $scope.accountlist = response;
   $scope.account = "";
 });
