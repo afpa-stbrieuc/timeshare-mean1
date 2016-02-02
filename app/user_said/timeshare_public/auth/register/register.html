@@ -1,0 +1,51 @@
+
+  <div class="header">
+   <navigation></navigation>
+    </div>
+<div class="container" style="margin-top:50px">
+  <div class="well">
+
+<div class="row" style="margin-top:10px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+
+          <h1 class="text-center">Inscription</h1>
+        <hr class="colorgraph">
+        <p class="lead"> Déjà membre? Veuillez <a href="#/login">vous connecter</a></p>
+
+          <form class="form" ng-submit="vmr.onSubmit()" >
+             <fieldset>
+      <div role="alert" ng-show="vmr.formError" class="alert alert-danger">{{vmr.formError}}</div>
+        <div class="form-group">
+                    <input type="email"  class="form-control input-lg" placeholder="Votre adresse mail"  ng-model="vmr.credentials.mail" required>
+        </div>
+        <div class="form-group">
+                    <input type="password"  class="form-control input-lg" placeholder="Votre mot de passe" ng-model="vmr.credentials.password" required>
+        </div>
+        <div class="form-group">
+                    <input type="text"  class="form-control input-lg" placeholder="Votre nom" ng-model="vmr.credentials.lastname" required>
+        </div>
+        <div class="form-group">
+                    <input type="text"  class="form-control input-lg" placeholder="Votre prénom" ng-model="vmr.credentials.firstname" required>
+        </div>
+        <div class="form-group">
+                    <input type="text"  class="form-control input-lg" placeholder="Votre addresse" ng-model="vmr.credentials.adress" required>
+        </div>
+        <div class="form-group">
+                    <input type="text"  class="form-control input-lg" placeholder="Votre téléphone" ng-model="vmr.credentials.tel" required>
+        </div>
+        <hr class="colorgraph">
+        <div class="row">
+         <div class="col-xs-6 col-sm-6 col-md-6">
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Inscription</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+   <footer id="themeBrand" class="col-lg-12">
+            AW© and beyond.
+   </footer>

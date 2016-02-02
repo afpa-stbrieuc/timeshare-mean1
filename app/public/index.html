@@ -2,62 +2,77 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<html class="mytodoApp">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/angular-dialog-service/dist/dialogs.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css({.tmp,public}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="mytodoApp">
-    
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
 
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/angular-dialog-service/dist/dialogs.css" />
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+        <link rel="stylesheet" href="styles/main.css">
+      
+    </head>
+    <body ng-app="timeShareApp">
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
+<div class="header">
+    <nav class="navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+         
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/home">CaroTM©</a>
+            </div>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-translate/angular-translate.js"></script>
-    <script src="bower_components/angular-dialog-service/dist/dialogs.js"></script>
-    <script src="bower_components/angular-dialog-service/dist/dialogs-default-translations.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Comment ça marche?</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
 
-        <!-- build:js({.tmp,public}) scripts/scripts.js -->
+                <ul class="nav navbar-nav navbar-right">        
+
+                    <a href="#/connexion" class="btn-trans btn-sm">Se connecter</a>
+                    <a href="#" class="btn btn-primary btn-sm">Créer un compte</a>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>
+      
+        <div class="container" ng-view="" style="min-height: 800px"></div>
+
+        <footer id="themeBrand" class="col-lg-12">
+            CaroTM © and beyond.
+        </footer>
+
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+        <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
         <script src="scripts/app.js"></script>
         <script src="scripts/routes.js"></script>
-        <script src="scripts/resources.js"></script>
-        <script src="scripts/controllers/todos.js"></script>
-        <!-- endbuild -->
 
-        <script src="http://localhost:35729/livereload.js"></script>
-</body>
+        <script src="scripts/controllers/homeController.js"></script>
+        <script src="scripts/controllers/advertsController.js"></script>
+        <script src="scripts/controllers/formController.js"></script>
+         <script src="scripts/controllers/responseToAdController.js"></script>
+        <script src="scripts/controllers/connexionController.js"></script>
+
+    </body>
 </html>

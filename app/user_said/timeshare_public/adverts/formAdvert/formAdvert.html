@@ -1,0 +1,67 @@
+  <div class="header">
+   <navigation></navigation>
+    </div>
+        <!-- Add your site or application content here -->
+      
+
+     
+    <div class="container" >
+<div class="row" >
+            <h1>Déposer une annonce</h1>
+        <form> 
+             <table class="table">
+                <thead>
+                    <tr>
+                        <th>type</th>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Localisation</th>
+                        <th>Description</th>
+                        <th>Créee le</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                 <tr>
+                
+                     <td><select class="form-control" required ng-model="advert.type">
+                             <option>Offre de service</option>
+                             <option>Demande</option>
+                         </select></td>
+                        <td><input class="form-control" required ng-model="advert.title"  ></td> 
+                        <td><input class="form-control" required ng-model="advert.author"  ></td>
+                        <td><input class="form-control" required ng-model="advert.loc"></td>
+                        <td><input class="form-control" required ng-model="advert.content"></td>
+                        <td><input class="form-control" ng-model="advert.created_at"></td>
+                        <td><button class="btn btn-primary" ng-click="addAdvert()">Déposer une annonce</button></td>
+                        <td><button class="btn btn-info" ng-click="updateAdvert()">Mettre à jour</button>&nbsp;&nbsp;
+                            <button class="btn btn-info" ng-click="deselect()">Clear</button></td>
+                
+                    </tr>
+                    <tr ng-repeat="advert in advertslist">
+                        <td>{{advert.type}}</td>
+                        <td>{{advert.title}}</td>
+                        <td>{{advert.author}}</td>
+                        <td>{{advert.loc}}</td>
+                        <td>{{advert.content}}</td>
+                        <td>{{advert.created_at}}</td>
+                        <td><button class="btn btn-danger" ng-click="removeAdvert(advert._id)">Supprimer</button></td>
+                        <td><button class="btn btn-warning" ng-click="editAdvert(advert._id)">Editer les infos</button></td>
+                    </tr>
+                </tbody>
+            </table>                    </form>
+
+         <div class="text-center">
+        <a href="#/adverts"  class="btn btn-danger" >Voir les annonces <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+ 
+    </div>  
+            <br>
+                         <div class="text-center">
+    <a href="#/" class="btn btn-primary">Retour</a>
+</div>     
+        </div>
+</div>
+           <footer id="themeBrand" class="col-lg-12">
+            AW© and beyond.
+        </footer>

@@ -1,0 +1,49 @@
+<div class="row">
+        <h1>Créer un compte utilisateur</h1>
+        
+                <form> 
+             <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Adresse</th>
+                        <th>Mail</th>
+                        <th>Telephone</th>
+                        <th>Mot de passe</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                 <tr>
+                
+                    <td><input class="form-control" required ng-model="user.lastname"  ></td> 
+                        <td><input class="form-control" required ng-model="user.firstname"  ></td> 
+                        <td><input class="form-control" required ng-model="user.adress"  ></td>
+                        <td><input class="form-control" required ng-model="user.mail"></td>
+                        <td><input class="form-control" required ng-model="user.tel"></td>
+                        <td><input class="form-control" ng-model="user.password"></td>
+                        <td><button class="btn btn-primary" ng-click="addUser()">Créer un compte</button></td>
+                        <td><button class="btn btn-info" ng-click="updateUser()">Mettre à jour</button>&nbsp;&nbsp;
+                            <button class="btn btn-info" ng-click="deselect()">Clear</button></td>
+                
+                    </tr>
+                    <tr ng-repeat="user in users">
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.adress}}</td>
+                        <td>{{user.mail}}</td>
+                        <td>{{user.tel}}</td>
+                        <td>{{user.password}}</td>
+                        <td><button class="btn btn-danger" ng-click="removeUser(advert._id)">Supprimer</button></td>
+                        <td><button class="btn btn-warning" ng-click="editUser(advert._id)">Editer les infos</button></td>
+                    </tr>
+                </tbody>
+            </table>                    </form>
+        
+</div> 
+
+  <div class="text-center">
+    <a href="#/" class="btn btn-danger">Retour</a>
+</div>     

@@ -1,13 +1,14 @@
 {
-  "name": "mean-todos",
+  "name": "timeShare",
   "private": true,
   "version": "0.0.0",
   "dependencies": {
-    "express": "~4.0.0",
-    "mongoose": "~3.6.13",
-    "body-parser": "~1.0.1"
+    "express": "~4.13.1",
+    "mongoose": "~3.8",
+    "body-parser": "~1.0.1",
+    "multer": "1.1.0"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.10.0"
   }
 }

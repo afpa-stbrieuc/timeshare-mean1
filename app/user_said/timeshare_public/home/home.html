@@ -1,0 +1,66 @@
+
+  <div class="header">
+   <navigation></navigation>
+    </div>
+        <!-- Add your site or application content here -->
+      
+
+     <div class="topp">  
+    <h1 class="text-center">TimeShareApp</h1>
+    <h2 class="text-center">Le site qui existe déjà, mais pas en AngularJs</h2>
+    </div>    
+    <div class="container" >
+
+
+<div class="row">     
+    <div class="col-md-6 frontService">
+        <div class="text-center cadre">
+        <h1 class="page-header">Offres de services</h1>
+        <ul ng-repeat="advert in adverts | filter: {type:'Offre de service'} |orderBy: '-created_at'| limitTo:3 ">
+            <li><p><h4>{{advert.title}}</h4></p>
+                        <p>{{advert.author}}</p>
+                        <p>{{advert.loc}}</p>
+                        <p>{{advert.content}}</p>
+                        <p>{{advert.created_at}}</p></li>
+                        
+                    </ul>
+    </div>
+    </div>
+   
+    <div class="col-md-6 frontService">
+        <div class="text-center cadre">
+        <h1 class="page-header">Demandes</h1>
+                <ul ng-repeat="advert in adverts | filter: {type:'Demande'}|orderBy: '-created_at'| limitTo:3 ">
+                    <li><p><h3>{{advert.title}}</h3></p>
+                        <p>{{advert.author}}</p>
+                        <p>{{advert.loc}}</p>
+                        <p>{{advert.content}}</p>
+                        <p>{{advert.created_at}}</p></li>
+                        
+                    </ul>
+    </div>
+    </div>
+
+ </div>  
+ <div class="clear"></div> 
+
+ <div class="row">   
+<div class="text-center">
+    <a href="#/formAdvert" class="bttn bttn-5">More</a> 
+    <a href="#/adverts" class="btn-lg btn-danger">Voir les annonces</a>
+</div>
+     <br>
+</div>
+<div class="clear"></div> 
+    <div class="row">
+<div class="text-center">
+    <a href="#/formAdvert" class="btn-lg btn-primary">Déposer une annonce</a>
+</div>
+    </div>
+</div>
+
+
+
+           <footer id="themeBrand" class="col-lg-12">
+            AW© and beyond.
+        </footer>

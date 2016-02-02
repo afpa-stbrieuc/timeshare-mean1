@@ -1,0 +1,49 @@
+ <nav class="navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/home"><img src="images/timeshare2.png"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Comment ça marche?</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">        
+                    <!--<a href="#"><span class="glyphicon glyphicon-user"></span>&nbspNom du user</a>&nbsp
+                    <a href="#" class="btn-trans btn-sm">Déconnexion</a>-->
+                     <li ng-hide="navvm.isLoggedIn"><a href="/#login/?page={{ navvm.currentPath }}" class="btn btn-sm"><i class="fa fa-user"></i> Se connecter</a></li>
+                     <li ng-hide="navvm.isLoggedIn"><a href="#/register/?page={{ navvm.currentPath }}" class="btn btn-sm"><i class="fa fa-user-plus"></i> Créer un compte</a></li>
+
+                    <li ng-show="navvm.isLoggedIn" class="dropdown">
+                       <a class="dropdown-toggle text-capitalize" data-toggle="dropdown" href=""><i class="fa fa-user"></i>&nbsp;&nbsp;Bonjour, {{navvm.currentUser.lastname }} 
+                        <span class="caret"></span></a>
+                             <ul class="dropdown-menu">
+                                   <li><a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Mes Annonces</a></li>
+                                   <li><a href="#/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Mon Profil</a></li> 
+                                   <li class="divider"></li>
+                                   <li><a href="#/home" ng-click="navvm.logout()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Déconnexion</a></li>
+          
+                             </ul>
+                    </li>
+            
+
+            
+
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    

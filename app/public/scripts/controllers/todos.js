@@ -1,6 +1,6 @@
 'use strict';
 //doc for dialog: https://github.com/m-e-conroy/angular-dialog-service
-angular.module('mytodoApp')
+angular.module('timeShareApp')
   .controller('MainCtrl', function($scope, Todo, dialogs) {
 
     //fetch all todos'

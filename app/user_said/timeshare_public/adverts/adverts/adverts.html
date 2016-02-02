@@ -1,0 +1,46 @@
+  <div class="header">
+   <navigation></navigation>
+    </div>
+        <!-- Add your site or application content here -->
+      
+
+     
+    <div class="container" >
+            <h1>Liste des annonces</h1>
+        
+             <table class="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Localisation</th>
+                        <th>Description</th>
+                        <th>Créee le</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr ng-repeat="advert in adverts |orderBy: '-created_at'">
+                        <td>{{advert.type}}</td>
+                        <td>{{advert.title}}</td>
+                        <td>{{advert.author}}</td>
+                        <td>{{advert.loc}}</td>
+                        <td>{{advert.content}}</td>
+                        <td>{{advert.created_at}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+           <div class="text-center">
+    <a href="#/formAdvert" class="btn-lg btn-primary">Déposer une annonce</a>
+</div>
+            <br>
+              <div class="text-center">
+    <a href="#/" class="btn-lg btn-danger">Retour</a>
+</div>    
+
+</div>
+           <footer id="themeBrand" class="col-lg-12">
+            AW© and beyond.
+        </footer>
