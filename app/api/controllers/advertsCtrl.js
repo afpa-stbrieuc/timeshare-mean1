@@ -266,7 +266,7 @@ router.post('/upload', function(req, res) {
 
 });
 
-router.get('/responseToAd/:advert_id', function(req, res) {
+router.get('/replyToAd/:advert_id', function(req, res) {
 
     Advertdb.findById(req.params.advert_id, function(err, advert) {
         if (err)

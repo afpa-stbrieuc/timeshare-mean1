@@ -35,6 +35,10 @@
         templateUrl: 'adverts/formAdvert/formAdvert.html',
         controller: 'formController'
       })
+      .when('/replyToAd/:_id', {
+        templateUrl: 'adverts/adverts/replyToAd.html',
+        controller: 'replyToAdController'
+        })
 
 
 
