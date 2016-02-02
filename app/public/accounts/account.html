@@ -1,0 +1,39 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Solde</th>
+			<th>Adverts</th>
+            <th>Action</th>
+            <th>&nbsp;</th>
+		</tr>
+	</thead>
+    <tbody>
+        <tr>
+<td>
+<input class="form-control" ng-model="account.userid">
+</td>
+<td>
+<input class="form-control" ng-model="account.solde">
+</td>
+<td>
+<input class="form-control" ng-model="account.advertsid">
+</td>
+<td>
+<button class="btn btn-primary" ng-click="addAccount()">Add Contact</button>
+</td>
+<td>
+<button class="btn btn-info" ng-click="updateAccount()">Update</button>&nbsp;&nbsp;
+<button class="btn btn-info" ng-click="deselectAccount()">Clear</button>
+</td>
+        </tr>
+        <tr ng-repeat="account in accountlist">
+            <td>{{account.userid}}  <i>{{account.userid | filtre}}</i></td>
+            <td>{{account.solde}}  <i>{{account.solde | filtre}}</i></td>
+            <td>{{account.advertsid}}  <i>{{account.advertsid | filtre}}</i></td>
+            <td><button class="btn btn-danger" ng-click="removeAccount(account._id)">Remove</button></td>
+            <td>
+<button class="btn btn-warning" ng-click="editAccount(account._id)">Edit</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

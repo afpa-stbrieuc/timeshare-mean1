@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "timeShare",
   "private": true,
   "version": "0.0.0",
@@ -10,5 +11,46 @@
   },
   "engines": {
     "node": ">=0.10.0"
+=======
+<<<<<<< HEAD
+  "name": "timeShare",
+=======
+  "name": "timeshare-mean",
+>>>>>>> 95eb02c00c442c022011051243a7decfd33f06bf
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "crypto": "0.0.3",
+    "dotenv": "^2.0.0",
+    "express": "~4.13.1",
+    "express-jwt": "^3.3.0",
+    "jsonwebtoken": "^5.5.4",
+    "mongoose": "~3.6.13",
+    "morgan": "^1.6.1",
+    "node-mongoose-validator": "^1.2.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "validator": "^4.5.1",
+    "multer": "1.1.0"
+  },
+  "engines": {
+<<<<<<< HEAD
+    "node": ">=0.10.0"
+=======
+    "node": ">=0.8.0"
+>>>>>>> 95eb02c00c442c022011051243a7decfd33f06bf
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4",
+    "should": "^8.1.1"
+  },
+<<<<<<< HEAD
+  "scripts": {
+=======
+	"scripts": {
+>>>>>>> 95eb02c00c442c022011051243a7decfd33f06bf
+    "test": "node_modules/.bin/mocha"
+>>>>>>> 135b185a022da516d0fea0f51211b249b99f1ac4
   }
 }

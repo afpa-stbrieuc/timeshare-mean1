@@ -1,8 +1,13 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <html>
+=======
+
+<html ng-app="timeShareApp">
+>>>>>>> 135b185a022da516d0fea0f51211b249b99f1ac4
     <head>
         <meta charset="utf-8">
         <title></title>
@@ -11,6 +16,7 @@
 
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="bower_components/angular-dialog-service/dist/dialogs.css" />
+<<<<<<< HEAD
 
         <link rel="stylesheet" href="styles/main.css">
       
@@ -56,12 +62,37 @@
 
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.js"></script>
+=======
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+        
+
+
+        <link rel="stylesheet" href="lib/styles/main.css">
+        
+        </head>
+    <body >
+        <div class="header">
+            <navigation></navigation>
+         </div>
+        
+        <div ng-view="">
+
+        <footer id="themeBrand" class="col-lg-12">
+            AW© and beyond.
+        </footer>
+       </div>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.js"></script>
+        <script src="bower_components/angular-material/angular-material.js"></script>
+>>>>>>> 135b185a022da516d0fea0f51211b249b99f1ac4
         <script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<<<<<<< HEAD
         <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
         <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
 
@@ -73,6 +104,44 @@
         <script src="scripts/controllers/formController.js"></script>
          <script src="scripts/controllers/responseToAdController.js"></script>
         <script src="scripts/controllers/connexionController.js"></script>
+=======
+        <script src="bower_components/angular-translate/angular-translate.js"></script>
+        <script src="bower_components/angular-dialog-service/dist/dialogs.js"></script>
+        <script src="bower_components/angular-dialog-service/dist/dialogs-default-translations.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+        <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+        <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
+
+
+        <script src="app.js"></script>
+        <script src="routes.js"></script>
+
+
+
+         <!-- -->
+        <script src="home/homeController.js"></script>
+
+        <!-- -->
+        <script src="common/directives/navigation/navigation.directive.js"></script>
+        <script src="common/directives/navigation/navigationCtrl.js"></script>
+                 <!-- -->
+        <script src="common/services/authentication.service.js"></script>
+         <!-- -->
+        <script src="users/login/loginCtrl.js"></script>
+        <script src="users/register/registerCtrl.js"></script>
+        <script src="users/profile/profileCtrl.js"></script>
+
+        <!-- -->
+        <script src="adverts/adverts/advertsController.js"></script>
+        <script src="adverts/formAdvert/formController.js"></script>
+         <!-- -->
+        <script src="accounts/accountController.js"></script>
+        <script src="accounts/filters.js"></script>
+        
+        <!-- -->
+
+>>>>>>> 135b185a022da516d0fea0f51211b249b99f1ac4
 
     </body>
 </html>
