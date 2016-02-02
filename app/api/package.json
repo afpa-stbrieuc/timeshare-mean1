@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "timeShare",
+=======
+  "name": "timeshare-mean",
+>>>>>>> 95eb02c00c442c022011051243a7decfd33f06bf
   "private": true,
   "version": "0.0.0",
   "dependencies": {
@@ -18,13 +22,21 @@
     "multer": "1.1.0"
   },
   "engines": {
+<<<<<<< HEAD
     "node": ">=0.10.0"
+=======
+    "node": ">=0.8.0"
+>>>>>>> 95eb02c00c442c022011051243a7decfd33f06bf
   },
   "devDependencies": {
     "mocha": "^2.3.4",
     "should": "^8.1.1"
   },
+<<<<<<< HEAD
   "scripts": {
+=======
+	"scripts": {
+>>>>>>> 95eb02c00c442c022011051243a7decfd33f06bf
     "test": "node_modules/.bin/mocha"
   }
 }
