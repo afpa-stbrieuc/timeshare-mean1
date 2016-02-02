@@ -1,0 +1,124 @@
+<div class="row" style="min-height: 800px">
+    <h1>Déposer une annonce</h1>
+
+    <div class="row">  
+
+        <form class="col-lg-7">
+            <div class="row">  
+                <div class="col-md-2">
+                    <h5><strong>Type</strong></h5> 
+                </div>
+                <div class="col-md-5">
+                    <select class="form-control" required ng-model="advert.type">
+                        <option value="offre">Offre de service</option>
+                        <option value="demande">Demande</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">  
+                <div class="col-md-2">
+                    <h5><strong>Titre</strong></h5> 
+                </div>
+                <div class="col-md-5">
+                    <input class="form-control" required ng-model="advert.title"  >
+                </div>
+            </div>
+            <br>
+            <div class="row">  
+                <div class="col-md-2">
+                    <h5><strong>Auteur</strong></h5> 
+                </div>
+                <div class="col-md-5">
+                    <input class="form-control" required ng-model="advert.author"  >
+                </div>
+            </div>
+            <br>
+            <div class="row">  
+                <div class="col-md-2">
+                    <h5><strong>Localisation</strong></h5> 
+                </div>
+                <div class="col-md-5" >
+                    <select class="form-control"  required  ng-model="advert.regions">
+                        <option value="">Région</option>
+                        <option ng-repeat="option in region.regionOptions" value="{{option.regions}}">{{option.regions}}</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">  
+                <div class="col-md-2">
+                    <h5><strong>Catégorie</strong></h5> 
+                </div>
+                <div class="col-md-5" >
+                    <select class="form-control"  required  ng-model="advert.categories">
+                        <option value="">Catégorie</option>
+                        <option ng-repeat="option in category.catOptions" value="{{option.categories}}">{{option.categories}}</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">  
+                <div class="col-md-2">
+                    <h5><strong>Description</strong></h5> 
+                </div>
+                <div class="col-md-5">
+                    <input class="form-control" required ng-model="advert.content" style="min-height: 60px;">
+                </div>
+            </div>
+            <br>
+
+            <div class="hidden" >  
+                <div class="col-md-2">
+                    <h5><strong>Créée le</strong></h5> 
+                </div>
+                <div class="col-md-5">
+                    <input type="radio" ng-model="advert.created_at"  checked>
+                    
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+                <button class="btn btn-primary" ng-click="addAdvert()">Poster l'annonce</button>
+                <button class="btn btn-info" ng-click="deselect()">Clear</button>
+            </div>
+        </form>    
+        <br> 
+
+
+        <form class="col-lg-7" ng-controller="MyCtrl as up" name="up.upload_form">
+            <div class="row" style="margin-top: 50px;">  
+                <div class="col-md-2">
+                    <h5><strong>Ajouter un fichier</strong></h5> 
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control"
+                           type="file" 
+                           ngf-select 
+                           ng-model="up.file" 
+                           name="file" 
+                           ngf-pattern="'image/*'"
+                           accept="image/*" 
+                           ngf-max-size="20MB" 
+                           />
+                    Image : <img style="width:100px;" ngf-thumbnail="up.file"/>
+                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+                        {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                    <button class="btn-sm btn-primary" type="submit" ng-click="up.submit()">Ajouter</button>
+                    <p>{{up.progress}}</p>
+                </div>
+
+            </div> 
+        </form>
+
+    </div>    
+
+    <div class="text-center">
+        <a href="#/adverts"  class="btn btn-danger" >Voir les annonces <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+
+    </div>  
+    <br>
+    <div class="text-center">
+        <a href="#/" class="btn btn-primary">Retour</a>
+    </div>     
+</div>

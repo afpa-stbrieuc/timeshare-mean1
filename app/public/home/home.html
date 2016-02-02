@@ -1,0 +1,76 @@
+
+  <div class="header">
+   <navigation></navigation>
+    </div>
+        <!-- Add your site or application content here -->
+      
+
+       <div class="topp">  
+    <h1 class="text-center">TimeShareApp</h1>
+    <h2 class="text-center">Le site qui existe déjà, mais pas en AngularJs</h2>
+    </div>  
+    <div class="container" >
+
+
+<div class="row">     
+    <div class="row"> 
+        <div class="text-center">
+        <h2>Les dernières annonces</h2>
+        </div>
+       <div class="col-md-6 frontService">
+        <div class="text-center cadre">
+        <h1 class="page-header">Offres de services</h1>
+                <div ng-repeat="advert in adverts| filter: {type:'offre'} |orderBy: '-created_at'| limitTo:3">
+                    <div class="panel-body">
+                        <h4><i><small>publié par : </small></i>{{advert.author}}&nbsp;
+                            <i style='float:right'><small> le : {{advert.created_at | date :'dd MMM yyyy'}}</small></i>
+                        </h4>
+                        <h4><i><small>Je propose </small></i>{{advert.title}}</h4>
+                        <p>{{advert.content}}</p>
+                        <h4><i><small>zone : </small></i>{{advert.regions}}&nbsp;
+                            <i style='float:right'><small>catégorie : {{advert.categories}}</small></i>
+                        </h4>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 frontService">
+        <div class="text-center cadre">
+        <h1 class="page-header">Demandes</h1>
+                <div ng-repeat="advert in adverts| filter: {type:'demande'}|orderBy: '-created_at'| limitTo:3 ">
+                    <div class="panel-body">
+                        <h4><i><small>publié par : </small></i>{{advert.author}}&nbsp;
+                            <i style='float:right'><small> le : {{advert.created_at | date :'dd MMM yyyy'}}</small></i>
+                        </h4>
+                        <h4><i><small>Je recherche </small></i>{{advert.title}}</h4>                  
+                        <p>{{advert.content}}</p>
+                      <h4><i><small>zone : </small></i>{{advert.regions}}&nbsp;
+                            <i style='float:right'><small>catégorie : </small></i>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+         
+    </div>    
+</div>
+    <div class="row">   
+        <div class="text-center">
+            <a href="#/adverts"  class="btn-lg btn-danger" >Voir plus d'annonces <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+        </div>  
+
+        <br>
+
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <a href="#/formAdvert" class="btn-lg btn-primary">Déposer une annonce</a>
+        </div>
+    </div>
+    <br>
+    </div>
+</div>
+
+
+
+           

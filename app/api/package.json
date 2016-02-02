@@ -1,13 +1,30 @@
 {
-  "name": "mean-todos",
+  "name": "timeShare",
   "private": true,
   "version": "0.0.0",
   "dependencies": {
-    "express": "~4.0.0",
+    "body-parser": "~1.0.1",
+    "crypto": "0.0.3",
+    "dotenv": "^2.0.0",
+    "express": "~4.13.1",
+    "express-jwt": "^3.3.0",
+    "jsonwebtoken": "^5.5.4",
     "mongoose": "~3.6.13",
-    "body-parser": "~1.0.1"
+    "morgan": "^1.6.1",
+    "node-mongoose-validator": "^1.2.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "validator": "^4.5.1",
+    "multer": "1.1.0"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.10.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4",
+    "should": "^8.1.1"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
   }
 }
