@@ -7,7 +7,9 @@ body {
 .container{
     margin-top: 50px;
 }
-
+.media-body {
+    text-align: left;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -105,7 +107,7 @@ background-color: rgb(0, 0, 0);
 }
 .cadre{
   border: 2px solid;
-    border-color: #C7C4C4;
+    border-color: rgba(199, 196, 196, 0.52);
     min-height: 250px;
 
 }

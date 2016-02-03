@@ -1,97 +1,73 @@
-<div class="row" style="min-height: 800px">
-    <h1>Déposer une annonce</h1>
+<div class="container">
+  <div class="well">
 
-    <div class="row">  
+<div class="row" style="margin-top:10px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 
-        <form class="col-lg-7">
-            <div class="row">  
-                <div class="col-md-2">
-                    <h5><strong>Type</strong></h5> 
-                </div>
-                <div class="col-md-5">
-                    <select class="form-control" required ng-model="advert.type">
+          <h1 class="text-center">Publier une annonce</h1>
+        <hr class="colorgraph">
+         
+          <form class="form">
+             <fieldset>
+     
+        <div class="form-group">
+            <select class="form-control" required ng-model="advert.type">
+                        <option value="" >Type de votre annonce</option>
                         <option value="offre">Offre de service</option>
                         <option value="demande">Demande</option>
-                    </select>
-                </div>
-            </div>
-            <br>
-            <div class="row">  
-                <div class="col-md-2">
-                    <h5><strong>Titre</strong></h5> 
-                </div>
-                <div class="col-md-5">
-                    <input class="form-control" required ng-model="advert.title"  >
-                </div>
-            </div>
-            <br>
-            <div class="row">  
-                <div class="col-md-2">
-                    <h5><strong>Auteur</strong></h5> 
-                </div>
-                <div class="col-md-5">
-                    <input class="form-control" required ng-model="advert.author"  >
-                </div>
-            </div>
-            <br>
-            <div class="row">  
-                <div class="col-md-2">
-                    <h5><strong>Localisation</strong></h5> 
-                </div>
-                <div class="col-md-5" >
-                    <select class="form-control"  required  ng-model="advert.regions">
+            </select>
+                  
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Titre de votre annonce" required ng-model="advert.title"  >
+                    
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Auteur" required ng-model="advert.author">
+                    
+        </div>
+        <div class="form-group">
+            <select class="form-control" required ng-model="advert.regions" placeholder="Localisation (Lieu)" >
                         <option value="">Région</option>
                         <option ng-repeat="option in region.regionOptions" value="{{option.regions}}">{{option.regions}}</option>
-                    </select>
-                </div>
-            </div>
-            <br>
-            <div class="row">  
-                <div class="col-md-2">
-                    <h5><strong>Catégorie</strong></h5> 
-                </div>
-                <div class="col-md-5" >
-                    <select class="form-control"  required  ng-model="advert.categories">
+            </select>
+                    
+        </div>
+        <div class="form-group">
+            <select class="form-control" required ng-model="advert.categories" placeholder="Catégorie" >
                         <option value="">Catégorie</option>
                         <option ng-repeat="option in category.catOptions" value="{{option.categories}}">{{option.categories}}</option>
-                    </select>
-                </div>
-            </div>
-            <br>
-            <div class="row">  
-                <div class="col-md-2">
-                    <h5><strong>Description</strong></h5> 
-                </div>
-                <div class="col-md-5">
-                    <input class="form-control" required ng-model="advert.content" style="min-height: 60px;">
-                </div>
-            </div>
-            <br>
-
-            <div class="hidden" >  
-                <div class="col-md-2">
-                    <h5><strong>Créée le</strong></h5> 
-                </div>
-                <div class="col-md-5">
-                    <input type="radio" ng-model="advert.created_at"  checked>
+            </select>
                     
-                </div>
+        </div>
+        <div class="form-group">
+             <input class="form-control" placeholder="Description de votre annonce" required ng-model="advert.content" style="min-height: 80px;">
+                    
+        </div>
+        <hr class="colorgraph">
+            <div class="row">
+                <div class="col-xs-12 col-md-6"> <button class="btn btn-primary btn-block btn-lg" ng-click="addAdvert()">Poster l'annonce</button></div>
+                <div class="col-xs-12 col-md-6"><button class="btn btn-success btn-block btn-lg" ng-click="deselect()">Clear</button></div>
             </div>
-            <div class="col-md-5 col-md-offset-2">
-                <button class="btn btn-primary" ng-click="addAdvert()">Poster l'annonce</button>
-                <button class="btn btn-info" ng-click="deselect()">Clear</button>
-            </div>
-        </form>    
-        <br> 
+       
+       
+      </fieldset>
+    </form>
+  </div>
+</div>
 
 
-        <form class="col-lg-7" ng-controller="MyCtrl as up" name="up.upload_form">
-            <div class="row" style="margin-top: 50px;">  
-                <div class="col-md-2">
-                    <h5><strong>Ajouter un fichier</strong></h5> 
-                </div>
-                <div class="col-md-6">
-                    <input class="form-control"
+
+<div class="row" style="margin-top:30px">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+
+          <h3 class="text-center">Ajouter une image à votre annonce</h3>
+        <hr class="colorgraph">
+         
+          <form class="form" ng-controller="MyCtrl as up" name="up.upload_form">
+             <fieldset>
+            <div class="col-md-6">
+                    <input class="file"
                            type="file" 
                            ngf-select 
                            ng-model="up.file" 
@@ -99,6 +75,7 @@
                            ngf-pattern="'image/*'"
                            accept="image/*" 
                            ngf-max-size="20MB" 
+
                            />
                     Image : <img style="width:100px;" ngf-thumbnail="up.file"/>
                     <i ng-show="up.upload_form.file.$error.required">*required</i><br>
@@ -107,18 +84,32 @@
                     <button class="btn-sm btn-primary" type="submit" ng-click="up.submit()">Ajouter</button>
                     <p>{{up.progress}}</p>
                 </div>
+       
+       
+             </fieldset>
+           </form>
+  </div>
+</div>
 
-            </div> 
-        </form>
 
-    </div>    
-
-    <div class="text-center">
+<div class="row" style="margin-top:10px"> 
+     <div class="text-center">
         <a href="#/adverts"  class="btn btn-danger" >Voir les annonces <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
 
     </div>  
     <br>
     <div class="text-center">
         <a href="#/" class="btn btn-primary">Retour</a>
-    </div>     
+      
+</div>
+</div>
+
+
+
+
+
+
+
+
+</div>
 </div>
