@@ -2,16 +2,18 @@
 
 angular.module('timeShareApp')
 
-.controller('formController', ['$scope', '$http', function($scope, $http) {
+.controller('formController', ['$scope','authentication', '$http', function($scope,authentication, $http) {
 
 
     $scope.addAdvert = function() {
+        
+        $scope.advert.author = authentication.currentUser().firstname;
+  
         $http.post('/api/adverts', $scope.advert).success(function(response) {
             console.log('scopeAdvert: ', $scope.advert);
             console.log('response: ', response);
-
             $scope.advert = response;
-            console.log('resScopAd_ID: ', $scope.advert._id);
+            
         });
     };
 
