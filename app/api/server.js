@@ -1,4 +1,4 @@
-require('dotenv').load();
+require('dotenv').config({path: __dirname + '/.env'});
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -6,8 +6,9 @@ var multer = require('multer');
 
 var path = require('path');
 
-var port = process.env.PORT || 3000;
+console.log(process.env.JWT_SECRET);
 
+var port = process.env.PORT || 3000;
 
 var mongoose = require('mongoose');
 

@@ -36,6 +36,7 @@ router.post('/inscription', function(req, res) {
     if (err) {
       sendJSONresponse(res, 404, err);
     } else {
+      console.log("generation token");
       token = user.generateJwt();
       sendJSONresponse(res, 200, {
         "token": token

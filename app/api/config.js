@@ -1,5 +1,5 @@
 module.exports = {
-	"JWT_SECRET" : "thisIsSecret",
+	"secret" : "thisIsSecret",
 	"db": {
 		"mongodb": "localhost:27017/timedb"
 	},
