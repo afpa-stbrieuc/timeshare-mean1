@@ -1,6 +1,8 @@
+<div class="container" >
 <table class="table">
 	<thead>
 		<tr>
+            <th>User_id</th>
 			<th>Solde</th>
 			<th>Adverts</th>
             <th>Action</th>
@@ -27,7 +29,11 @@
 </td>
         </tr>
         <tr ng-repeat="account in accountlist">
-            <td>{{account.userid}}  <i>{{account.userid | filtre}}</i></td>
+            <td>{{account.userid}}  <i>{{account.userid | filtre}}</i>
+<tr>
+
+</tr>
+            </td>
             <td>{{account.solde}}  <i>{{account.solde | filtre}}</i></td>
             <td>{{account.advertsid}}  <i>{{account.advertsid | filtre}}</i></td>
             <td><button class="btn btn-danger" ng-click="removeAccount(account._id)">Remove</button></td>
@@ -37,3 +43,4 @@
         </tr>
     </tbody>
 </table>
+</div>
