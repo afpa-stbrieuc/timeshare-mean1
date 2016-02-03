@@ -15,7 +15,6 @@
 
     vm.currentUser = authentication.currentUser();
 
-
     vm.logout = function() {
       authentication.logout();
       $location.path('/');
