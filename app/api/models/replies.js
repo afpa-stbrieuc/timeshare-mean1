@@ -8,7 +8,7 @@ var replySchema = new Schema({
         type: String,
         required: true
     }, //{type: Schema.Types.ObjectId, ref: 'user' },
-//    title: String,
+    title: String,
     toAdId: {
         type: String,
         required: true
@@ -19,6 +19,9 @@ var replySchema = new Schema({
         type: Date
     },
     updated_at: {
+        type: Date
+    },
+        work_date: {
         type: Date
     },
     published: Boolean,

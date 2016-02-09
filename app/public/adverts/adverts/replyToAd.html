@@ -2,19 +2,9 @@
         <div class="header">
             <navigation></navigation>
          </div>
- <div class="well">
-                        <h4>{{advert.type}}</h4>
-                        <img style="width:100px;" ng-src="uploads/{{advert.media}}"/>
-                        <h4><i><small>publié par : </small></i>{{advert.author}}&nbsp;
-                            <i style='float:right'><small> le : {{advert.created_at | date :'dd MMM yyyy'}}</small></i>
-                        </h4>
-                        <h4><i><small>Je propose </small></i>{{advert.title}}</h4>
-                        <p>{{advert.content}}</p>
-                        <h4><i><small>zone : </small></i>{{advert.regions}}&nbsp;
-                            <i style='float:right'><small>catégorie : <strong>{{advert.categories}}</strong></small></i>
-                        </h4>        
+    
                        
-<div class="col-lg-12" >
+<div class="col-lg-12" style="margin-top: 50px" >
     <div class="well">
         <h4>{{advert.type}}</h4>
         <img style="width:100px;" ng-src="uploads/{{advert.media}}"/>
@@ -56,10 +46,6 @@
 <br>
                     <timevalid></timevalid>
 
-
-              <div class="text-center">
-    <a href="#/adverts" class="btn-lg btn-danger">Retour</a>
-</div>     
 
             <div class="col-md-5 col-md-offset-2">
                 <button class="btn btn-primary" ng-click="addReply()" ng-disabled=" ">Poster la réponse</button>
