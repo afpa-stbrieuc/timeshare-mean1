@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
   <div class="well">
 
@@ -28,6 +29,42 @@
         </div>
         <div class="form-group">
             <select class="form-control" required ng-model="advert.regions" placeholder="Localisation (Lieu)" >
+=======
+<div class="row" style="min-height: 800px">
+    
+    <div class="col-lg-offset-1 col-lg-11"> 
+        <h1>Déposer une annonce</h1>
+        <form class="col-md-7">
+            <div class="row">  
+                <div class="col-md-2">
+                    <h5><strong>Type</strong></h5> 
+                </div>
+                <div class="col-md-5">
+                    <select class="form-control" required ng-model="advert.type">
+                        <option value="offre">Offre de service</option>
+                        <option value="demande">Demande</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">  
+                
+                <div class="col-md-2">
+                    <h5><strong>Titre</strong></h5> 
+                </div>
+                <div class="col-md-5">
+                    <input class="form-control" required ng-model="advert.title"  >
+                </div>
+            </div>
+            <br>
+
+            <div class="row">  
+                <div class="col-md-2">
+                    <h5><strong>Localisation</strong></h5> 
+                </div>
+                <div class="col-md-5" >
+                    <select class="form-control"  required  ng-model="advert.regions">
+>>>>>>> caro-branch
                         <option value="">Région</option>
                         <option ng-repeat="option in region.regionOptions" value="{{option.regions}}">{{option.regions}}</option>
             </select>
@@ -92,14 +129,22 @@
 </div>
 
 
+<<<<<<< HEAD
 <div class="row" style="margin-top:10px"> 
      <div class="text-center">
+=======
+         </div>
+
+
+    <div class="text-center">
+>>>>>>> caro-branch
         <a href="#/adverts"  class="btn btn-danger" >Voir les annonces <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
 
     </div>  
     <br>
     <div class="text-center">
         <a href="#/" class="btn btn-primary">Retour</a>
+<<<<<<< HEAD
       
 </div>
 </div>
@@ -113,3 +158,9 @@
 
 </div>
 </div>
+=======
+    </div> 
+</div>    
+    
+ 
+>>>>>>> caro-branch
