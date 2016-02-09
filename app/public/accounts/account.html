@@ -1,5 +1,11 @@
+       <div class="header">
+            <navigation></navigation>
+         </div>
 <div class="container" >
 <table class="table">
+            <date-picker ng-model="date">
+</date-picker>
+<input type="text" ng-model="date">
 	<thead>
 		<tr>
             <th>User_id</th>
@@ -29,11 +35,7 @@
 </td>
         </tr>
         <tr ng-repeat="account in accountlist">
-            <td>{{account.userid}}  <i>{{account.userid | filtre}}</i>
-<tr>
-
-</tr>
-            </td>
+            <td>{{account.userid}}  <i>{{account.userid | filtre}}</i></td>
             <td>{{account.solde}}  <i>{{account.solde | filtre}}</i></td>
             <td>{{account.advertsid}}  <i>{{account.advertsid | filtre}}</i></td>
             <td><button class="btn btn-danger" ng-click="removeAccount(account._id)">Remove</button></td>

@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('timeShareApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'ngFileUpload', 'filtreAccount']);
+angular.module('timeShareApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'ngFileUpload', 'filtreAccount', 'mp.datePicker']);

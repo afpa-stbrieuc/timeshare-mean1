@@ -1,3 +1,6 @@
+        <div class="header">
+            <navigation></navigation>
+         </div>
  <div class="well">
                         <h4>{{advert.type}}</h4>
                         <img style="width:100px;" ng-src="uploads/{{advert.media}}"/>
@@ -14,7 +17,7 @@
                     </div>
 
 
-<div class="row">  
+<div class="row" ng-show="navvm.isLoggedIn">  
     <h3>Envoyer un message à {{advert.author}}</h3>
         <form class="col-lg-7">
             
@@ -36,6 +39,9 @@
                 </div>
             </div>
 <br>
+                    <timevalid></timevalid>
+
+
               <div class="text-center">
     <a href="#/adverts" class="btn-lg btn-danger">Retour</a>
 </div>     
