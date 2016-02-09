@@ -51,7 +51,7 @@ body {
 }
 
 footer#themeBrand{
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0px;
     background-color: #333;
     color :#fff;

@@ -27,8 +27,9 @@ router.post('/', function(req, res) {
     console.log('Post req.body', req.body);
 
     var reply = new Replydb(); // create a new instance of the Reply model
-    reply.title = req.body.title;
+//    reply.title = req.body.title;
     reply.author = req.body.author;
+    reply.toAdId = req.body.toAdId;
     reply.content = req.body.content;
     reply.created_at = req.body.created_at;
     reply.updated_at = req.body.updated_at;

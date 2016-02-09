@@ -14,6 +14,7 @@ angular.module('timeShareApp')
 
             $scope.addReply = function () {
                 $scope.reply.author = authentication.currentUser().firstname;
+                $scope.reply.toAdId = $routeParams._id;
                 $http.post('/api/replies', $scope.reply).success(function (response) {
                     console.log('scopeReply: ', $scope.reply);
                     console.log('response: ', response);
