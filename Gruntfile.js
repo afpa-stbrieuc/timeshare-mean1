@@ -301,7 +301,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= project.appApi %>',
-          src: ['**','.*','!test/**'],
+          src: ['**', '.*', '!test/**'],
           dest: '<%= project.distApi %>'
         }, {
           expand: true,
@@ -312,10 +312,9 @@ module.exports = function(grunt) {
             '**/*.html',
             'lib/images/{,*/}*.{webp}',
             'lib/fonts/*',
-            '!bower_components/**','!test/**'
+            '!bower_components/**', '!test/**'
           ]
-        }
-        , {
+        }, {
           expand: true,
           cwd: '.tmp/images',
           dest: '<%= project.distPublic %>/images',
@@ -351,7 +350,8 @@ module.exports = function(grunt) {
         options: {
           archive: 'release.zip'
         },
-        files: [{
+        files: [
+          {
             expand: true,
             cwd: 'dist/',
             src: ['**'],
