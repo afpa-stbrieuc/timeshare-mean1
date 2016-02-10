@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var User = require('../models/user');
 var Accountdb = require('../models/account');
 
 
@@ -11,8 +11,9 @@ router.get('/', function(req, res) {
 		if (err)
 			res.send(err);
 
-
 		res.json(account);
+
+		
 
 	});
 });
@@ -46,19 +47,8 @@ router.get('/:account_id', function(req, res) {
 	Accountdb.findById(req.params.account_id, function(err, account) {
 		if (err)
 			res.send(err);
-		if (req.session.user) {
 			res.json(201, account);
-
-		} else {
-			//req.session.error = 'Access denied!';
-			//res.redirect('/login');
-			res.json(404, account);
-		}
-		//	res.json(account);
 	});
-
-
-
 });
 
 // update the account with this id

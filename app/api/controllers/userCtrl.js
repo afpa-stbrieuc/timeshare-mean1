@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Accountdb = require('../models/account');
 var passport = require('passport');
 var mongoose = require('mongoose');
 
@@ -20,6 +21,8 @@ router.post('/inscription', function(req, res) {
     return;
   }
 
+
+
   var user = new User();
 
   user.lastname = req.body.lastname;
@@ -30,6 +33,10 @@ router.post('/inscription', function(req, res) {
   user.verified = false;
 
   user.setPassword(req.body.password);
+
+  var account = new Accountdb(); // create a new instance of the Account model
+  account.userid = user._id; // set the Account userid
+
 
   user.save(function(err) {
     var token;
@@ -43,6 +50,10 @@ router.post('/inscription', function(req, res) {
       });
     }
   });
+
+  //account.advertsid = req.body.advertsid;
+
+  account.save();
 
 });
 

@@ -9,12 +9,19 @@ var replySchema = new Schema({
         required: true
     }, //{type: Schema.Types.ObjectId, ref: 'user' },
     title: String,
+    toAdId: {
+        type: String,
+        required: true
+    },
     content: String,
 
     created_at: {
         type: Date
     },
     updated_at: {
+        type: Date
+    },
+        work_date: {
         type: Date
     },
     published: Boolean,
