@@ -228,7 +228,7 @@ router.get('/searchRegionCat/:advert_region/:advert_cat', function(req, res) {
 router.post('/upload', function(req, res) {
     var storage = multer.diskStorage({ //multers disk storage settings
         destination: function(req, file, cb) {
-            cb(null, '../public/uploads/')
+            cb(null, global.uploadDir)
         },
         filename: function(req, file, cb) {
             var datetimestamp = Date.now();

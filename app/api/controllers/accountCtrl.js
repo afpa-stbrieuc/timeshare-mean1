@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 
 		res.json(account);
 
-		
+
 
 	});
 });
@@ -47,7 +47,7 @@ router.get('/:account_id', function(req, res) {
 	Accountdb.findById(req.params.account_id, function(err, account) {
 		if (err)
 			res.send(err);
-			res.json(201, account);
+		res.json(201, account);
 	});
 });
 
