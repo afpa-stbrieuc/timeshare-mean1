@@ -16,6 +16,11 @@ var config = require('./config');
 app.set('superSecret', config.secret);
 
 
+global.uploadDir = path.join(path.resolve(__dirname),'../public/uploads');
+console.log('path='+global.uploadDir);
+
+
+
 
 app.use(function(err, req, res, next) {
 	if (err.name === 'UnauthorizedError') {
