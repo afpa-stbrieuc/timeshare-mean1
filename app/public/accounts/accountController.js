@@ -3,13 +3,13 @@
 angular.module('timeShareApp')
   .controller('accountController', function($scope, $http) {
 
-    console.log("Hello from Account controller");
+    console.log('Hello from Account controller');
 
     var refresh = function() {
       $http.get('/api/account').success(function(response) {
 
         $scope.accountlist = response;
-        $scope.account = "";
+        $scope.account = '';
       });
     };
 
@@ -25,7 +25,7 @@ angular.module('timeShareApp')
 
     $scope.removeAccount = function(id) {
       console.log(id);
-      $http.delete('api/account/' + id).success(function(response) {
+      $http.delete('api/account/' + id).success(function() {
         refresh();
       });
     };
@@ -39,13 +39,13 @@ angular.module('timeShareApp')
 
     $scope.updateAccount = function() {
       console.log($scope.account._id);
-      $http.put('/api/account/' + $scope.account._id, $scope.account).success(function(response) {
+      $http.put('/api/account/' + $scope.account._id, $scope.account).success(function() {
         refresh();
-      })
+      });
     };
 
     $scope.deselectAccount = function() {
-      $scope.account = "";
-    }
+      $scope.account = '';
+    };
 
   });
