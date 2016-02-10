@@ -18,7 +18,7 @@ module.exports = function(grunt) {
   var appPath = 'app';
   var distPath = 'dist';
 
-   // Configurable paths for the application
+  // Configurable paths for the application
   var appConfig = {
     app: appPath,
     appApi: appPath + '/api',
@@ -29,8 +29,8 @@ module.exports = function(grunt) {
   };
 
 
-    // Watches files for changes and runs tasks based on the changed files
-// Define the configuration for all the tasks
+  // Watches files for changes and runs tasks based on the changed files
+  // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
@@ -43,7 +43,10 @@ module.exports = function(grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= project.appPublic %>/scripts/{,*/}*.js'],
+        files: [
+          '!<%= project.appPublic %>/bower_components/**',
+          '<%= project.appPublic %>/**/*.js'
+        ],
         tasks: ['newer:jshint:all'],
       },
       jsTest: {
@@ -51,7 +54,7 @@ module.exports = function(grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= project.appPublic %>/styles/{,*/}*.css'],
+        files: ['<%= project.appPublic %>/lib/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
@@ -64,7 +67,7 @@ module.exports = function(grunt) {
           'models/*',
           'server.js',
         ],
-        tasks:  [ 'express:dev' ],
+        tasks: ['express:dev'],
         options: {
           spawn: false // for grunt-contrib-watch v0.5.0+, "nospawn: true" for lower versions. Without this option specified express won't be reloaded
         }
@@ -74,10 +77,11 @@ module.exports = function(grunt) {
           livereload: true
         },
         files: [
-          '<%= project.appPublic %>/{,*/}*.html',
+          '<%= project.appPublic %>/**/*.html',
           '.tmp/styles/{,*/}*.css',
-          '<%= project.appPublic %>/scripts/{,*/}*.js',
-          '<%= project.appPublic %>/images/{,*/}*',
+          '!<%= project.appPublic %>/bower_components/**',
+          '<%= project.appPublic %>/**/*.js',
+          '<%= project.appPublic %>/lib/images/{,*/}*',
           '<%= project.appApi %>/**/*.js'
         ]
       },
@@ -122,7 +126,8 @@ module.exports = function(grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= project.appPublic %>/scripts/{,*/}*.js'
+        '!<%= project.appPublic %>/bower_components/**',
+        '<%= project.appPublic %>/{,*/}*.js'
       ],
       test: {
         options: {
@@ -147,7 +152,7 @@ module.exports = function(grunt) {
       server: '.tmp'
     },
 
-   // Automatically inject Bower components into the app
+    // Automatically inject Bower components into the app
     wiredep: {
       options: {
         cwd: ''
@@ -189,10 +194,8 @@ module.exports = function(grunt) {
     filerev: {
       dist: {
         src: [
-          '<%= project.distPublic %>/scripts/{,*/}*.js',
-          '<%= project.distPublic %>/styles/{,*/}*.css',
-          '<%= project.distPublic %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= project.distPublic %>/styles/fonts/*'
+          '<%= project.distPublic %>/**/*.js',
+          '<%= project.distPublic %>/styles/**/*.css'
         ]
       }
     },
@@ -209,8 +212,8 @@ module.exports = function(grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= project.distPublic %>/{,*/}*.html'],
-      css: ['<%= project.distPublic %>/styles/{,*/}*.css'],
+      html: ['<%= project.distPublic %>/**/*.html'],
+      css: ['<%= project.distPublic %>/styles/**/*.css'],
       options: {
         assetsDirs: ['<%= project.distPublic %>']
       }
@@ -221,9 +224,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= project.appPublic %>/images',
+          cwd: '<%= project.appPublic %>/lib/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= project.distPublic %>/images'
+          dest: '<%= project.distPublic %>/lib/images'
         }]
       }
     },
@@ -231,9 +234,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= project.appPublic %>/images',
+          cwd: '<%= project.appPublic %>/lib/images',
           src: '{,*/}*.svg',
-          dest: '<%= project.distPublic %>/images'
+          dest: '<%= project.distPublic %>/lib/images'
         }]
       }
     },
@@ -248,7 +251,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= project.distPublic %>',
-          src: ['*.html', 'views/{,*/}*.html'],
+          src: ['*.html', '**/*.html'],
           dest: '<%= project.distPublic %>'
         }]
       }
@@ -274,7 +277,9 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '.tmp/concat/scripts',
-          src: '<%= project.appPublic %>/scripts/**/*.js',
+          src: [
+            '*.js'
+          ],
           dest: '.tmp/concat/scripts'
         }]
       }
@@ -296,19 +301,21 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: '<%= project.appApi %>',
-          src: ['**'],
+          src: ['**','.*','!test/**'],
           dest: '<%= project.distApi %>'
-        },{
+        }, {
           expand: true,
           cwd: '<%= project.appPublic %>',
           dest: '<%= project.distPublic %>',
           src: ['*.{ico,png,txt}',
             '*.html',
-            'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
-            'fonts/*']
-        },
-        {
+            '**/*.html',
+            'lib/images/{,*/}*.{webp}',
+            'lib/fonts/*',
+            '!bower_components/**','!test/**'
+          ]
+        }
+        , {
           expand: true,
           cwd: '.tmp/images',
           dest: '<%= project.distPublic %>/images',
@@ -317,7 +324,7 @@ module.exports = function(grunt) {
       },
       styles: {
         expand: true,
-        cwd: '<%= project.appPublic %>/styles',
+        cwd: '<%= project.appPublic %>/lib/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
       }
@@ -344,8 +351,7 @@ module.exports = function(grunt) {
         options: {
           archive: 'release.zip'
         },
-        files: [
-          {
+        files: [{
             expand: true,
             cwd: 'dist/',
             src: ['**'],
