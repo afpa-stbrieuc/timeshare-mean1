@@ -24,11 +24,11 @@
 <input class="form-control" ng-model="account.advertsid">
 </td>
 <td>
-<button class="btn btn-primary" ng-click="addAccount()">Add Contact</button>
+<button class="btn btn-primary" ng-click="addAccount()" ng-disabled="unclick">Add Contact</button>
 </td>
 <td>
-<button class="btn btn-info" ng-click="updateAccount()">Update</button>&nbsp;&nbsp;
-<button class="btn btn-info" ng-click="deselectAccount()">Clear</button>
+<button class="btn btn-info" ng-click="updateAccount()" ng-disabled="unclick">Update</button>&nbsp;&nbsp;
+<button class="btn btn-info" ng-click="deselectAccount()" ng-disabled="unclick">Clear</button>
 </td>
         </tr>
         <tr ng-repeat="account in accountlist">
