@@ -11,21 +11,21 @@
                     </div>
                     
                    <div class="col-md-3">
-                    <select class="form-control"  ng-model="advert.type" ng-change="searchAdvert(advert)">
+                    <select class="form-control"  ng-model="type">
                         <option value="">Type</option>
                         <option value="offre">Offre de service</option>
                         <option value="demande">Demande</option>
                     </select>
                 </div>    
                 <div class="col-md-3">
-                    <select class="form-control" ng-model="advert.regions" ng-change="searchAdvert(advert)">
+                    <select class="form-control" ng-model="regions">
                         <option value="">Région</option>
                         <option ng-repeat="option in region.regionOptions" value="{{option.regions}}">{{option.regions}}</option>
                     </select>
    
                 </div>
                 <div class="col-md-3">
-                    <select class="form-control" ng-model="advert.categories" ng-change="searchAdvert(advert)">
+                    <select class="form-control" ng-model="categories">
                         <option value="">Catégorie</option>
                         <option ng-repeat="option in category.catOptions" value="{{option.categories}}">{{option.categories}}</option>
                     </select>
@@ -37,7 +37,7 @@
             <div class="row">
         <div class="col-lg-8 col-lg-offset-1">
             <div class="panel panel-default">
-                <div ng-repeat="advert in adverts.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+                <div ng-repeat="advert in adverts.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:type | filter:regions | filter:categories">
                     <!--.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))-->
                     <div class="panel-body">
                         <h4>{{advert.type}}</h4>
