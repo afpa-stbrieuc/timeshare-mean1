@@ -13,6 +13,13 @@ var advertSchema = new Schema({
         type: String,
         required: true
     }, //{type: Schema.Types.ObjectId, ref: 'user' },
+    author_id: {
+        type: String,
+        required: true
+    }, //{type: Schema.Types.ObjectId, ref: 'user'     
+    replies : [{ 
+            type: Schema.Types.ObjectId, ref: 'replySchema', required: false
+    }],
     title: String,
     content: String,
     media: String,

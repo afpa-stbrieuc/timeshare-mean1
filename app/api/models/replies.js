@@ -10,18 +10,16 @@ var replySchema = new Schema({
     }, //{type: Schema.Types.ObjectId, ref: 'user' },
     title: String,
     toAdId: {
-        type: String,
-        required: true
+        type: Schema.ObjectId, ref: 'advertSchema'
     },
     content: String,
-
     created_at: {
         type: Date
     },
     updated_at: {
         type: Date
     },
-        work_date: {
+    work_date: {
         type: Date
     },
     published: Boolean,
@@ -32,7 +30,7 @@ var replySchema = new Schema({
     collection: 'replies'
 });
 
-replySchema.pre('save', function(next) {
+replySchema.pre('save', function (next) {
     now = new Date();
     this.updated_at = now;
     if (!this.created_at) {

@@ -33,13 +33,16 @@
         var token = getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
         return {
+          _id: payload._id,
           mail: payload.mail,
           lastname: payload.lastname,
-          firstname: payload.firstname
+          firstname: payload.firstname,
+          tel: payload.tel,
+          adress: payload.adress
         };
       }
     };
-
+    
     register = function(user) {
       return $http.post('/api/users/inscription', user).success(function(data) {
         saveToken(data.token);
@@ -48,7 +51,16 @@
 
       });
     };
+    updateProfile = function(user) {
+      console.log("totototo");
+      return $http.put('/api/users/updateProfile', user).success(function(data) {
+        saveToken(data.token);
+        console.log(data.token);
+        console.log("c fait");
 
+      });
+    };
+ 
     login = function(user) {
       return $http.post('/api/users/login', user).success(function(data) {
         saveToken(data.token);
@@ -60,6 +72,8 @@
     logout = function() {
       $window.localStorage.removeItem('timeshare-token');
     };
+    
+
 
     return {
       currentUser: currentUser,
@@ -67,8 +81,9 @@
       getToken: getToken,
       isLoggedIn: isLoggedIn,
       register: register,
+      updateProfile: updateProfile,
       login: login,
-      logout: logout
+      logout: logout,
     };
   }
 

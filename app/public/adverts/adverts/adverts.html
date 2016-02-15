@@ -41,7 +41,8 @@
                     <!--.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))-->
                     <div class="panel-body">
                         <h4>{{advert.type}}</h4>
-                        <img style="width:100px;" ng-src="uploads/{{advert.media}}"/>
+                        <div >
+                        <img ng-if="advert.media !== 'abc'" style="width:100px;" ng-src="uploads/{{advert.media}}"/></div>
                         <h4><i><small>publié par : </small></i>{{advert.author}}&nbsp;
                             <i style='float:right'><small> le : {{advert.created_at | date :'dd MMM yyyy'}}</small></i>
                         </h4>
