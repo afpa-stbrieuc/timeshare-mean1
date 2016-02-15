@@ -3,20 +3,18 @@
     angular
         .module('timeShareApp')
         .controller('advertsController', advertsController);
-    advertsController.$inject = ['$scope', '$http'];
 
     function advertsController($scope, $http) {
 
         //unsort default view
         var refresh = function() {
             $http.get('/api/adverts').success(function(response) {
-                console.log("I got the data I requested");
+                //console.log("I got the data I requested");
                 $scope.adverts = response;
                 $scope.totalItems = $scope.adverts.length;
                 $scope.currentPage = 1;
                 $scope.itemsPerPage = 5;
                 $scope.maxSize = 3; //Number of pager buttons to show
-                console.log($scope.adverts);
                 $scope.advert = "";
             });
         };
