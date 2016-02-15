@@ -23,7 +23,7 @@
                     <div style="border: 1px solid rgba(140, 137, 137, 0.45); margin-bottom:10px" ng-repeat="advert in adverts| filter: {type:'offre'} |orderBy: '-created_at'| limitTo:3" >
                         <div class="media" style="border-bottom: 1px solid rgba(159, 159, 160, 0.25);">
                             <a class="pull-left" href="#/replyToAd/{{advert._id}}">
-                                <img class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
+                                <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
                             </a>
                             <div class="media-body">
                                 <h3 class="media-heading">{{advert.title}}</h3>
@@ -49,8 +49,8 @@
 
                     <div style="border: 1px solid rgba(140, 137, 137, 0.45); margin-bottom:10px" ng-repeat="advert in adverts| filter: {type:'demande'}|orderBy: '-created_at'| limitTo:3 ">
                         <div class="media" style="border-bottom: 1px solid rgba(159, 159, 160, 0.25);">
-                            <a class="pull-left" href="#">
-                                <img class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
+                            <a class="pull-left" href="#/replyToAd/{{advert._id}}">
+                                <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
                             </a>
                             <div class="media-body">
                                 <h3 class="media-heading">{{advert.title}}</h3>

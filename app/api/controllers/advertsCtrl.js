@@ -25,14 +25,15 @@ router.get('/', function(req, res) {
 
 
 router.post('/', function(req, res) {
-
-    console.log('Post req.body', req.body);
+    console.log('POST req.body', req.body);
 
     var advert = new Advertdb(); // create a new instance of the Advert model
     advert.type = req.body.type;
     advert.title = req.body.title;
     advert.author = req.body.author;
+    advert.author_id = req.body.author_id;
     advert.content = req.body.content;
+//    advert.replies = '';
     advert.media = 'abc';
     advert.loc = req.body.loc;
     advert.regions = req.body.regions;
@@ -56,7 +57,6 @@ router.post('/', function(req, res) {
     });
 });
 
-
 router.delete('/:advert_id', function(req, res) {
     console.log(req.params.advert_id);
     Advertdb.remove({
@@ -69,53 +69,14 @@ router.delete('/:advert_id', function(req, res) {
             message: 'Successfully deleted'
         });
     });
-
 });
 
 router.get('/:advert_id', function(req, res) {
-
     Advertdb.findById(req.params.advert_id, function(err, advert) {
         if (err)
             res.send(err);
         res.json(advert);
         console.log('Edit:', advert);
-    });
-
-});
-
-
-router.put('/:advert_id', function(req, res) {
-
-    Advertdb.findById(req.params.advert_id, function(err, advert) {
-
-        if (err)
-            res.send(err);
-        advert.type = req.body.type;
-        advert.author = req.body.author;
-        advert.content = req.body.content;
-        advert.media = media;
-        console.log('advert.media : ', media);
-        advert.loc = req.body.loc;
-        advert.regions = req.body.regions;
-        advert.categories = req.body.categories;
-        advert.work_date = req.body.work_date;
-        advert.work_duration_estimated = req.body.work_duration_estimated;
-        advert.created_at = req.body.created_at;
-        advert.updated_at = req.body.updated_at;
-        advert.published = req.body.published;
-        advert.answered = req.body.answered;
-        advert.confirmed = req.body.confirmed;
-        advert.helper = req.body.helper;
-        advert.work_duration_real = req.body.work_duration_real;
-
-        advert.save(function(err) {
-            if (err)
-                res.send(err);
-
-            res.json(advert);
-            console.log('Updated:', advert);
-        });
-
     });
 });
 
@@ -136,7 +97,20 @@ router.get('/searchAll/:advert_type/:advert_region/:advert_cat', function(req, r
         req.params.advert_cat = " ";
         console.log('voila les params : ', req.params.advert_type, req.params.advert_region, req.params.advert_cat);
     });
+});
 
+router.get('/searchAuthor_id/:advert_author_id', function(req, res) {
+    console.log('req Type : ', req.params.advert_author_id);
+    Advertdb.find({
+        author_id: req.params.advert_author_id
+    }, function(err, adverts) {
+        if (err)
+            res.send(err);
+
+        res.json(adverts);
+        console.log('author_id', adverts);
+        console.log('params advert par author: ', req.params.advert_author_id);
+    });
 });
 
 router.get('/searchType/:advert_type', function(req, res) {
@@ -152,6 +126,7 @@ router.get('/searchType/:advert_type', function(req, res) {
         console.log('voila le params : ', req.params.advert_type);
     });
 });
+
 router.get('/searchRegion/:advert_region', function(req, res) {
     console.log('req Region : ', req.params.advert_region);
     Advertdb.find({
@@ -235,17 +210,13 @@ router.post('/upload', function(req, res) {
             cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
             console.log('FILE: ', file);
         }
-
     });
-
     var upload = multer({ //multer settings
         storage: storage
     }).single('file');
-
     console.log("Chargement fichier...");
 
     upload(req, res, function(err) {
-
         if (err) {
             console.log(err);
             res.json({
@@ -260,36 +231,86 @@ router.post('/upload', function(req, res) {
             error_code: 0,
             err_desc: null
         });
-
-
     });
-
 });
 
+//API path that displays the choosen advert to answer to
 router.get('/replyToAd/:advert_id', function(req, res) {
-
     Advertdb.findById(req.params.advert_id, function(err, advert) {
         if (err)
             res.send(err);
         res.json(advert);
         console.log('Edit:', advert);
-    });
+      });     
 
 });
-//
-////recupere media par nom=file in db
-//router.get('/getFile/:media_file', function (req, res) {
-//
-//    Mediadb.find({file: media}, function (err, media) {
-//        if (err)
-//            res.send(err);
-//        res.json(media);
-//        console.log('Edit:', media);
-//    });
-//console.log('SavedMedia:', media.file);
-//
-//});
 
+router.put('/:advert_id', function(req, res) {
+    Advertdb.findById(req.params.advert_id, function(err, advert) {
+        if (err)
+            res.send(err);
+        advert.type = req.body.type;
+        advert.author = req.body.author;
+        advert.content = req.body.content;
+        console.log("ad.replies", req.body.replies._id)
+        advert.replies.push(req.body.replies._id);
+//        advert.replies = reply;
+         
+        advert.loc = req.body.loc;
+        advert.regions = req.body.regions;
+        advert.categories = req.body.categories;
+        advert.work_date = req.body.work_date;
+        advert.work_duration_estimated = req.body.work_duration_estimated;
+        advert.created_at = req.body.created_at;
+        advert.updated_at = req.body.updated_at;
+        advert.published = req.body.published;
+        advert.answered = req.body.answered;
+        advert.confirmed = req.body.confirmed;
+        advert.helper = req.body.helper;
+        advert.work_duration_real = req.body.work_duration_real;
 
+        advert.save(function(err) {
+            if (err)
+                res.send(err);
+
+            res.json(advert);
+            console.log('Updated:', advert);
+        });
+
+    });
+});
+
+//Update the advert with uploaded media file
+router.put('/media/:advert_id', function(req, res) {
+    Advertdb.findById(req.params.advert_id, function(err, advert) {
+        if (err)
+            res.send(err);
+        advert.media = media;
+        console.log('advert.media : ', media);
+        advert.save(function(err) {
+            if (err)
+                res.send(err);
+            res.json(advert);
+            console.log('UpdatedMedia:', advert);
+        });
+    });
+});
+
+router.put('/reply/:advert_id', function(req, res) {
+    console.log('advert.reply : ', req.body);
+    Advertdb.findById(req.params.advert_id, function(err, advert) {
+        if (err)
+            res.send(err);
+//        advert.replies = req.body;
+         advert.replies.push(req.body);
+        
+        advert.save(function(err) {
+            if (err)
+                res.send(err);
+            res.json(advert);
+            console.log('UpdatedReply:', advert);
+        });
+    });
+});
 
 module.exports = router

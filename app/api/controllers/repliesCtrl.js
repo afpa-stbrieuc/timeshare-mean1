@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 var Replydb = require('../models/replies');
-
+var Advertdb = require('../models/adverts');
 
 router.get('/', function(req, res) {
     console.log("data received by GET request");
@@ -23,7 +23,6 @@ router.get('/', function(req, res) {
 
 
 router.post('/', function(req, res) {
-
     console.log('Post req.body', req.body);
 
     var reply = new Replydb(); // create a new instance of the Reply model
@@ -56,7 +55,6 @@ router.delete('/:reply_id', function(req, res) {
     }, function(err, reply) {
         if (err)
             res.send(err);
-
         res.json({
             message: 'Successfully deleted'
         });
@@ -65,19 +63,16 @@ router.delete('/:reply_id', function(req, res) {
 });
 
 router.get('/:reply_id', function(req, res) {
-
     Replydb.findById(req.params.reply_id, function(err, reply) {
         if (err)
             res.send(err);
         res.json(reply);
         console.log('Edit:', reply);
     });
-
 });
 
 
 router.put('/:reply_id', function(req, res) {
-
     Replydb.findById(req.params.reply_id, function(err, reply) {
 
         if (err)
@@ -102,110 +97,23 @@ router.put('/:reply_id', function(req, res) {
     });
 });
 
-router.get('/searchAll/:reply_type/:reply_region/:reply_cat', function(req, res) {
-    console.log('params requete', req.params.reply_type, req.params.reply_region);
+
+
+router.get('/searchReplies/:reply_id', function(req, res) {
+    console.log('req Type : ', req.params.reply_id);
     Replydb.find({
-        type: req.params.reply_type,
-        regions: req.params.reply_region,
-        categories: req.params.reply_cat
+        toAdId: req.params.reply_id
     }, function(err, replies) {
         if (err)
             res.send(err);
 
         res.json(replies);
-        console.log('requeteAll', replies);
-        req.params.reply_type = " ";
-        req.params.reply_region = " ";
-        req.params.reply_cat = " ";
-        console.log('voila les params : ', req.params.reply_type, req.params.reply_region, req.params.reply_cat);
-    });
-
-});
-
-router.get('/searchType/:reply_type', function(req, res) {
-    console.log('req Type : ', req.params.reply_type);
-    Replydb.find({
-        type: req.params.reply_type
-    }, function(err, replies) {
-        if (err)
-            res.send(err);
-
-        res.json(replies);
-        console.log('type', replies);
-        console.log('voila le params : ', req.params.reply_type);
-    });
-});
-router.get('/searchRegion/:reply_region', function(req, res) {
-    console.log('req Region : ', req.params.reply_region);
-    Replydb.find({
-        regions: req.params.reply_region
-    }, function(err, replies) {
-        if (err)
-            res.send(err);
-
-        res.json(replies);
-        console.log('region', replies);
-    });
-});
-router.get('/searchCat/:reply_cat', function(req, res) {
-    console.log('req Cat : ', req.params.reply_cat);
-    Replydb.find({
-        categories: req.params.reply_cat
-    }, function(err, replies) {
-        if (err)
-            res.send(err);
-
-        res.json(replies);
-        console.log('cat', replies);
+        console.log('Replies', replies);
+        console.log('voila les rep aux annonces : ', req.params.reply_id);
     });
 });
 
-router.get('/searchTypeRegion/:reply_type/:reply_region', function(req, res) {
-    console.log('req requete', req.params.reply_type, req.params.reply_region);
-    Replydb.find({
-        type: req.params.reply_type,
-        regions: req.params.reply_region
-    }, function(err, replies) {
-        if (err)
-            res.send(err);
 
-        res.json(replies);
-        console.log('requeteTR', replies);
-        req.params.reply_type = " ";
-        req.params.reply_region = " ";
-        console.log('voila les params : ', req.params.reply_type, req.params.reply_region);
-    });
-});
-router.get('/searchTypeCat/:reply_type/:reply_cat', function(req, res) {
-    console.log('req requete', req.params.reply_type, req.params.reply_cat);
-    Replydb.find({
-        type: req.params.reply_type,
-        categories: req.params.reply_cat
-    }, function(err, replies) {
-        if (err)
-            res.send(err);
-
-        res.json(replies);
-        console.log('requeteTC', replies);
-        req.params.reply_type = " ";
-        req.params.reply_cat = " ";
-        console.log('voila les params : ', req.params.reply_type, req.params.reply_cat);
-    });
-});
-router.get('/searchRegionCat/:reply_region/:reply_cat', function(req, res) {
-    console.log('req requete', req.params.reply_region, req.params.reply_cat);
-    Replydb.find({
-        regions: req.params.reply_region,
-        categories: req.params.reply_cat
-    }, function(err, replies) {
-        if (err)
-            res.send(err);
-
-        res.json(replies);
-        console.log('requeteRC', replies);
-    });
-
-});
 
 /** API path that will upload the files */
 router.post('/upload', function(req, res) {
@@ -250,7 +158,6 @@ router.post('/upload', function(req, res) {
 });
 
 router.get('/replyToAd/:reply_id', function(req, res) {
-
     Replydb.findById(req.params.reply_id, function(err, reply) {
         if (err)
             res.send(err);
@@ -259,20 +166,6 @@ router.get('/replyToAd/:reply_id', function(req, res) {
     });
 
 });
-//
-////recupere media par nom=file in db
-//router.get('/getFile/:media_file', function (req, res) {
-//
-//    Mediadb.find({file: media}, function (err, media) {
-//        if (err)
-//            res.send(err);
-//        res.json(media);
-//        console.log('Edit:', media);
-//    });
-//console.log('SavedMedia:', media.file);
-//
-//});
-
 
 
 module.exports = router

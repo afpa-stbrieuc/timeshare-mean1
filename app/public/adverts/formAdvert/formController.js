@@ -8,6 +8,7 @@ angular.module('timeShareApp')
     $scope.addAdvert = function() {
         
         $scope.advert.author = authentication.currentUser().firstname;
+        $scope.advert.author_id = authentication.currentUser()._id;
   
         $http.post('/api/adverts', $scope.advert).success(function(response) {
             console.log('scopeAdvert: ', $scope.advert);
@@ -125,8 +126,8 @@ angular.module('timeShareApp')
                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
                 console.log('RespConfig' + resp);
 
-                $http.put('/api/adverts/' + $scope.advert._id, $scope.advert).success(function(response) {
-                    console.log('currentId2: ', $scope.advert._id);
+                $http.put('/api/adverts/media/' + $scope.advert._id, $scope.advert).success(function(response) {
+                    console.log('currentId2: ', $scope.advert);
                 });
             } else {
                 $window.alert('an error occured');

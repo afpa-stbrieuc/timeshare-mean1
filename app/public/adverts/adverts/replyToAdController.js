@@ -5,24 +5,31 @@ angular.module('timeShareApp')
     .controller('replyToAdController', ['$scope', 'authentication', '$routeParams', '$http', function ($scope, authentication, $routeParams, $http) {
 
             console.log('advertId:', $routeParams._id);
-//        $scope.editReply = function (id) {
-//            console.log(id);
             $http.get('/api/adverts/replyToAd/' + $routeParams._id).success(function (response) {
-                $scope.advert = response;
-       
+                $scope.advert = response;      
             });
 
-            $scope.addReply = function () {
+            $scope.addReply = function () {               
                 $scope.reply.author = authentication.currentUser().firstname;
                 $scope.reply.toAdId = $routeParams._id;
                 $http.post('/api/replies', $scope.reply).success(function (response) {
-                    console.log('scopeReply: ', $scope.reply);
-                    console.log('response: ', response);
                     $scope.reply = response;
-                    $scope.reply = "";
-                });
-            };
+//                    $scope.reply = "";
+                })
+                        .then(function() { //upload function returns a promise
+          
+                var reply = $scope.reply;
+                console.log('IdReply: ', reply);
+                $scope.advert.replies = reply;
+                $http.put('/api/adverts/' + $scope.advert._id, $scope.advert).success(function () {
+                    console.log('IdAdvet: ', $scope.advert);
+                    console.log('IdReply: ', reply);
 
+                });
+            
+            });
+            
+            };
 
             $scope.removeReply = function (id) {
                 console.log(id);
@@ -49,6 +56,4 @@ angular.module('timeShareApp')
                 $scope.reply = "";
             };
 
-
-//        };
         }]);
