@@ -1,84 +1,72 @@
-
-  <div class="header">
-   <navigation></navigation>
-    </div>
-        <!-- Add your site or application content here -->
-      
-
-       <div class="topp">  
-    <h1 class="text-center">TimeShareApp</h1>
-    <h2 class="text-center">Le site qui existe déjà, mais pas en AngularJs</h2>
-    </div>  
-    <div class="container" >
-
-
-    <div class="row"> 
+<div class="header">
+    <div id="topp" class="img-responsive center-block"> 
+        <navigation></navigation>       
+        <h1 class="text-center">TimeShareApp</h1>
+        <h2 class="text-center">Le site qui existe déjà, mais pas en AngularJs</h2>
+    </div> 
+</div> 
+              
+<div class="container" >
+    
+    <section id="lastAds" class="row" >
         <div class="text-center">
             <h2>Les dernières annonces</h2>
         </div>
-       <div class="col-md-6 frontService">
-        
-                    <h1 style="border: 2px solid; border-color: rgba(199, 196, 196, 0.52);" class="page-header text-center">Offres de services</h1>
-
-                    <div style="border: 1px solid rgba(140, 137, 137, 0.45); margin-bottom:10px" ng-repeat="advert in adverts| filter: {type:'offre'} |orderBy: '-created_at'| limitTo:3" >
-                        <div class="media" style="border-bottom: 1px solid rgba(159, 159, 160, 0.25);">
-                            <a class="pull-left" href="#/replyToAd/{{advert._id}}">
-                                <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
-                            </a>
-                            <div class="media-body">
-                                <h3 class="media-heading">{{advert.title}}</h3>
-                                <ul class="list-unstyled">
-                                <li><i class="fa fa-calendar"></i>&nbsp;Le: {{advert.created_at | date :'dd MMM yyyy'}}</li>
-                                <li><i class="fa fa-map"></i><span class="text-capitalize">&nbsp;{{advert.regions}} </span></li>
-                                <li><i class="fa fa-sitemap"></i><span class="text-capitalize">&nbsp;{{advert.categories}} </span></li>                                         
-                                </ul>
-                                <p class="text-capitalize"><i class="fa fa-user"></i>&nbsp;{{advert.author}}</p>
-                           </div>
-              
-                        </div>
-                        <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p>
-                        <hr class="colorgraph">
+        <div class="col-md-6 frontService">
+            <h1 class="text-center">Offres</h1>
+            <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'offre'} |orderBy: '-created_at'| limitTo:3" >
+                <a href="#/replyToAd/{{advert._id}}">
+                    <div class="col-md-4" >
+                        <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
                     </div>
-
-               
-            
-        </div><!-- toto-->
-       <div class="col-md-6 frontService">
-        
-                    <h1 style="border: 2px solid; border-color: rgba(199, 196, 196, 0.52);" class="page-header text-center">Demandes de services</h1>
-
-                    <div style="border: 1px solid rgba(140, 137, 137, 0.45); margin-bottom:10px" ng-repeat="advert in adverts| filter: {type:'demande'}|orderBy: '-created_at'| limitTo:3 ">
-                        <div class="media" style="border-bottom: 1px solid rgba(159, 159, 160, 0.25);">
-                            <a class="pull-left" href="#/replyToAd/{{advert._id}}">
-                                <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
-                            </a>
-                            <div class="media-body">
-                                <h3 class="media-heading">{{advert.title}}</h3>
-                                <ul class="list-unstyled">
-                                <li><i class="fa fa-calendar"></i>&nbsp;Le: {{advert.created_at | date :'dd MMM yyyy'}}</li>
-                                <li><i class="fa fa-map"></i><span class="text-capitalize">&nbsp;{{advert.regions}} </span></li>
-                                <li><i class="fa fa-sitemap"></i><span class="text-capitalize">&nbsp;{{advert.categories}} </span></li>                                         
-                                </ul>
-                                <p class="text-capitalize"><i class="fa fa-user"></i>&nbsp;{{advert.author}}</p>
-                           </div>
-              
-                        </div>
-                        <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p>
-                        <hr class="colorgraph">
+                    <div class="col-md-8">
+                        <h3>{{advert.title}}</h3>
+                        <h4 class="text-capitalize"><i><small>postée par : </small></i>{{advert.author}}<i style='float:right'><small>le : {{advert.created_at | date :'dd MMM yyyy'}}</small></i></h4>
+                        <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p>                                         
                     </div>
-
-               
-            
+                    <div class="text-capitalize"><i><small>zone : </small></i>{{advert.regions}}<span style='float:right'><i ><small>catégorie : </small></i>{{advert.categories}}</span></div>
+                </a>
+            </div>
         </div>
-    
-</div>
+        <div class="col-md-6 frontService">
+            <h1 class="text-center">Dernières demandes</h1>
+            <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'demande'} |orderBy: '-created_at'| limitTo:3" >
+                <a href="#/replyToAd/{{advert._id}}">
+                    <div class="col-md-4" >
+                        <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
+                    </div>
+                    <div class="col-md-8">
+                        <h3>{{advert.title}}</h3>
+                        <h4 class="text-capitalize"><i><small>postée par : </small></i>{{advert.author}}<i style='float:right'><small>le : {{advert.created_at| date :'dd MMM yyyy'}}</small></i></h4>
+                        <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p>                                         
+                    </div>
+                    <div class="text-capitalize"><i><small>zone : </small></i>{{advert.regions}}<span style='float:right'><i ><small>catégorie : </small></i>{{advert.categories}}</span></div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <a href="#/adverts" class="btn btn-block btn-ghost-white">Voir plus d'annonces&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+        </div>
+    </section>
 
 
-<hr class="colorgraph">
-<div class="row">
-                <div class="col-xs-12 col-md-6"> <a href="#/adverts" class="btn btn-primary btn-block btn-lg">Voir plus d'annonces&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></div>
-                <div class="col-xs-12 col-md-6"> <a href="#/formAdvert" class="btn btn-success btn-block btn-lg">Déposer une annonce</a></div>
-</div>
+    <section id="anchor{{1}}" class="row" style="margin-top: 30px;">
+        <div class="col-md-12" style="background:#BC2A20 ">
+            <div class="text-center">
+                <h2>Bienvenue sur TimeShareApp</h2>
+            </div>
+            <div class="col-md-12">
+                <p>Vous pouvez aider les membres en leur rendant service et ainsi créditer 
+                    votre compteur temps du nombre d'heures réalisées.</p>
+                <p>Avec ce compteur temps vous pourrez à votre tour bénéficier des services 
+                    dont vous avez besoin ou tout simplement qui vous font envie (auprès de n'importe quel membre du site).</p>
+                <p>Il est même possible d'obtenir des services dès votre inscription (sous certaines conditions).</p>
+            </div>
+            <div class="col-md-6 col-md-offset-3"> 
+                <a href="#/formAdvert" class="btn btn-block btn-ghost">Déposer une annonce</a>
+            </div>
+        </div>
+    </section>
     
 
 </div>
