@@ -1,20 +1,20 @@
 <div class="header">
     <div id="topp" class="img-responsive center-block"> 
-        <navigation></navigation>       
-        <h1 class="text-center">TimeShareApp</h1>
-        <h2 class="text-center">Le site qui existe déjà, mais pas en AngularJs</h2>
-    </div> 
+        <navigation></navigation>   
+        <h1 id="siteTitle">TimeShareApp</h1>
+        <h2 id="siteSubTitle">Le site qui existe déjà, mais pas en AngularJs</h2>
+    </div>
 </div> 
               
 <div class="container" >
     
     <section id="lastAds" class="row" >
         <div class="text-center">
-            <h2>Les dernières annonces</h2>
+            <h1>Les dernières annonces</h1>
         </div>
         <div class="col-md-6 frontService">
-            <h1 class="text-center">Offres</h1>
-            <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'offre'} |orderBy: '-created_at'| limitTo:3" >
+            <h2 class="text-center">Offres</h2>
+            <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'offre'}|filter: {answered:false} |orderBy: '-created_at'| limitTo:3" >
                 <a href="#/replyToAd/{{advert._id}}">
                     <div class="col-md-4" >
                         <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
@@ -29,8 +29,8 @@
             </div>
         </div>
         <div class="col-md-6 frontService">
-            <h1 class="text-center">Dernières demandes</h1>
-            <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'demande'} |orderBy: '-created_at'| limitTo:3" >
+            <h2 class="text-center">Dernières demandes</h2>
+            <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'demande'}|filter: {answered:false}  |orderBy: '-created_at'| limitTo:3" >
                 <a href="#/replyToAd/{{advert._id}}">
                     <div class="col-md-4" >
                         <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
@@ -50,12 +50,12 @@
     </section>
 
 
-    <section id="anchor{{1}}" class="row" style="margin-top: 30px;">
-        <div class="col-md-12" style="background:#BC2A20 ">
+    <section id="anchor{{1}}" class="row">
+        <div class="col-md-12">
             <div class="text-center">
-                <h2>Bienvenue sur TimeShareApp</h2>
+                <h1>Bienvenue sur TimeShareApp</h1>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" style="color:#333;">
                 <p>Vous pouvez aider les membres en leur rendant service et ainsi créditer 
                     votre compteur temps du nombre d'heures réalisées.</p>
                 <p>Avec ce compteur temps vous pourrez à votre tour bénéficier des services 

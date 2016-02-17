@@ -2,7 +2,7 @@
 
 angular.module('timeShareApp')
 
-.controller('formController', ['$scope','authentication', '$http', function($scope,authentication, $http) {
+.controller('formController', ['$scope', 'authentication', '$routeParams', '$http','$location', function ($scope, authentication, $routeParams, $http, $location) {
 
 
     $scope.addAdvert = function() {
@@ -25,18 +25,23 @@ angular.module('timeShareApp')
             //               refresh(); 
         });
     };
+    
 
+            
     $scope.editAdvert = function(id) {
+        id = $routeParams.id;
         console.log(id);
         $http.get('/api/adverts/' + id).success(function(response) {
             $scope.advert = response;
         });
     };
 
-    $scope.updateAdvert = function() {
-        console.log($scope.advert._id);
-        $http.put('/api/adverts/' + $scope.advert._id, $scope.advert).success(function(response) {
-            //                refresh(); 
+    $scope.updateAdvert = function(id) {
+        id = $routeParams.id;
+        console.log(id);
+        console.log($scope.advert);
+        $http.put('/api/adverts/' + id, $scope.advert).success(function(response) {
+           console.log($scope.advert);
         });
     };
 

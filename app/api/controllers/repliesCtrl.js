@@ -34,7 +34,6 @@ router.post('/', function(req, res) {
     reply.created_at = req.body.created_at;
     reply.updated_at = req.body.updated_at;
     reply.published = req.body.published;
-    reply.answered = req.body.answered;
     reply.confirmed = req.body.confirmed;
     reply.helper = req.body.helper;
 
@@ -82,7 +81,7 @@ router.put('/:reply_id', function(req, res) {
         reply.created_at = req.body.created_at;
         reply.updated_at = req.body.updated_at;
         reply.published = req.body.published;
-        reply.answered = req.body.answered;
+        reply.rep_approved = req.body.rep_approved;
         reply.confirmed = req.body.confirmed;
         reply.helper = req.body.helper;
 

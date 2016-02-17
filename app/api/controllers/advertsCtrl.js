@@ -43,7 +43,6 @@ router.post('/', function(req, res) {
     advert.created_at = req.body.created_at;
     advert.updated_at = req.body.updated_at;
     advert.published = req.body.published;
-    advert.answered = req.body.answered;
     advert.confirmed = req.body.confirmed;
     advert.helper = req.body.helper;
     advert.work_duration_real = req.body.work_duration_real;
@@ -252,10 +251,6 @@ router.put('/:advert_id', function(req, res) {
         advert.type = req.body.type;
         advert.author = req.body.author;
         advert.content = req.body.content;
-        console.log("ad.replies", req.body.replies._id)
-        advert.replies.push(req.body.replies._id);
-//        advert.replies = reply;
-         
         advert.loc = req.body.loc;
         advert.regions = req.body.regions;
         advert.categories = req.body.categories;
@@ -279,7 +274,6 @@ router.put('/:advert_id', function(req, res) {
 
     });
 });
-
 //Update the advert with uploaded media file
 router.put('/media/:advert_id', function(req, res) {
     Advertdb.findById(req.params.advert_id, function(err, advert) {
@@ -295,22 +289,35 @@ router.put('/media/:advert_id', function(req, res) {
         });
     });
 });
-
-router.put('/reply/:advert_id', function(req, res) {
-    console.log('advert.reply : ', req.body);
+//Update the advert pushing reply.id in advert.replies
+router.put('/replies/:advert_id', function(req, res) {
     Advertdb.findById(req.params.advert_id, function(err, advert) {
         if (err)
             res.send(err);
-//        advert.replies = req.body;
-         advert.replies.push(req.body);
-        
+        console.log("ad.replies", req.body.replies._id)
+        advert.replies.push(req.body.replies._id);
         advert.save(function(err) {
             if (err)
                 res.send(err);
             res.json(advert);
-            console.log('UpdatedReply:', advert);
+            console.log('UpdatedRepAD:', advert);
         });
     });
 });
+//Update the advert pushing reply.id in advert.replies
+router.put('/answered/:advert_id', function(req, res) {
+    Advertdb.findById(req.params.advert_id, function(err, advert) {
+        if (err)
+            res.send(err);
+        advert.answered = true;
+        advert.save(function(err) {
+            if (err)
+                res.send(err);
+            res.json(advert);
+            console.log('UpdatedRepAD:', advert);
+        });
+    });
+});
+
 
 module.exports = router

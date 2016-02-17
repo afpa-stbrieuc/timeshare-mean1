@@ -66,16 +66,46 @@
             if (vmp.currentUser._id !== null) {
                 $http.get('/api/adverts/searchAuthor_id/' + vmp.currentUser._id).success(function (response) {                  
                     vmp.adverts = response;
+
                 });
             }
         };
+ //refresh the ads list after delete        
+ var refresh = function () {
+        vmp.listAdverts();
+        };
+        refresh();
+
+//displays all adverts posted by one author
+        vmp.deleteAd = function (id) {
+            if (vmp.currentUser._id !== null) {
+                                console.log(id);
+                $http.delete('/api/adverts/' + id).success(function () {
+                                   refresh(); 
+                }); //penser à supprimer les replies inutiles
+            }
+        }; 
 //displays a list of replies in the controller 
          vmp.listReplies = function () {
             $http.get('api/replies/').success(function (response) {
                  vmp.replies = response;
-                console.log('les reps', vmp.replies)
+                console.log('les reps', vmp.replies) 
             });
         };
-        
+//delete the selected reply and send an alert to his author
+         vmp.validReply = function (advert, reply) {
+            var id = advert._id;
+            $http.put('api/adverts/answered/'+ id,advert ).success(function () {
+                console.log('ad up', advert.answered);
+            }).then(function() {
+                var rep_id = reply._id;
+                var rep_user = reply.author;
+               $http.get('api/replies/'+ rep_id +'/'+ rep_user).success(function (response) {
+                // à finir
+                console.log('les reps', vmp.replies) 
+            });
+                
+            });
+        };          
     }
 })();

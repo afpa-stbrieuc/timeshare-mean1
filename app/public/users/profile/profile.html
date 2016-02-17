@@ -1,26 +1,22 @@
-<navigation></navigation>
 <div class="header">
-    <h1 class="title">
-        This is your awesome profil
-        <br>
-        <small>face de rat :D</small>
-    </h1>
-</div> 
+    <navigation></navigation>
+</div>
 
 <div class="container">
 
     <div class="card hovercard">
         <div class="card-background">
-            <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
-            <!-- http://lorempixel.com/850/280/people/9/ -->
+            <img class="card-bkimg" alt="backProfil" >
         </div>
         <div class="useravatar">
             <img alt="" src="http://lorempixel.com/100/100/people/9/">
         </div>
-        <div class="card-info"> <span class="card-title text-capitalize">{{navvm.currentUser.firstname}} {{navvm.currentUser.lastname}}</span>
-
+        <br>
+        <div class="card-info">
+            <h1 class="text-capitalize" style="margin-top:20px;">{{navvm.currentUser.firstname}} {{navvm.currentUser.lastname}}</h1>
         </div>
     </div>
+
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
         <div class="btn-group" role="group" ng-mouseenter="myVar1 = 'btn-primary';
                         myVar2 = 'btn-default';
@@ -31,111 +27,159 @@
         <div class="btn-group" role="group" ng-mouseenter="myVar2 = 'btn-primary';
                         myVar1 = 'btn-default';
                         myVar3 = 'btn-default'">
-            <button type="button"  class="btn"  ng-class="myVar2" ng-click="vmp.listAdverts()" href="#tab2" data-toggle="tab"><div style="height:30px">Mes annonces</div>
+            <button type="button"  class="btn"  ng-class="myVar2" href="#tab2" data-toggle="tab"><div style="height:30px">Mes annonces</div>
             </button>
         </div>
         <div class="btn-group" role="group" ng-mouseenter="myVar3 = 'btn-primary';
                         myVar2 = 'btn-default';
                         myVar1 = 'btn-default'">
-            <button type="button"  class="btn" ng-class="myVar3" href="#tab3" data-toggle="tab"><div style="height:30px">Mes favoris</div>
+            <button type="button"  class="btn" ng-class="myVar3" href="#tab3" data-toggle="tab"><div style="height:30px">Mes messages / Mon compte</div>
             </button>
         </div>
     </div>
 
-    <div class="well">
-        <div class="tab-content">
-            
-    <div class="tab-pane fade in active" id="tab1">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <div class="panel panel-default"> 
-                    <div class="panel-body"> 
+    <br>
+    <div class="tab-content">
 
-                        <form class="form" ng-submit="vmp.onUpdate()" >
-                            <fieldset>
-                                <button type="button" ng-click="checked = !checked"  class="btn btn-lg btn-primary btn-block">Mettre à jour mon Profil</button>
-                                <div class="btn-group" > <!-- <label class="btn btn-primary"><input type="checkbox" ng-model="checked">changer mes informations</label> --> </div>
-                                <div role="alert" ng-show="vmp.formError" class="alert alert-danger">{{vmp.formError}}</div>
-                                <div class="form-group">
-                                    <input type="email"  class="form-control input-lg" ng-value="vmp.currentUser.mail" placeholder="{{navvm.currentUser.mail}}" ng-disabled="!checked" required ng-model="vmp.currentUser.mail">
+        <div class="tab-pane fade in" id="tab1">
+            <div class="col-md-10 col-md-offset-1">
+
+                <button type="button" ng-click="checked = !checked"  class="btn btn-lg btn-primary btn-block">Mettre à jour mon Profil</button>
+                <div class="btn-group" > <!-- <label class="btn btn-primary"><input type="checkbox" ng-model="checked">changer mes informations</label> --> </div>
+                <div role="alert" ng-show="vmp.formError" class="alert alert-danger">{{vmp.formError}}</div>    
+
+                <form class="form" ng-submit="vmp.onUpdate()" >
+                    <div class="row advertHome">
+                        <div class="col-md-8 col-md-offset-2 ">
+                            <div class="row">
+                                <div class="col-md-2"><h4>Email</h4></div>
+                                <div class="col-md-10">
+                                    <input type="email"  class="form-control" ng-value="vmp.currentUser.mail" placeholder="{{navvm.currentUser.mail}}" ng-disabled="!checked" required ng-model="vmp.currentUser.mail">
                                 </div>
-                                <div class="form-group">
-                                    <input type="text"  class="form-control input-lg" ng-value="vmp.currentUser.lastname"  placeholder="{{navvm.currentUser.lastname}}" ng-disabled="!checked"  ng-model="vmp.currentUser.lastname" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2"><h4>Nom</h4></div>
+                                <div class="col-md-10">
+                                    <input type="text"  class="form-control" ng-value="vmp.currentUser.lastname"  placeholder="{{navvm.currentUser.lastname}}" ng-disabled="!checked"  ng-model="vmp.currentUser.lastname" required>
                                 </div>
-                                <div class="form-group">
-                                    <input type="text"  class="form-control input-lg" ng-value="vmp.currentUser.firstname"  ng-disabled="!checked" ng-model="vmp.currentUser.firstname" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2"><h4>Prénom</h4></div>
+                                <div class="col-md-10">
+                                    <input type="text"  class="form-control" ng-value="vmp.currentUser.firstname"  ng-disabled="!checked" ng-model="vmp.currentUser.firstname" required>
                                 </div>
-                                <div class="form-group">
-                                    <input type="text"  class="form-control input-lg" ng-value="vmp.currentUser.adress"  ng-disabled="!checked" ng-model="vmp.currentUser.adress" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2"><h4>Pseudo</h4></div>
+                                <div class="col-md-10">
+                                    <input type="text"  class="form-control" ng-value="vmp.currentUser.adress"  ng-disabled="!checked" ng-model="vmp.currentUser.adress" required>
                                 </div>
-                                <div class="form-group">
-                                    <input type="text"  class="form-control input-lg" ng-value="vmp.currentUser.tel"  ng-disabled="!checked" ng-model="vmp.currentUser.tel" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2"><h4>Téléphone</h4></div>
+                                <div class="col-md-10">
+                                    <input type="text"  class="form-control" ng-value="vmp.currentUser.tel"  ng-disabled="!checked" ng-model="vmp.currentUser.tel" required>
                                 </div>
-                                <div class="form-group">
-                                    <input type="password"  class="form-control input-lg" placeholder="Votre mot de passe" ng-disabled="!checked"  ng-model="vmp.currentUser.password" required>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-2"><h4>Mot de passe</h4></div>
+                                <div class="col-md-10">
+                                    <input type="password"  class="form-control" placeholder="Votre mot de passe" ng-disabled="!checked"  ng-model="vmp.currentUser.password" required>
                                 </div>
-                                <hr class="colorgraph">
-                                <div class="row">
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <button type="submit"  ng-disabled="!checked" class="btn btn-lg btn-primary btn-block">Valider</button>
-                                    </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit"  ng-disabled="!checked" class="btn btn-lg btn-primary btn-block">Valider</button>
                                 </div>
-                            </fieldset>
-                        </form>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </div>
 
-    <div class="tab-pane fade in" id="tab2">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                
-                <div ng-repeat="advert in vmp.adverts">
-                    <div class="panel panel-default"> 
-                        <div class="panel-body">
-                            <h4>{{advert.type}}</h4>
-                            <div >
-                                <img ng-if="advert.media !== 'abc'" style="width:100px;" ng-src="uploads/{{advert.media}}"/></div>
-                            <h4><i><small>publié par : </small></i>{{advert.author}}&nbsp;
-                                <i style='float:right'><small> le : {{advert.created_at| date :'dd MMM yyyy'}}</small></i>
-                            </h4>
-                            <h4><i><small>Je propose </small></i>{{advert.title}}</h4>
-                            <p>{{advert.content}}</p>
-                            <h4><i><small>zone : </small></i>{{advert.regions}}&nbsp;
-                                <i style='float:right'><small>catégorie : <strong>{{advert.categories}}</strong></small></i>
-                            </h4> 
-                            <br>
-                            <a ng-model="collapsed" ng-click="collapsed=!collapsed">      
-                                <button ng-click="vmp.listReplies()" class="btn btn-primary btn-xs">Voir {{advert.replies.length}} les réponses</button>
-                            </a>
-                            <div ng-show ="collapsed">                       
-                                <div ng-repeat="reply in vmp.replies|filter : advert._id ">
-                                    <div class="well" style="margin:15px 0px 0px 15px;">
-                                        <h5>De : {{reply.author}}</h5>
-                                        <h5>Objet : {{reply.title}}</h5>
-                                        <div>Message : {{reply.content}}</div>
-                                    </div> 
+        <div class="tab-pane fade in active" id="tab2" ng-init="vmp.listAdverts()">
+            <div class="col-md-10 col-md-offset-1">
+                <div class ="advertHome" ng-repeat="advert in vmp.adverts">
+                    <div class="col-md-3">
+                        <h4 class="text-capitalize">{{advert.type}}</h4>
+                        <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="text-capitalize">{{advert.title}}</h3>
+                        <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p> 
+                    </div>
+                    <div class="col-md-3">
+                        <p><i><small>postée par : </small></i>{{advert.author}}</p> 
+                        <p><i><small>catégorie : </small></i>{{advert.categories}}</p>
+                        <p><i><small>le : </small></i>{{advert.created_at| date :'dd MMM yyyy'}}</p>
+                        <p><i><small>zone : </small></i>{{advert.regions}}</p>
+                        <a href="#/editAdvert/{{advert._id}}" class="btn btn-ghost btn-xs" style="padding: 5px; font-size:12px;min-width: 125px;margin-bottom: 10px;">Modifier l'annonce</a>
+                        <button ng-click="vmp.deleteAd(advert._id)" class="btn btn-primary btn-xs" style="padding: 5px">Supprimer l'annonce</button>
+                   
+                    </div> 
+                    <br>
+                    <a ng-model="collapsed" ng-click="collapsed = !collapsed">      
+                        <button ng-click="vmp.listReplies()" class="btn btn-primary btn-xs">Voir {{advert.replies.length}} les réponses</button>
+                    </a>
+                    <div ng-show ="collapsed">                       
+                        <div ng-repeat="reply in vmp.replies|filter : advert._id ">
+
+                            <div class="wellReply">
+                                <div class="col-md-3"> 
+                                    <h5>De : {{reply.author}} </h5>
+                                    <h5><span>Le : {{reply.created_at| date :'dd MMM yyyy'}}</span><span>&nbsp; à : {{reply.created_at| date :'H mm'}}</span></h5>
+                                    <h5>Dispo le : {{reply.work_date}}</h5>
+                                </div>
+                                <div class="col-md-5"> 
+                                    <div>Objet :<span><strong> {{reply.title}}</strong></span></div>
+                                    <br>
+                                    <div>Message : {{reply.content}}</div>                               
+                                </div>
+                                <div class="col-md-4">
+                                    <button ng-click="vmp.validReply(advert, reply)" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-ok"></span>&nbsp;Je valide cette réponse </button>
+                                    <p><small>*Attention, si vous validez la réponse votre annonce ne sera plus affichée.</small></p>
+                                    <p><small><strong>*{{reply.author}}</strong> recevra une alerte sur son compte.</small></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div ng-if="vmp.adverts.length === 0">Pas encore d'annonces</div> 
-                </div>  
+                </div> 
             </div>
         </div>
-    </div>    
 
-            <div class="tab-pane fade in" id="tab3">
-                <h3>This is tab 3</h3>
+        <div class="tab-pane fade in" id="tab3">
+            <div class="col-md-10 col-md-offset-1">
+                <div class ="advertHome" >
+                
+                <h3>Mes messages</h3>
+                
+                </div>
             </div>
+            <div class="col-md-10 col-md-offset-1">
+                <div class ="advertHome" >
+                
+                <h3>Mon compte</h3>
+                
+                </div>
+            </div>
+          
+            
             
         </div>
 
+        
+        
+        
     </div>
 </div>
-
 
 
 

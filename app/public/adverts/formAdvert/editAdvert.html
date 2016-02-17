@@ -1,0 +1,53 @@
+<div class="header">
+    <navigation></navigation>
+</div>
+
+<div class="container" >
+<div class="col-md-10 col-md-offset-1 ">
+    <div class="row text-center">
+        <h1>Modifier une annonce</h1>
+    </div>
+    <br>
+    <div class="row">  
+        
+        <form class="form" ng-init="editAdvert(id)">         
+                <div class="row advertHome">
+                    <div class="col-md-6 col-md-offset-3 ">
+                        <select class="form-control" required value="advert.type" ng-model="advert.type">
+                            <option value="{{advert.type}}" >{{advert.type}}</option>
+                            <option value="offre">Offre de service</option>
+                            <option value="demande">Demande</option>
+                        </select>        
+                        <input class="form-control" placeholder="{{advert.title}}" required ng-model="advert.title"  >
+                        <select class="form-control" required ng-model="advert.regions" placeholder="{{advert.regions}}" >
+                            <option value="{{advert.regions}}">{{advert.regions}}</option>
+                            <option ng-repeat="option in region.regionOptions" value="{{option.regions}}">{{option.regions}}</option>
+                        </select>
+                        <select class="form-control" required ng-model="advert.categories" placeholder="{{advert.categories}}" >
+                            <option value="{{advert.categories}}">{{advert.categories}}</option>
+                            <option ng-repeat="option in category.catOptions" value="{{option.categories}}">{{option.categories}}</option>
+                        </select>
+                        <textarea class="form-control" placeholder="{{advert.content}}" required ng-model="advert.content" style="min-height: 80px;"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <button class="btn btn-block btn-ghost-white" ng-click="updateAdvert(id)">Modifier l'annonce</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="#/adverts"  class="btn btn-block btn-ghost-white" >Voir les annonces <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+            </div>
+        </div>
+
+</div>
+
+
+

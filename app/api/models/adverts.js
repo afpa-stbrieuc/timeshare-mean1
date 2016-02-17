@@ -46,8 +46,14 @@ var advertSchema = new Schema({
     updated_at: {
         type: Date
     },
-    published: Boolean,
-    answered: Boolean,
+    published: {
+        type : Boolean,
+        default : true
+    },
+    answered: {
+        type: Boolean,
+        default: false
+    },// true after validation
     confirmed: Boolean,
     helper: String, //{type: Schema.Types.ObjectId, ref: 'user' },
     work_duration_real: Number

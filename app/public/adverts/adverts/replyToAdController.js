@@ -16,12 +16,12 @@ angular.module('timeShareApp')
                     $scope.reply = response;
 //                    $scope.reply = "";
                 })
-                        .then(function() { //upload function returns a promise
+                        .then(function() { // returns a promise
           
                 var reply = $scope.reply;
                 console.log('IdReply: ', reply);
                 $scope.advert.replies = reply;
-                $http.put('/api/adverts/' + $scope.advert._id, $scope.advert).success(function () {
+                $http.put('/api/adverts/replies/' + $scope.advert._id, $scope.advert).success(function () {
                     console.log('IdAdvet: ', $scope.advert);
                     console.log('IdReply: ', reply);
 

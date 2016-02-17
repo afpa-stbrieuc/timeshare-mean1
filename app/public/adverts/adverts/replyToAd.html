@@ -2,53 +2,76 @@
     <navigation></navigation>
 </div>
 
-<div class="col-lg-8 col-lg-offset-2" style="margin-top: 50px" >
-    <div class="well">
-        <h4>{{advert.type}}</h4>
-        <img style="width:100px;" ng-src="uploads/{{advert.media}}"/>
-        <h4><i><small>publié par : </small></i>{{advert.author}}&nbsp;
-            <i style='float:right'><small> le : {{advert.created_at| date :'dd MMM yyyy'}}</small></i>
-        </h4>
-        <h4><i><small>Je propose </small></i>{{advert.title}}</h4>
-        <p>{{advert.content}}</p>
-        <h4><i><small>zone : </small></i>{{advert.regions}}&nbsp;
-            <i style='float:right'><small>catégorie : <strong>{{advert.categories}}</strong></small></i>
-        </h4>        
-    </div>
+<div class="container" >
+    <div class="col-md-10 col-md-offset-1">
 
-    <div class="row" ng-show="navvm.isLoggedIn">  
-        <h3>Envoyer un message à {{advert.author}}</h3>
-        <form class="col-lg-8 col-lg-offset-2">
-            <div class="row">  
-                <div class="col-md-2">
-                    <h5><strong>Titre</strong></h5> 
+        <div class="row advertHome" style="margin-top: 30px; background: #fff; border:1px solid;">
+                <div class="col-md-3">
+                    <h4 class="text-capitalize">{{advert.type}}</h4>
+                    <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
                 </div>
-                <div class="col-md-5">
-                    <input class="form-control" required ng-model="reply.title"  >
+                <div class="col-md-6">
+                    <h3 class="text-capitalize">{{advert.title}}</h3>
+                    <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p> 
                 </div>
-            </div>
-            <br>
-            <div class="row">  
-                <div class="col-md-2">
-                    <h5><strong>Description</strong></h5> 
+                <div class="col-md-3">
+                    <p><i><small>postée par : </small></i>{{advert.author}}</p> 
+                    <p><i><small>catégorie : </small></i>{{advert.categories}}</p>
+                    <p><i><small>le : </small></i>{{advert.created_at| date :'dd MMM yyyy'}}</p>
+                    <p><i><small>zone : </small></i>{{advert.regions}}</p>                                           
                 </div>
-                <div class="col-md-5">
-                    <input class="form-control" required ng-model="reply.content" style="min-height: 100px;">
-                </div>
-            </div>
-            <br>
-            <timevalid></timevalid>
-            <div class="col-md-5 col-md-offset-2">
-                <button class="btn btn-primary" ng-click="addReply()" ng-disabled=" ">Poster la réponse</button>
-                <button class="btn btn-info" ng-click="deselect()">Clear</button>
-            </div>
-            <br>
-        </form>
+                <div ng-if="adverts.length === 0">Pas encore d'annonces</div> 
+            
+        </div>
+        <br>
+    <div class="row text-center" ng-show="navvm.isLoggedIn">
+         <h1>Envoyer un message à {{advert.author}}</h1>
     </div>
-    <div class="row">
-        <div class="text-center">
-            <a href="#/adverts" class="btn-lg btn-danger">Retour</a>
-        </div>     
+    <br>
+
+    
+    <div class="row">  
+        <form class="form">
+            <div class="row advertHome">
+                <br>
+                <div class="col-md-8 col-md-offset-2 ">
+                    <div class="row">
+                        <div class="col-md-2"><h4>Titre</h4></div>
+                        <div class="col-md-10">
+                            <input class="form-control" required ng-model="reply.title"  >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"><h4>Message</h4></div>
+                        <div class="col-md-10">
+                            <textarea class="form-control" required ng-model="reply.content" style="min-height: 100px;"></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <timevalid></timevalid>      
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button type="submit" ng-click="addReply()" ng-disabled="" class="btn btn-lg btn-primary btn-block">Poster la réponse</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+
+        
+        
+
+    </div>
+    <br>
+             <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="#/adverts" class="btn btn-block btn-ghost-white">Retour</a>
+            </div>
+        </div> 
+
+        <br>
     </div>
 </div>
 

@@ -20,10 +20,16 @@ var replySchema = new Schema({
         type: Date
     },
     work_date: {
-        type: Date
+        type: String
     },
-    published: Boolean,
-    answered: Boolean,
+    published: {
+        type : Boolean,
+        default : true
+    },
+    rep_approved: {
+        type : Boolean,
+        default : true
+    }, // true after validation
     confirmed: Boolean,
     helper: String
 }, {
