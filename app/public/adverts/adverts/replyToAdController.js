@@ -2,8 +2,11 @@
 
 angular.module('timeShareApp')
 
-.controller('replyToAdController', ['$scope', 'authentication', '$routeParams', '$http', function ($scope, authentication, $routeParams, $http) {
+.controller('replyToAdController', ['$scope', 'authentication', '$location', '$routeParams', '$http', function ($scope, authentication,$location, $routeParams, $http) {
 
+    if (!authentication.isLoggedIn()) {
+        $location.path('/login');
+    }
     console.log('advertId:', $routeParams._id);
     $http.get('/api/adverts/replyToAd/' + $routeParams._id).success(function (response) {
         $scope.advert = response;      

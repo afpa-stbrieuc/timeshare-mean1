@@ -35,7 +35,7 @@ var replySchema = new Schema({
     },
     rep_approved: {
         type : Boolean,
-        default : true
+        default : false
     }, // true after validation
     confirmed: Boolean,
     helper: String

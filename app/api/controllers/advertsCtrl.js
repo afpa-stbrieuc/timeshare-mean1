@@ -67,31 +67,30 @@ router.get('/', function (req,res) {
     });
 });
 
-//edit advert (params userId and advert_id)
-router.get('/:user_id/:advert_id', function (req, res) {
-    Advertdb.find({
-        author_id: req.params.user_id,
-        _id:req.params.advert_id
-    }, function (err, advert) {
+//get by ID
+router.get('/:advert_id', function (req, res) {
+    Advertdb.findById(req.params.advert_id, function (err, advert) {
         if (err)
-//        {
             res.send(err);
-//            	res.sendFile('404.html', {
-//		'root': __dirname + '/../../public'
-//	});
-//        }else{
             res.json(advert);
             console.log('Advert Id GET:', advert);
-//        }
+    });
+});
+//get by ID
+router.get('/editAdvert/:advert_id', function (req, res) {
+    Advertdb.findById(req.params.advert_id, function (err, advert) {
+        if (err)
+            res.send(err);
+            res.json(advert);
+            console.log('Advert Id GET:', advert);
     });
 });
 
-//get by authorID
-router.get('/searchAuthor_id/:advert_author_id', function (req, res) {
+router.get('/searchAuthor/:advert_author_id', function(req, res) {
     console.log('req Type : ', req.params.advert_author_id);
     Advertdb.find({
         author_id: req.params.advert_author_id
-    }, function (err, adverts) {
+    }, function(err, adverts) {
         if (err)
             res.send(err);
 
@@ -152,6 +151,7 @@ router.put('/:advert_id', function (req, res) {
             res.send(err);
         advert.type = req.body.type;
 //        advert.author = req.body.author;
+        advert.title = req.body.title;
         advert.content = req.body.content;
         advert.loc = req.body.loc;
         advert.regions = req.body.regions;

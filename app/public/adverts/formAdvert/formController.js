@@ -25,10 +25,9 @@ angular.module('timeShareApp')
     };
 //params received from profile.html
 //data send to editAdvert.html
-    $scope.editAdvert = function(userId, id) {
-        userId = $routeParams.userId;
+    $scope.editAdvert = function(id) {
         id = $routeParams.id;
-        $http.get('/api/adverts/'+ userId +'/'+ id).success(function(response) {
+        $http.get('/api/adverts/editAdvert/' + id).success(function(response) {
             $scope.advert = response;
         });
     };

@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade in active" id="tab2" ng-init="vmp.listAdverts()">
+        <div class="tab-pane fade in active" id="tab2" ng-init="vmp.listAdverts(vmp.currentUser._id)">
             <div class="col-md-10 col-md-offset-1">
                 <div class ="advertHome" ng-repeat="advert in vmp.adverts |orderBy: '-created_at'">
                     <div class="col-md-3">
@@ -120,7 +120,7 @@
                         <p><i><small>catégorie : </small></i>{{advert.categories}}</p>
                         <p><i><small>le : </small></i>{{advert.created_at| date :'dd MMM yyyy'}}</p>
                         <p><i><small>zone : </small></i>{{advert.regions}}</p>
-                        <a href="#/editAdvert/{{vmp.currentUser}}/{{advert._id}}" class="btn btn-ghost btn-xs" style="padding: 5px; font-size:12px;min-width: 125px;margin-bottom: 10px;">Modifier l'annonce</a>
+                        <a href="#/editAdvert/{{advert._id}}" class="btn btn-ghost btn-xs" style="padding: 5px; font-size:12px;min-width: 125px;margin-bottom: 10px;">Modifier l'annonce</a>
                         <button ng-click="vmp.deleteAd(advert)" class="btn btn-primary btn-xs" style="padding: 5px">Supprimer l'annonce</button>
                    
                     </div> 
@@ -157,10 +157,10 @@
 
         <div class="tab-pane fade in" id="tab3" ng-init="vmp.approvedReplies()">
             <div class="col-md-10 col-md-offset-1">
-                <div class ="advertHome" ng-repeat="message in vmp.messages">
+                <div class ="advertHome" >
                 <h3>Mes messages</h3>
                 
-                <div class="wellReply" style="min-height: 100px;">
+                <div class="wellReply" style="min-height: 100px;"ng-repeat="message in vmp.messages">
                     <h4>Message pour l'annonce <strong>{{message.toAdId.title}}</strong></h4>
                 <p>Votre réponse (<strong>{{message.title}}</strong>) a été selectionnée par 
                     <strong class='text-capitalize'>{{message.toAdId.author}}</strong>.</p>

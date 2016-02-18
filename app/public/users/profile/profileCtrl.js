@@ -52,24 +52,29 @@
                     });
         };
 //displays all adverts posted by one author
-        vmp.listAdverts = function () {
-            if (vmp.currentUser._id !== null) {
-                $http.get('/api/adverts/searchAuthor_id/' + vmp.currentUser._id).success(function (response) {
+        vmp.listAdverts = function (id) {
+            console.log('author',id);
+            if (id !== null) {
+                $http.get('/api/adverts/searchAuthor/' + id).success(function (response) {
                     vmp.adverts = response;
+                    console.log('listAdvert',vmp.adverts);
                 });
             }
         };
+    
 //refresh the ads list after delete        
         var refresh = function () {
-            vmp.listAdverts();
+            vmp.listAdverts(vmp.currentUser._id);
         };
         refresh();
 
 //delete advert and its replies
         vmp.deleteAd = function (advert) {
+            console.log('sup', advert);
             if (vmp.currentUser._id !== null) {
                 var id = advert._id;
                 $http.get('api/adverts/' + id).success(function (advert) {
+                    console.log('supRep', advert.replies);
                     var replies = advert.replies;
                     angular.forEach(replies, function (reply, key) {
                         $http.delete('api/replies/' + reply).success(function () {
@@ -79,8 +84,9 @@
                 }).then(function (advert) {
                     var id = advert.data._id;
                     $http.delete('/api/adverts/' + id).success(function () {
-                        refresh();
                         console.log('annonce supprimée', advert._id);
+                        refresh();
+                        
                     });
                 });
             }

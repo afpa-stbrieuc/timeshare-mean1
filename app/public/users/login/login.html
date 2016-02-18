@@ -1,38 +1,33 @@
+<div class="header">
+    <navigation></navigation>
+</div>      
 
-        <!-- Add your site or application content here -->
-       <div class="header">
-            <navigation></navigation>
-         </div>      
+<div class="well">
 
+    <div class="row" style="margin-top:10px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 
+            <h1 class="text-center">Connexion</h1>
+            <hr class="colorgraph">
+            <p class="lead"> Pas encore membre!<a href="#/register"> Veuillez vous vous inscrire</a></p>
+            <form class="form" ng-submit="vm.onSubmit()" >
+                <fieldset>
+                    <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{vm.formError}}</div>
+                    <div class="form-group">
+                        <input type="email"  class="form-control input-lg" placeholder="Votre adresse mail"  ng-model="vm.credentials.mail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password"  class="form-control input-lg" placeholder="Votre mot de passe" ng-model="vm.credentials.password" required>
+                    </div>
 
-
-  <div class="well">
-
-<div class="row" style="margin-top:10px">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-
-          <h1 class="text-center">Connexion</h1>
-        <hr class="colorgraph">
-         <p class="lead"> Pas encore membre!<a href="#/login"> Veuillez vous vous inscrire</a></p>
-          <form class="form" ng-submit="vm.onSubmit()" >
-             <fieldset>
-      <div role="alert" ng-show="vm.formError" class="alert alert-danger">{{vm.formError}}</div>
-        <div class="form-group">
-                    <input type="email"  class="form-control input-lg" placeholder="Votre adresse mail"  ng-model="vm.credentials.mail" required>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-        <div class="form-group">
-                    <input type="password"  class="form-control input-lg" placeholder="Votre mot de passe" ng-model="vm.credentials.password" required>
-        </div>
-       
-        <hr class="colorgraph">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
-</div>
+    </div>
 </div>

@@ -43,7 +43,7 @@
                 controller: 'replyToAdController'
             })
             .when('/404', {
-                templateUrl: '404.html'
+                templateUrl: '404.html',
             })
             .otherwise({
                 redirectTo: '/'

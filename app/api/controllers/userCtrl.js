@@ -86,9 +86,9 @@ router.get('/:id', function(req, res) {
 
 router.put('/updateProfile', function(req, res) {
   console.log("c est parti pour mettre à jour ce profil");
-  if (!req.body.lastname || !req.body.firstname || !req.body.mail || !req.body._id) {
+  if (!req.body.lastname || !req.body.firstname || !req.body.mail || !req.body._id || !req.body.password) {
     sendJSONresponse(res, 400, {
-      "message": "Vous avez tappé le mauvais mot de passe"
+      "message": "Vous avez tappé le mauvais mot de passe ou vous n'avez pas tappé votre pw"
     });
     return;
   }
