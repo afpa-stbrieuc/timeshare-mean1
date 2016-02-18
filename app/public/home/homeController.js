@@ -20,8 +20,6 @@
                     Authorization: 'Bearer ' + authentication.getToken()
                 }
             }).success(function(response) {
-                console.log("I got the data I requested");
-
                 $scope.adverts = response;
                 console.log($scope.adverts);
                 $scope.advert = "";

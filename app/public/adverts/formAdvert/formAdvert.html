@@ -3,13 +3,13 @@
 </div>
 
 <div class="container" >
-<div class="col-md-10 col-md-offset-1 ">
-    <div class="row text-center">
-        <h1>Déposer une annonce</h1>
-    </div>
-    <br>
-    <div class="row">  
-        
+    <div class="col-md-10 col-md-offset-1 ">
+        <div class="row text-center">
+            <h1>Déposer une annonce</h1>
+        </div>
+        <br>
+        <div class="row">  
+
             <form class="form ">
                 <div class="row advertHome">
                     <div class="col-md-6 col-md-offset-3 ">
@@ -37,16 +37,15 @@
                 </div>
             </form>
         </div>
-    
-    
-<div class="row">
-    <div class="col-md-6 col-md-offset-3 ">
 
-          <h3 class="text-center">Ajouter une image à votre annonce</h3>
-        <hr class="colorgraph">
-         
-          <form class="form" ng-controller="MyCtrl as up" name="up.upload_form">          
-            
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 ">
+
+                <h3 class="text-center">Ajouter une image à votre annonce</h3>
+                <hr class="colorgraph">
+
+                <form class="form" ng-controller="MyCtrl as up" name="up.upload_form">          
+
                     <input class="file"
                            type="file" 
                            ngf-select 
@@ -64,10 +63,10 @@
                         {{up.file.size / 1000000|number:1}}MB: max 20M</i>
                     <button class="btn btn-sm btn-primary" type="submit" ng-click="up.submit()">Ajouter</button>
                     <p>{{up.progress}}</p>
-               
-           </form>
-  </div>
-</div>
+
+                </form>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -75,7 +74,7 @@
             </div>
         </div>
 
-</div>
+    </div>
 </div>
 
 

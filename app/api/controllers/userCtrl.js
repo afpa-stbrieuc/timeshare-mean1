@@ -85,8 +85,6 @@ router.get('/:id', function(req, res) {
 });
 
 router.put('/updateProfile', function(req, res) {
-
-
   console.log("c est parti pour mettre à jour ce profil");
   if (!req.body.lastname || !req.body.firstname || !req.body.mail || !req.body._id) {
     sendJSONresponse(res, 400, {

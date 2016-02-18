@@ -3,14 +3,14 @@
 </div>
 
 <div class="container" >
-<div class="col-md-10 col-md-offset-1 ">
-    <div class="row text-center">
-        <h1>Modifier une annonce</h1>
-    </div>
-    <br>
-    <div class="row">  
-        
-        <form class="form" ng-init="editAdvert(id)">         
+    <div class="col-md-10 col-md-offset-1 ">
+        <div class="row text-center">
+            <h1>Modifier une annonce</h1>
+        </div>
+        <br>
+        <div class="row">  
+
+            <form class="form" ng-init="editAdvert(userId,id)">         
                 <div class="row advertHome">
                     <div class="col-md-6 col-md-offset-3 ">
                         <select class="form-control" required value="advert.type" ng-model="advert.type">
@@ -30,24 +30,21 @@
                         <textarea class="form-control" placeholder="{{advert.content}}" required ng-model="advert.content" style="min-height: 80px;"></textarea>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6 col-md-offset-3">
-                        <button class="btn btn-block btn-ghost-white" ng-click="updateAdvert(id)">Modifier l'annonce</button>
+                        <button class="btn btn-block btn-ghost-white" ng-click="updateAdvert(id)">Enregistrer les modifications</button>
                     </div>
                 </div>
-
             </form>
+            
         </div>
-
-
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <a href="#/adverts"  class="btn btn-block btn-ghost-white" >Voir les annonces <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
             </div>
         </div>
 
+    </div>
 </div>
-
 
 

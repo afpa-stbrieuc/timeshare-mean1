@@ -42,7 +42,9 @@
                 templateUrl: 'adverts/adverts/replyToAd.html',
                 controller: 'replyToAdController'
             })
-
+            .when('/404', {
+                templateUrl: '404.html'
+            })
             .otherwise({
                 redirectTo: '/'
             });

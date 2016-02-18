@@ -9,7 +9,7 @@
 
      vm.pageHeader = {
        title: 'Connexion'
-     }
+     };
 
      vm.credentials = {
        mail: "",

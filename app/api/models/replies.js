@@ -8,9 +8,16 @@ var replySchema = new Schema({
         type: String,
         required: true
     }, //{type: Schema.Types.ObjectId, ref: 'user' },
+    author_id: {
+        type: String,
+        required: true
+    }, //{type: Schema.Types.ObjectId, ref: 'user' 
     title: String,
     toAdId: {
-        type: Schema.ObjectId, ref: 'advertSchema'
+        type: Schema.Types.ObjectId, ref: 'advertSchema'
+    },
+    toAd_author: {
+        type: String, ref: 'advertSchema'
     },
     content: String,
     created_at: {

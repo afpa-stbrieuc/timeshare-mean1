@@ -73,7 +73,7 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-2"><h4>Pseudo</h4></div>
+                                <div class="col-md-2"><h4>Adresse</h4></div>
                                 <div class="col-md-10">
                                     <input type="text"  class="form-control" ng-value="vmp.currentUser.adress"  ng-disabled="!checked" ng-model="vmp.currentUser.adress" required>
                                 </div>
@@ -106,7 +106,7 @@
 
         <div class="tab-pane fade in active" id="tab2" ng-init="vmp.listAdverts()">
             <div class="col-md-10 col-md-offset-1">
-                <div class ="advertHome" ng-repeat="advert in vmp.adverts">
+                <div class ="advertHome" ng-repeat="advert in vmp.adverts |orderBy: '-created_at'">
                     <div class="col-md-3">
                         <h4 class="text-capitalize">{{advert.type}}</h4>
                         <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
@@ -120,16 +120,16 @@
                         <p><i><small>catégorie : </small></i>{{advert.categories}}</p>
                         <p><i><small>le : </small></i>{{advert.created_at| date :'dd MMM yyyy'}}</p>
                         <p><i><small>zone : </small></i>{{advert.regions}}</p>
-                        <a href="#/editAdvert/{{advert._id}}" class="btn btn-ghost btn-xs" style="padding: 5px; font-size:12px;min-width: 125px;margin-bottom: 10px;">Modifier l'annonce</a>
-                        <button ng-click="vmp.deleteAd(advert._id)" class="btn btn-primary btn-xs" style="padding: 5px">Supprimer l'annonce</button>
+                        <a href="#/editAdvert/{{vmp.currentUser}}/{{advert._id}}" class="btn btn-ghost btn-xs" style="padding: 5px; font-size:12px;min-width: 125px;margin-bottom: 10px;">Modifier l'annonce</a>
+                        <button ng-click="vmp.deleteAd(advert)" class="btn btn-primary btn-xs" style="padding: 5px">Supprimer l'annonce</button>
                    
                     </div> 
                     <br>
                     <a ng-model="collapsed" ng-click="collapsed = !collapsed">      
-                        <button ng-click="vmp.listReplies()" class="btn btn-primary btn-xs">Voir {{advert.replies.length}} les réponses</button>
+                        <button ng-click="vmp.listReplies(vmp.currentUser._id)" class="btn btn-primary btn-xs">Voir {{advert.replies.length}} les réponses</button>
                     </a>
                     <div ng-show ="collapsed">                       
-                        <div ng-repeat="reply in vmp.replies|filter : advert._id ">
+                        <div ng-repeat="reply in vmp.replies|filter : advert._id |orderBy: '-created_at'">
 
                             <div class="wellReply">
                                 <div class="col-md-3"> 
@@ -149,20 +149,27 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div ng-if="vmp.adverts.length === 0">Pas encore d'annonces</div> 
+                    </div>                    
                 </div> 
+                <div ng-if="vmp.adverts.length === 0">Vous n'avez pas encore posté d'annonce</div> 
             </div>
         </div>
 
-        <div class="tab-pane fade in" id="tab3">
+        <div class="tab-pane fade in" id="tab3" ng-init="vmp.approvedReplies()">
             <div class="col-md-10 col-md-offset-1">
-                <div class ="advertHome" >
-                
+                <div class ="advertHome" ng-repeat="message in vmp.messages">
                 <h3>Mes messages</h3>
+                
+                <div class="wellReply" style="min-height: 100px;">
+                    <h4>Message pour l'annonce <strong>{{message.toAdId.title}}</strong></h4>
+                <p>Votre réponse (<strong>{{message.title}}</strong>) a été selectionnée par 
+                    <strong class='text-capitalize'>{{message.toAdId.author}}</strong>.</p>
+                <p><strong class='text-capitalize'>{{message.toAdId.author}}</strong> vous contactera sans tarder.</p>
+                </div>
                 
                 </div>
             </div>
+            
             <div class="col-md-10 col-md-offset-1">
                 <div class ="advertHome" >
                 

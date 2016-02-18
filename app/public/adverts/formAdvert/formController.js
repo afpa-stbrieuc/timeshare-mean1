@@ -4,38 +4,35 @@ angular.module('timeShareApp')
 
 .controller('formController', ['$scope', 'authentication', '$routeParams', '$http','$location', function ($scope, authentication, $routeParams, $http, $location) {
 
+    if (!authentication.isLoggedIn()) {
+        $location.path('/login');
+    }
+     console.log('User authLOGIN: ', authentication.isLoggedIn());
+     console.log('User auth: ', authentication.currentUser()._id);
+      
+//data posted from formAdvert.html      
+    $scope.addAdvert = function () {
+        if (authentication.isLoggedIn()) {
+            $scope.advert.author = authentication.currentUser().firstname;
+            $scope.advert.author_id = authentication.currentUser()._id;
 
-    $scope.addAdvert = function() {
-        
-        $scope.advert.author = authentication.currentUser().firstname;
-        $scope.advert.author_id = authentication.currentUser()._id;
-  
-        $http.post('/api/adverts', $scope.advert).success(function(response) {
-            console.log('scopeAdvert: ', $scope.advert);
-            console.log('response: ', response);
-            $scope.advert = response;
-            
-        });
+            $http.post('/api/adverts', $scope.advert).success(function (response) {
+                console.log('scopeAdvert: ', $scope.advert);
+                console.log('response: ', response);
+                $scope.advert = response;
+            });
+        }
     };
-
-
-    $scope.removeAdvert = function(id) {
-        console.log(id);
-        $http.delete('/api/adverts/' + id).success(function(response) {
-            //               refresh(); 
-        });
-    };
-    
-
-            
-    $scope.editAdvert = function(id) {
+//params received from profile.html
+//data send to editAdvert.html
+    $scope.editAdvert = function(userId, id) {
+        userId = $routeParams.userId;
         id = $routeParams.id;
-        console.log(id);
-        $http.get('/api/adverts/' + id).success(function(response) {
+        $http.get('/api/adverts/'+ userId +'/'+ id).success(function(response) {
             $scope.advert = response;
         });
     };
-
+//data updated in editAdvert.html
     $scope.updateAdvert = function(id) {
         id = $routeParams.id;
         console.log(id);
@@ -45,11 +42,7 @@ angular.module('timeShareApp')
         });
     };
 
-    $scope.deselect = function() {
-        $scope.advert = "";
-    };
-
-    //regions list in select form        
+//regions list in select form        
     $scope.region = {
         regionOptions: [{
             regions: 'auvergne-rhone-alpes'
@@ -111,10 +104,6 @@ angular.module('timeShareApp')
     vm.submit = function() { //function to call on form submit
         if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
             vm.upload(vm.file); //call upload function
-            //                vm.updateAdvert(resp);
-            console.log('scope-ctrl-input', $scope.up.upload_form.file);
-            //               console.log('scooop :',vm.upload_form.file); 
-            console.log('file-name-origin :', $scope.up.file.name); // = vm.file
         }
     };
 
@@ -131,7 +120,7 @@ angular.module('timeShareApp')
                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
                 console.log('RespConfig' + resp);
 
-                $http.put('/api/adverts/media/' + $scope.advert._id, $scope.advert).success(function(response) {
+                $http.put('/api/adverts/media/' + $scope.advert._id, $scope.advert).success(function() {
                     console.log('currentId2: ', $scope.advert);
                 });
             } else {
@@ -141,7 +130,6 @@ angular.module('timeShareApp')
             console.log('Error status: ' + resp.status);
             $window.alert('Error status: ' + resp.status);
         }, function(evt) {
-            console.log('evt', evt);
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             console.log('configData ', evt.config.data.file.name);
@@ -149,6 +137,5 @@ angular.module('timeShareApp')
         });
 
     };
-
 
 }]);
