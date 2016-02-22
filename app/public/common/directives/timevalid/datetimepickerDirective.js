@@ -58,7 +58,8 @@
         };
     }
 
-    angular.module('timeShareApp', []).run(['$rootScope', function ($rootScope) {
-    }]).controller('dateTimeController', ['$scope', '$http', dateTimeController
-    ]).directive('dateTimePicker', dateTimePicker);
+    angular.module('timeShareApp', [])
+           .run(['$rootScope', function ($rootScope) {}])
+           .controller('dateTimeController', ['$scope', '$http', dateTimeController])
+           .directive('dateTimePicker', dateTimePicker);
 })();

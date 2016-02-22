@@ -10,6 +10,7 @@ router.use('/api/account', require('./accountCtrl'));
 router.use('/api/users', require('./userCtrl'));
 router.use('/api/adverts', require('./advertsCtrl'));
 router.use('/api/replies', require('./repliesCtrl'));
+router.use('/api/upload', require('./uploadCtrl'));
 
 router.use(express.static(__dirname + '/../../public'));
 

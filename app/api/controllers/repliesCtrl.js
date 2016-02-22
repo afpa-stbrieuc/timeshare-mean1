@@ -77,6 +77,8 @@ router.put('/:reply_id', function (req, res) {
         reply.content = req.body.content;
         reply.created_at = req.body.created_at;
         reply.updated_at = req.body.updated_at;
+        reply.rep_approved = req.body.rep_approved;
+//        reply.ad_cancelled = req.body.ad.cancelled;
         reply.published = req.body.published;
         reply.confirmed = req.body.confirmed;
         reply.helper = req.body.helper;
@@ -90,27 +92,28 @@ router.put('/:reply_id', function (req, res) {
     });
 });
 
-//Update the reply,  getting the advert ref after reply validation
-router.put('/approved/:reply_id', function (req, res) {
+//Update the reply,  getting the advert ref after ad cancellation
+router.put('/cancelled/:reply_id', function (req, res) {
+    console.log('req REP ID : ', req.params.reply_id);
     Replydb.findById(req.params.reply_id, function (err, reply) {
         if (err)
             res.send(err);
-        reply.rep_approved = true;
+        reply.ad_cancelled = true;
         reply.save(function (err) {
             if (err)
                 res.send(err);
             res.json(reply);
-            console.log('UpdatedRepApproved:', reply);
+            console.log('Updated Ad-cancelled:', reply);
         });
     });
 });
-
 //retrieve by author all replies which have been approved
 router.get('/approved/:user_id', function (req, res) {
     console.log('req USER : ', req.params.user_id);
     Replydb.find({
         author_id: req.params.user_id,
-        rep_approved: true
+        rep_approved: true,
+        ad_cancelled : false
     })
             .populate('toAdId')
             .exec(function (err, reply) {
@@ -123,7 +126,6 @@ router.get('/approved/:user_id', function (req, res) {
 });
 
 router.get('/searchReplies/:reply_id', function (req, res) {
-//    console.log('req Type : ', req.params.reply_id);
     Replydb.find({
         toAdId: req.params.reply_id
     }, function (err, replies) {
@@ -146,46 +148,21 @@ router.get('/replyToAd/:reply_id', function (req, res) {
     });
 });
 
-/** API path that will upload the files */
-router.post('/upload', function (req, res) {
-    var storage = multer.diskStorage({//multers disk storage settings
-        destination: function (req, file, cb) {
-            cb(null, '../public/uploads/')
-        },
-        filename: function (req, file, cb) {
-            var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
-            console.log('FILE: ', file);
-        }
+//retrieve by author all replies which have been approved
+router.get('/cancelled/:user_id', function (req, res) {
+    console.log('req USER : ', req.params.user_id);
+    Replydb.find({
+        author_id: req.params.user_id,
+        ad_cancelled: true
+    })
+            .populate('toAdId')
+            .exec(function (err, reply) {
+                if (err)
+                    res.send(err);
 
-    });
-
-    var upload = multer({//multer settings
-        storage: storage
-    }).single('file');
-
-    console.log("Chargement fichier...");
-
-    upload(req, res, function (err) {
-
-        if (err) {
-            console.log(err);
-            res.json({
-                error_code: 1,
-                err_desc: err
+                res.json(reply);
+                console.log('repliesApproved By author', reply);
             });
-            return;
-        }
-        media = req.file.filename;
-        console.log('SavedMedia:', media);
-        res.json({
-            error_code: 0,
-            err_desc: null
-        });
-
-
-    });
-
 });
 
 

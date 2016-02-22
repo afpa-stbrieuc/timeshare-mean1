@@ -21,10 +21,19 @@
             tel: "",
             adress: ""
         };
-
+        
         vmp.returnPage = $location.search().page || '/profil';
+           
+        vmp.getAvatar = function () {
+                $http.get('/api/users/' + vmp.currentUser._id).success(function (avatar) {
+                    vmp.media = avatar.media;
+                    console.log('avatar',avatar.media);
+                });
+        };
 
         vmp.onUpdate = function () {
+            console.log('vmp', vmp.currentUser);
+//            console.log('$scope', $scope.vmp.currentUser);
             vmp.credentials = vmp.currentUser;
             vmp.credentials._id = vmp.currentUser._id;
             console.log("id de user" + vmp.credentials._id);
@@ -65,32 +74,57 @@
 //refresh the ads list after delete        
         var refresh = function () {
             vmp.listAdverts(vmp.currentUser._id);
+            console.log('refresh',vmp.adverts);
         };
         refresh();
 
-//delete advert and its replies
-        vmp.deleteAd = function (advert) {
-            console.log('sup', advert);
+////delete advert and its replies //function for ADMIN ONLY
+//        vmp.deleteAd = function (advert) {
+//            console.log('sup', advert);
+//            if (vmp.currentUser._id !== null) {
+//                var id = advert._id;
+//                $http.get('api/adverts/' + id).success(function (advert) {
+//                    console.log('supRep', advert.replies);
+//                    var replies = advert.replies;
+//                    angular.forEach(replies, function (reply, key) {
+//                        $http.delete('api/replies/' + reply).success(function () {
+//                            console.log('reponses supprimées', reply);
+//                        });
+//                    });
+//                }).then(function (advert) {
+//                    var id = advert.data._id;
+//                    $http.delete('/api/adverts/' + id).success(function () {
+//                        console.log('annonce supprimée', advert._id);
+//                        refresh();
+//                        
+//                    });
+//                });
+//            }
+//        };
+
+ //mark the advert and its replies as cancelled
+        vmp.cancelAd = function (advert) {
             if (vmp.currentUser._id !== null) {
                 var id = advert._id;
                 $http.get('api/adverts/' + id).success(function (advert) {
                     console.log('supRep', advert.replies);
-                    var replies = advert.replies;
-                    angular.forEach(replies, function (reply, key) {
-                        $http.delete('api/replies/' + reply).success(function () {
+                    var repliesID = advert.replies;
+                    angular.forEach(repliesID, function (replyID, reply) {
+                        $http.put('api/replies/cancelled/' + replyID).success(function () {
                             console.log('reponses supprimées', reply);
                         });
                     });
                 }).then(function (advert) {
                     var id = advert.data._id;
-                    $http.delete('/api/adverts/' + id).success(function () {
+                    $http.put('/api/adverts/cancelled/' + id).success(function () {
                         console.log('annonce supprimée', advert._id);
                         refresh();
-                        
                     });
                 });
             }
-        };
+        };     
+        
+        
 //displays all replies related to current user 
         vmp.listReplies = function (adAuthorId) {
             $http.get('api/replies/' + adAuthorId).success(function (response) {
@@ -104,8 +138,9 @@
             $http.put('api/adverts/answered/' + id, advert).success(function () {
                 console.log('ad up', advert.answered);
             }).then(function () {
+                reply.rep_approved = true;
                 var rep_id = reply._id;
-                $http.put('api/replies/approved/' + rep_id, reply).success(function () {
+                $http.put('api/replies/' + rep_id, reply).success(function () {
                     console.log('rep approved', reply._id, reply.rep_approved);
                 });
             });
@@ -119,7 +154,15 @@
                 });
             }
         };
-
+//get replies whom advert has been cancelled
+        vmp.cancelledReplies = function () {
+            if (vmp.currentUser._id !== null) {
+                $http.get('/api/replies/cancelled/' + vmp.currentUser._id).success(function (response) {
+                    vmp.msgCancel = response;
+                    console.log('message pour ', vmp.msgCancel);
+                });
+            }
+        };
     }
 })();
 

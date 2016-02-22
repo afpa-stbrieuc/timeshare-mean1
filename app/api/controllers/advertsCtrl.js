@@ -89,7 +89,8 @@ router.get('/editAdvert/:advert_id', function (req, res) {
 router.get('/searchAuthor/:advert_author_id', function(req, res) {
     console.log('req Type : ', req.params.advert_author_id);
     Advertdb.find({
-        author_id: req.params.advert_author_id
+        author_id: req.params.advert_author_id,
+        cancelled: false
     }, function(err, adverts) {
         if (err)
             res.send(err);
@@ -109,41 +110,6 @@ router.get('/replyToAd/:advert_id', function (req, res) {
     });
 });
 
-// API path that will upload the file
-router.post('/upload', function (req, res) {
-    var storage = multer.diskStorage({//multers disk storage settings
-        destination: function (req, file, cb) {
-            cb(null, global.uploadDir)
-        },
-        filename: function (req, file, cb) {
-            var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
-            console.log('FILE: ', file);
-        }
-    });
-    var upload = multer({//multer settings
-        storage: storage
-    }).single('file');
-    console.log("Chargement fichier...");
-
-    upload(req, res, function (err) {
-        if (err) {
-            console.log(err);
-            res.json({
-                error_code: 1,
-                err_desc: err
-            });
-            return;
-        }
-        media = req.file.filename;
-        console.log('SavedMedia:', media);
-        res.json({
-            error_code: 0,
-            err_desc: null
-        });
-    });
-});
-
 //Update the advert from editAdvert.html
 router.put('/:advert_id', function (req, res) {
     Advertdb.findById(req.params.advert_id, function (err, advert) {
@@ -160,6 +126,8 @@ router.put('/:advert_id', function (req, res) {
 //        advert.work_duration_estimated = req.body.work_duration_estimated;
 //        advert.created_at = req.body.created_at;
         advert.updated_at = req.body.updated_at;
+//        advert.answered = req.body.advert.answered;
+        advert.cancelled = req.body.advert.cancelled;
 //        advert.published = req.body.published;
 //        advert.confirmed = req.body.confirmed;
 //        advert.helper = req.body.helper;
@@ -220,6 +188,19 @@ router.put('/answered/:advert_id', function (req, res) {
         });
     });
 });
-
+//Update the advert marking it cancelled=true
+router.put('/cancelled/:advert_id', function (req, res) {
+    Advertdb.findById(req.params.advert_id, function (err, advert) {
+        if (err)
+            res.send(err);
+        advert.cancelled = true;
+        advert.save(function (err) {
+            if (err)
+                res.send(err);
+            res.json(advert);
+            console.log('Ad cancelled:', advert);
+        });
+    });
+});
 
 module.exports = router

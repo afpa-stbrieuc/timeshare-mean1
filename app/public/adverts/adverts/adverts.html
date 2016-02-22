@@ -34,21 +34,23 @@
         </div>
         <br>
         <div class="row">
-            <div class ="advertHome" ng-repeat="advert in adverts.slice(((currentPage - 1) * itemsPerPage), ((currentPage) * itemsPerPage))| filter:type | filter:regions | filter:categories |filter: {answered:false}">
+            <div class ="advertHome" ng-repeat="advert in adverts.slice(((currentPage - 1) * itemsPerPage), ((currentPage) * itemsPerPage))| filter:type | filter:regions | filter:categories |filter: {answered:false}|filter: {cancelled:false}">
+                <div class="row" style="padding-left: 15px;">
                 <div class="col-md-3">
                     <h4 class="text-capitalize">{{advert.type}}</h4>
                     <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
                 </div>
                 <div class="col-md-6">
                     <h3 class="text-capitalize">{{advert.title}}</h3>
-                    <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p> 
-                    <a href="#/replyToAd/{{advert._id}}" class="btn btn-sm btn-primary">Répondre</a>
+                    <pre style="background: none; border: none;" >{{advert.content}}</pre> 
+                    <a href="#/replyToAd/{{advert._id}}" class="btn btn-sm btn-primary">Répondre</a> 
                 </div>
                 <div class="col-md-3">
                     <p><i><small>postée par : </small></i>{{advert.author}}</p> 
                     <p><i><small>catégorie : </small></i>{{advert.categories}}</p>
                     <p><i><small>le : </small></i>{{advert.created_at| date :'dd MMM yyyy'}}</p>
                     <p><i><small>zone : </small></i>{{advert.regions}}</p>                                           
+                </div>
                 </div>
                 <div ng-if="adverts.length === 0">Pas encore d'annonces</div> 
             </div>  

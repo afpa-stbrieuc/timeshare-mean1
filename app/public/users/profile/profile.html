@@ -8,8 +8,8 @@
         <div class="card-background">
             <img class="card-bkimg" alt="backProfil" >
         </div>
-        <div class="useravatar">
-            <img alt="" src="http://lorempixel.com/100/100/people/9/">
+        <div class="useravatar" ng-init="vmp.getAvatar()">
+            <img alt="avatar" ng-src="uploads/{{vmp.media}}">
         </div>
         <br>
         <div class="card-info">
@@ -33,7 +33,9 @@
         <div class="btn-group" role="group" ng-mouseenter="myVar3 = 'btn-primary';
                         myVar2 = 'btn-default';
                         myVar1 = 'btn-default'">
-            <button type="button"  class="btn" ng-class="myVar3" href="#tab3" data-toggle="tab"><div style="height:30px">Mes messages / Mon compte</div>
+            <button type="button"  class="btn" ng-class="myVar3" href="#tab3" data-toggle="tab">
+                <div style="height:30px">Mes messages <span ng-if="vmp.messages.length||vmp.msgCancel.length>0">
+                        ({{vmp.messages.length  + vmp.msgCancel.length}})</span> / Mon compte</div>
             </button>
         </div>
     </div>
@@ -101,6 +103,8 @@
                         </div>
                     </div>
                 </form>
+                <upload></upload>
+                <div>Actualisez la page pour voir votre nouvel avatar.</div>
             </div>
         </div>
 
@@ -121,7 +125,7 @@
                         <p><i><small>le : </small></i>{{advert.created_at| date :'dd MMM yyyy'}}</p>
                         <p><i><small>zone : </small></i>{{advert.regions}}</p>
                         <a href="#/editAdvert/{{advert._id}}" class="btn btn-ghost btn-xs" style="padding: 5px; font-size:12px;min-width: 125px;margin-bottom: 10px;">Modifier l'annonce</a>
-                        <button ng-click="vmp.deleteAd(advert)" class="btn btn-primary btn-xs" style="padding: 5px">Supprimer l'annonce</button>
+                        <button ng-click="vmp.cancelAd(advert)" class="btn btn-primary btn-xs" style="padding: 5px">Supprimer l'annonce</button>
                    
                     </div> 
                     <br>
@@ -157,10 +161,16 @@
 
         <div class="tab-pane fade in" id="tab3" ng-init="vmp.approvedReplies()">
             <div class="col-md-10 col-md-offset-1">
-                <div class ="advertHome" >
+                <div class ="advertHome" ng-init="vmp.cancelledReplies()">
                 <h3>Mes messages</h3>
                 
-                <div class="wellReply" style="min-height: 100px;"ng-repeat="message in vmp.messages">
+                <div class="wellReply" style="min-height: 100px;"ng-repeat="message in vmp.msgCancel">
+                    <h4>Message pour l'annonce <strong>{{message.toAdId.title}}</strong></h4>
+                    <p>Désolé, l'annonce <strong>"{{message.toAdId.title}}"</strong> a été retirée par
+                     <strong class='text-capitalize'>{{message.toAdId.author}}.</strong></p>
+               </div>
+                
+                <div class="wellReply" style="min-height: 100px;"ng-repeat="message in vmp.messages | filter: {ad_cancelled:false}">
                     <h4>Message pour l'annonce <strong>{{message.toAdId.title}}</strong></h4>
                 <p>Votre réponse (<strong>{{message.title}}</strong>) a été selectionnée par 
                     <strong class='text-capitalize'>{{message.toAdId.author}}</strong>.</p>

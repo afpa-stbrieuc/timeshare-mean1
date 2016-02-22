@@ -37,6 +37,10 @@ var replySchema = new Schema({
         type : Boolean,
         default : false
     }, // true after validation
+    ad_cancelled: {
+        type : Boolean,
+        default : false
+    }, // true after validation
     confirmed: Boolean,
     helper: String
 }, {

@@ -38,7 +38,8 @@ var userSchema = new Schema({
     admin: {
       type: Boolean,
       default: false
-    }
+    },
+    media: String
   }, {
     collection: "user"
   }

@@ -14,43 +14,45 @@
         </div>
         <div class="col-md-6 frontService">
             <h2 class="text-center">Offres</h2>
-            <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'offre'}|filter: {answered:false} |orderBy: '-created_at'| limitTo:3" >
-                <a href="#/replyToAd/{{advert._id}}">
+            <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'offre'}|filter: {answered:false}|filter: {cancelled:false} |orderBy: '-created_at'| limitTo:3" >
+                <div class="row">
                     <div class="col-md-4" >
-                        <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
+                        <img ng-if="advert.media !== 'abc'" class="media-object" style="max-width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
                     </div>
                     <div class="col-md-8">
                         <h3>{{advert.title}}</h3>
-                        <h4 class="text-capitalize"><i><small>postée par : </small></i>{{advert.author}}<i style='float:right'><small>le : {{advert.created_at | date :'dd MMM yyyy'}}</small></i></h4>
-                        <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p>                                         
+                        <p class="text-capitalize"><i>postée par : </i><strong>{{advert.author}}</strong><i style='float:right'>le : <strong>{{advert.created_at | date :'dd MMM yyyy'}}</strong></i></p>
+                        <pre>{{advert.content |limitTo:100}}
+                        <a href="#/adverts" ng-if="advert.content.length > 101" ><button class="btn btn-xs btn-primary">Voir plus</button></a>
+                        </pre> 
                     </div>
-                    <div class="text-capitalize"><i><small>zone : </small></i>{{advert.regions}}<span style='float:right'><i ><small>catégorie : </small></i>{{advert.categories}}</span></div>
-                </a>
+                    <div class="col-md-12 text-capitalize"><i><small>zone : </small></i>{{advert.regions}}<span style='float:right'><i ><small>catégorie : </small></i>{{advert.categories}}</span></div>
+                </div>
             </div>
         </div>
         <div class="col-md-6 frontService">
             <h2 class="text-center">Dernières demandes</h2>
             <div class="advertHome" ng-repeat="advert in adverts| filter: {type:'demande'}|filter: {answered:false}  |orderBy: '-created_at'| limitTo:3" >
-                <a href="#/replyToAd/{{advert._id}}">
+                <div class="row">
                     <div class="col-md-4" >
-                        <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
+                        <img ng-if="advert.media !== 'abc'" class="media-object" style="max-width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
                     </div>
                     <div class="col-md-8">
                         <h3>{{advert.title}}</h3>
-                        <h4 class="text-capitalize"><i><small>postée par : </small></i>{{advert.author}}<i style='float:right'><small>le : {{advert.created_at| date :'dd MMM yyyy'}}</small></i></h4>
-                        <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p>                                         
+                        <p class="text-capitalize"><i>postée par : </i><strong>{{advert.author}}</strong><i style='float:right'>le : <strong>{{advert.created_at | date :'dd MMM yyyy'}}</strong></i></p>
+                        <pre>{{advert.content |limitTo:100}}
+                        <button ng-if="advert.content.length > 101" class="btn btn-xs btn-primary">Voir plus</button>
+                        </pre> 
                     </div>
-                    <div class="text-capitalize"><i><small>zone : </small></i>{{advert.regions}}<span style='float:right'><i ><small>catégorie : </small></i>{{advert.categories}}</span></div>
-                </a>
+                    <div class="col-md-12 text-capitalize"><i><small>zone : </small></i>{{advert.regions}}<span style='float:right'><i ><small>catégorie : </small></i>{{advert.categories}}</span></div>
+                </div>
             </div>
         </div>
         <div class="col-md-6 col-md-offset-3">
             <a href="#/adverts" class="btn btn-block btn-ghost-white">Voir plus d'annonces&nbsp;&nbsp;<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
         </div>
     </section>
-
-
-    <section id="anchor{{1}}" class="row">
+    <section id="bienvenue" class="row">
         <div class="col-md-12">
             <div class="text-center">
                 <h1>Bienvenue sur TimeShareApp</h1>
@@ -69,7 +71,40 @@
             </div>
         </div>
     </section>
-    
+       <section class="row" style="background: #CECECE">
+        <div class="col-md-12" >
+            <div class="text-center">
+                <h1 style="color: #BC2A20">En ce moment sur TimeShareApp</h1>
+            </div>
+            <div class="col-md-3 col-md-offset-2 text-center count">
+                <h1><strong count-to="{{adverts.length}}" duration="0.5" count-from="0" ></strong></h1>
+                <h2>Annonces</h2>
+                <br>
+            </div>
+            <div class="col-md-3 col-md-offset-2 text-center count">
+                <h1><strong count-to="{{user.length}}" duration="0.5" count-from="0" ></strong></h1>
+                <h2>Inscrits</h2>
+                <br>
+            </div>
+        </div>
+    </section>
+    <section id="quiSommesNous" class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <h1>Qui sommes-nous ?</h1>
+            </div>
+            <br>
+            <div class="col-md-12" style="color:#333;">
+                <p>T'as aimé créer un compte utilisateur, c'est Said que tu dois remercier. <a>&lt <strong>amenzo@gmail.com</strong> &gt</a></p>
+                <p>Tu veux rendre un service? Ton compte est plus positf qu'à la banque ? , c'est Tonio qui gère. <a>&lt <strong>tonio@gmail.com</strong> &gt</a></p>
+                <p>Quand tu regardes le site, t'as les yeux qui pleurent ? Contacte CaroTM©. <a>&lt <strong>carowebdev@gmail.com</strong> &gt</a></p>
+            </div>
+            <br>
+            <div class="col-md-6 col-md-offset-3"> 
+                <a href="#/" class="btn btn-block btn-ghost">Nous contacter</a>
+            </div>
+        </div>
+    </section>
 
 </div>
 

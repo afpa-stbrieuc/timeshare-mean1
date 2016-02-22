@@ -12,7 +12,7 @@
 
     vmr.pageHeader = {
       title: 'Creation d\'un nouveau compte'
-    }
+    };
 
     vmr.credentials = {
       lastname: "",
@@ -20,7 +20,8 @@
       mail: "",
       password: "",
       tel: "",
-      adress: ""
+      adress: "",
+      media : "avatar.ico"
 
     };
 

@@ -38,36 +38,7 @@
             </form>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 ">
-
-                <h3 class="text-center">Ajouter une image à votre annonce</h3>
-                <hr class="colorgraph">
-
-                <form class="form" ng-controller="MyCtrl as up" name="up.upload_form">          
-
-                    <input class="file"
-                           type="file" 
-                           ngf-select 
-                           ng-model="up.file" 
-                           name="file" 
-                           ngf-pattern="'image/*'"
-                           accept="image/*" 
-                           ngf-max-size="20MB" 
-
-                           />
-                    <hr class="colorgraph">
-                    Image : <img style="width:100px;" ngf-thumbnail="up.file"/>
-                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
-                        {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-                    <button class="btn btn-sm btn-primary" type="submit" ng-click="up.submit()">Ajouter</button>
-                    <p>{{up.progress}}</p>
-
-                </form>
-            </div>
-        </div>
-
+        <upload></upload>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <a href="#/adverts"  class="btn btn-block btn-ghost-white" >Voir les annonces <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>

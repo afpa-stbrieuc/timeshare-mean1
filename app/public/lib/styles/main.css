@@ -9,9 +9,6 @@ body{
     margin-right: 15px;
     background-color: #e1e1e1;
 }
-.container{
-    /*margin-top: 50px;*/
-}
 section{
     margin-bottom: 30px;
 }
@@ -21,6 +18,10 @@ h1, h2, h3, h4 {
 a, a:hover{
     color: rgba(0, 0, 0, 0.87);
     text-decoration: none;
+}
+pre{
+    background: none; 
+    border: none;  
 }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
     z-index: 3;
@@ -88,6 +89,9 @@ input[type=submit]:hover,input[type=submit]:active,input[type=submit]:focus {
     border-color: #BC2A20; 
     border: 1px solid;
 }
+.btn-xs, .btn-group-xs > .btn {
+    padding: 5px;
+}
 .btn-sm, .btn-group-sm > .btn {
     padding: 5px 20px;
     font-size: 15px;
@@ -145,9 +149,23 @@ input[type=submit]:hover,input[type=submit]:active,input[type=submit]:focus {
     border-radius: 4px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 }
-#anchor1{
-    background:#BC2A20;
+#lastAds{
+    background:#fff;
     margin-top: 30px;
+}
+#bienvenue{
+    background:#BC2A20;
+    color:#e1e1e1;
+}
+.count{
+    background-color:#BC2A20;
+    color:#fff;
+    border: 1px solid #fff;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+#quiSommesNous{
+    background:#8995A2;
     color:#e1e1e1;
 }
 .footer {
@@ -174,12 +192,6 @@ footer#themeBrand{
     margin-bottom: 10px;
     color: #3F88A9;
 }
-/* Customize container */
-/*@media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}*/
 .container-narrow > hr {
     margin: 30px 0;
 }
@@ -201,10 +213,6 @@ User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
 Licensed under MIT
 ***/
-/*
-body {
-    background: #F1F3FA;
-}*/
 .tabsdemoDynamicHeight md-content {
     background-color: transparent !important; }
 .tabsdemoDynamicHeight md-content md-tabs {
@@ -236,9 +244,7 @@ body {
     text-align: center;
     background-image: url(../images/bricol.png);
     background-size: contain;
-    /*background-repeat: no-repeat;*/
     background-position: center;
-    /*background-color: #BC2A20;*/
     border-radius:0px;
 }
 .card.hovercard .card-background {
@@ -287,13 +293,6 @@ body {
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
-/*.card.hovercard .card-info {
-    overflow: hidden;
-    font-size: 12px;
-    line-height: 20px;
-    color: #737373;
-    text-overflow: ellipsis;
-}*/
 .card.hovercard .bottom {
     padding: 0 20px;
     margin-bottom: 17px;
