@@ -111,13 +111,14 @@
         <div class="tab-pane fade in active" id="tab2" ng-init="vmp.listAdverts(vmp.currentUser._id)">
             <div class="col-md-10 col-md-offset-1">
                 <div class ="advertHome" ng-repeat="advert in vmp.adverts |orderBy: '-created_at'">
+                    <div class="row">
                     <div class="col-md-3">
                         <h4 class="text-capitalize">{{advert.type}}</h4>
                         <img ng-if="advert.media !== 'abc'" class="media-object" style="width:150px; height:120px;" ng-src="uploads/{{advert.media}}">
                     </div>
                     <div class="col-md-6">
                         <h3 class="text-capitalize">{{advert.title}}</h3>
-                        <p style="text-align: left; margin-left: 10px;">{{advert.content}}</p> 
+                        <pre>{{advert.content}}</pre> 
                     </div>
                     <div class="col-md-3">
                         <p><i><small>postée par : </small></i>{{advert.author}}</p> 
@@ -128,6 +129,7 @@
                         <button ng-click="vmp.cancelAd(advert)" class="btn btn-primary btn-xs" style="padding: 5px">Supprimer l'annonce</button>
                    
                     </div> 
+                    </div>
                     <br>
                     <a ng-model="collapsed" ng-click="collapsed = !collapsed">      
                         <button ng-click="vmp.listReplies(vmp.currentUser._id)" class="btn btn-primary btn-xs">Voir {{advert.replies.length}} les réponses</button>

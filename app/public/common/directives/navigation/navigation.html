@@ -2,7 +2,7 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -12,18 +12,22 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="" scroll-to="bienvenue" >Comment ça marche ?</a></li>
-                    <li><a href="" scroll-to="quiSommesNous">Qui sommes-nous ?</a></li>
+                <ul class="nav navbar-nav" ng-if="navvm.page === '/'">
+                    <li><a scroll-to="bienvenue" >Comment ça marche ?</a></li>
+                    <li><a scroll-to="quiSommesNous">Qui sommes-nous ?</a></li>
                 </ul>
-
+               <ul class="nav navbar-nav" ng-if="navvm.page !== '/'">
+                    <li><a href="/#home" >Comment ça marche ?</a></li>
+                    <li><a href="/#">Qui sommes-nous ?</a></li>
+                </ul>
+                
                 <ul class="nav navbar-nav navbar-right">        
                     <!--<a href="#"><span class="glyphicon glyphicon-user"></span>&nbspNom du user</a>&nbsp
                     <a href="#" class="btn-trans btn-sm">Déconnexion</a>-->
                      <li ng-hide="navvm.isLoggedIn"><a href="/#login/?page={{ navvm.currentPath }}" class="btn btn-sm"><i class="fa fa-user"></i> Se connecter</a></li>
                      <li ng-hide="navvm.isLoggedIn"><a href="#/register/?page={{ navvm.currentPath }}" class="btn btn-sm"><i class="fa fa-user-plus"></i> Créer un compte</a></li>
 
-                    <li ng-show="navvm.isLoggedIn" class="dropdown">
+                    <li ng-if="navvm.isLoggedIn">
                        <a class="dropdown-toggle text-capitalize" data-toggle="dropdown" href=""><i class="fa fa-user"></i>&nbsp;&nbsp;Bonjour, {{navvm.currentUser.lastname }} 
                         <span class="caret"></span></a>
                              <ul class="dropdown-menu">

@@ -46,7 +46,7 @@
     register = function(user) {
       return $http.post('/api/users/inscription', user).success(function(data) {
         saveToken(data.token);
-        console.log(data.token);
+        console.log(data.status);
         console.log("c fait");
 
       });
@@ -56,7 +56,7 @@
       return $http.put('/api/users/updateProfile', user).success(function(data) {
         saveToken(data.token);
         console.log(data.token);
-        console.log("c fait");
+        console.log("c fait register");
 
       });
     };
@@ -65,7 +65,7 @@
       return $http.post('/api/users/login', user).success(function(data) {
         saveToken(data.token);
         console.log(data.token);
-        console.log("c fait");
+        console.log("c fait login");
       });
     };
 

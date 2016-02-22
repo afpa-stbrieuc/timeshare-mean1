@@ -42,6 +42,7 @@
       authentication
         .register(vmr.credentials)
         .error(function(err) {
+            console.log('status', err)
           vmr.formError = err;
         })
         .then(function() {

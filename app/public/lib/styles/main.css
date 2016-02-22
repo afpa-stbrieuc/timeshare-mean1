@@ -115,6 +115,13 @@ input[type=submit]:hover,input[type=submit]:active,input[type=submit]:focus {
     max-height: 50px;
     font-size: 14px;
 }
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    margin-left: 60px;
+    border-color: #e7e7e7;
+    background: rgba(188,42,32,0.8);
+    position: relative;
+     z-index: 99; 
+}
 #topp {
     background-image: url(../images/bricol.png);
     background-size: cover;

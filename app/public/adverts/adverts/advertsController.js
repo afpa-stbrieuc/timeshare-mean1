@@ -13,7 +13,7 @@ function advertsController($scope, $http) {
             $scope.totalItems = $scope.adverts.length;
             $scope.currentPage = 1;
             $scope.itemsPerPage = 5;
-            $scope.maxSize = 3; //Number of pager buttons to show
+            $scope.maxSize = 4; //Number of pager buttons to show
             $scope.advert = "";
         });
     };
@@ -81,7 +81,8 @@ function advertsController($scope, $http) {
     };
     $scope.setItemsPerPage = function(num) {
         $scope.itemsPerPage = num;
-        $scope.currentPage = 1; //reset to first paghe
+        $scope.currentPage = 1; //reset to first page
+//        $scope.maxSize = 1; //Number of pager buttons to show
     };
 
 };

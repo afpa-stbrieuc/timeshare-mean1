@@ -12,15 +12,15 @@
     vm.currentPath = $location.path();
 
     vm.isLoggedIn = authentication.isLoggedIn();
-
+    
     vm.currentUser = authentication.currentUser();
-console.log('navvm: ', vm.currentUser);
+
     vm.logout = function() {
       authentication.logout();
       $location.path('/');
     };
     
-    
+   vm.page = $location.path();
   }
   
 })();

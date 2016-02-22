@@ -12,6 +12,9 @@ angular.module('timeShareApp')
         $scope.advert = response;      
     });
 
+
+$scope.returnPage = $location.search().page || '/';
+
     $scope.addReply = function () {
         $scope.reply.author = authentication.currentUser().firstname;
         $scope.reply.author_id = authentication.currentUser()._id;
@@ -27,6 +30,9 @@ angular.module('timeShareApp')
                     $http.put('/api/adverts/replies/' + $scope.advert._id, $scope.advert).success(function () {
                         console.log('IdAdvet: ', $scope.advert);
                         console.log('IdReply: ', reply);
+                        $scope.reply = "";
+                        console.log('ReplySCOPR: ', $scope.reply);
+                        $location.path($scope.returnPage);
                     });
                 });
     };
