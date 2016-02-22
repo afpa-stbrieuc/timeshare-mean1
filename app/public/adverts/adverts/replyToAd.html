@@ -51,7 +51,15 @@
                         </div>
                     </div>
                     <br>
-                    <timevalid></timevalid>      
+<div class="row">  
+    <div class="col-md-2">
+        <h4>Date d'intervention</h4> 
+    </div>
+    <div class="col-md-10">
+          <uib-datepicker ng-model="work_date" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></uib-datepicker>
+
+      </div>
+  </div>
                     <br>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
