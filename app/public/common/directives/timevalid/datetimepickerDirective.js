@@ -1,11 +1,11 @@
-(function () {
-    var dateTimeController = function ($scope, $rootScope) {
+(function() {
+    var dateTimeController = function($scope, $rootScope) {
         $scope.vm = {
             message: "Bootstrap DateTimePicker Directive",
             dateTime: {}
         };
 
-        $scope.$watch('change', function(){
+        $scope.$watch('change', function() {
             console.log($scope.vm.dateTime);
         });
 
@@ -17,7 +17,7 @@
            })
         */
     };
-    var dateTimePicker = function ($rootScope) {
+    var dateTimePicker = function($rootScope) {
 
         return {
             require: '?ngModel',
@@ -28,7 +28,7 @@
                 useCurrent: '@',
                 location: '@'
             },
-            link: function (scope, elem, attrs) {
+            link: function(scope, elem, attrs) {
                 elem.datetimepicker({
                     pick12HourFormat: scope.pick12HourFormat,
                     language: scope.language,
@@ -36,7 +36,7 @@
                 })
 
                 //Local event change
-                elem.on('blur', function () {
+                elem.on('blur', function() {
 
                     console.info('this', this);
                     console.info('scope', scope);
@@ -59,7 +59,7 @@
     }
 
     angular.module('timeShareApp', [])
-           .run(['$rootScope', function ($rootScope) {}])
-           .controller('dateTimeController', ['$scope', '$http', dateTimeController])
-           .directive('dateTimePicker', dateTimePicker);
+        .run(['$rootScope', function($rootScope) {}])
+        .controller('dateTimeController', ['$scope', '$http', dateTimeController])
+        .directive('dateTimePicker', dateTimePicker);
 })();

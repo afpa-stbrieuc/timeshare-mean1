@@ -1,18 +1,18 @@
 (function() {
 
-  angular
-    .module('timeShareApp')
-    .controller('timevalidCtrl', timevalidCtrl);
+    angular
+        .module('timeShareApp')
+        .controller('timevalidCtrl', timevalidCtrl);
 
-  timevalidCtrl.$inject = ['$location', 'authentication'];
+    timevalidCtrl.$inject = ['$location', 'authentication'];
 
-  function timevalidCtrl($location, authentication) {
-    var timevalid = this;
+    function timevalidCtrl($location, authentication) {
+        var timevalid = this;
 
-    timevalid.currentPath = $location.path();
+        timevalid.currentPath = $location.path();
 
-    timevalid.isLoggedIn = authentication.isLoggedIn();
+        timevalid.isLoggedIn = authentication.isLoggedIn();
 
-    timevalid.currentUser = authentication.currentUser();
-  }
+        timevalid.currentUser = authentication.currentUser();
+    }
 })();

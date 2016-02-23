@@ -15,7 +15,12 @@ var mongoose = require('mongoose');
 var config = require('./config');
 app.set('superSecret', config.secret);
 
+var fs = require('fs');
+var dir = '../public/uploads';
 
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
 global.uploadDir = path.join(path.resolve(__dirname),'../public/uploads');
 console.log('path='+global.uploadDir);
 

@@ -2,44 +2,44 @@
 
 angular.module('timeShareApp')
 
-.controller('formController', ['$scope', 'authentication', '$routeParams', '$http','$location', function ($scope, authentication, $routeParams, $http, $location) {
+.controller('formController', ['$scope', 'authentication', '$routeParams', '$http', '$location', function($scope, authentication, $routeParams, $http, $location) {
 
     if (!authentication.isLoggedIn()) {
         $location.path('/login');
     }
-      
-//data posted from formAdvert.html      
-    $scope.addAdvert = function () {
+
+    //data posted from formAdvert.html      
+    $scope.addAdvert = function() {
         if (authentication.isLoggedIn()) {
             $scope.advert.author = authentication.currentUser().firstname;
             $scope.advert.author_id = authentication.currentUser()._id;
 
-            $http.post('/api/adverts', $scope.advert).success(function (response) {
+            $http.post('/api/adverts', $scope.advert).success(function(response) {
                 console.log('scopeAdvert: ', $scope.advert);
                 console.log('response: ', response);
                 $scope.advert = response;
             });
         }
     };
-//params received from profile.html
-//data send to editAdvert.html
+    //params received from profile.html
+    //data send to editAdvert.html
     $scope.editAdvert = function(id) {
         id = $routeParams.id;
         $http.get('/api/adverts/editAdvert/' + id).success(function(response) {
             $scope.advert = response;
         });
     };
-//data updated in editAdvert.html
+    //data updated in editAdvert.html
     $scope.updateAdvert = function(id) {
         id = $routeParams.id;
         console.log(id);
         console.log($scope.advert);
         $http.put('/api/adverts/' + id, $scope.advert).success(function(response) {
-           console.log($scope.advert);
+            console.log($scope.advert);
         });
     };
 
-//regions list in select form        
+    //regions list in select form        
     $scope.region = {
         regionOptions: [{
             regions: 'auvergne-rhone-alpes'

@@ -4,16 +4,16 @@
  *       https://github.com/sparkalow/angular-count-to
  */
 var countTo = angular.module('countTo', [])
-    .directive('countTo', ['$timeout', function ($timeout) {
+    .directive('countTo', ['$timeout', function($timeout) {
         return {
             replace: false,
             scope: true,
-            link: function (scope, element, attrs) {
+            link: function(scope, element, attrs) {
 
                 var e = element[0];
                 var num, refreshInterval, duration, steps, step, countTo, value, increment;
 
-                var calculate = function () {
+                var calculate = function() {
                     refreshInterval = 30;
                     step = 0;
                     scope.timoutId = null;
@@ -26,8 +26,8 @@ var countTo = angular.module('countTo', [])
                     num = scope.value;
                 }
 
-                var tick = function () {
-                    scope.timoutId = $timeout(function () {
+                var tick = function() {
+                    scope.timoutId = $timeout(function() {
                         num += increment;
                         step++;
                         if (step >= steps) {
@@ -42,7 +42,7 @@ var countTo = angular.module('countTo', [])
 
                 }
 
-                var start = function () {
+                var start = function() {
                     if (scope.timoutId) {
                         $timeout.cancel(scope.timoutId);
                     }
@@ -50,13 +50,13 @@ var countTo = angular.module('countTo', [])
                     tick();
                 }
 
-                attrs.$observe('countTo', function (val) {
+                attrs.$observe('countTo', function(val) {
                     if (val) {
                         start();
                     }
                 });
 
-                attrs.$observe('value', function (val) {
+                attrs.$observe('value', function(val) {
                     start();
                 });
 
@@ -65,5 +65,3 @@ var countTo = angular.module('countTo', [])
         }
 
     }]);
-
-
