@@ -369,7 +369,7 @@ module.exports = function(grunt) {
             },
             heroku: {
                 options: {
-                    remote: 'https://git.heroku.com/totomean1.git',
+                    remote: 'git@heroku.com:totomean1.git',
                     branch: 'master'
                 }
             },
