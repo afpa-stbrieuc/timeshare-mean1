@@ -215,6 +215,13 @@ footer#themeBrand{
     margin-bottom: 90px;
     line-height: 90%;
 }
+.glyphicon-star, .glyphicon-star-empty {
+    font-size: 26px;
+    color : #BC2A20;
+}
+.glyphicon-star :focus, .glyphicon-star-empty:focus {
+    outline: none;
+}
 /***
 User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme

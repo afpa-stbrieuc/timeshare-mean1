@@ -58,7 +58,10 @@ var advertSchema = new Schema({
         type: Boolean,
         default: false
     },// true after cancellation
-    confirmed: Boolean,
+    finished: {
+        type: Boolean,
+        default: false
+    },
     helper: String, //{type: Schema.Types.ObjectId, ref: 'user' },
     work_duration_real: Number
 }, {

@@ -161,10 +161,27 @@ router.get('/cancelled/:user_id', function (req, res) {
                     res.send(err);
 
                 res.json(reply);
-                console.log('repliesApproved By author', reply);
+                console.log('Annonce annulée/rep annulée aussi:', reply);
             });
 });
 
+//
+//router.get('/service/:ad_id', function (req, res) {
+//    console.log('req adId : ', req.params.user_id);
+//    Replydb.findOne({
+//        toAdId: req.params.ad_id,
+//        ad_cancelled: false,
+//        rep_approved: true
+//    })
+//            .populate('toAdId')
+//            .exec(function (err, reply) {
+//                if (err)
+//                    res.send(err);
+//
+//                res.json(reply);
+//                console.log('repliesApproved By author', reply);
+//            });
+//});
 
 module.exports = router;
 

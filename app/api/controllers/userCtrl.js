@@ -1,10 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Account = require('../models/account');
 var passport = require('passport');
 var mongoose = require('mongoose');
 
 
+
+
+
+
+        
 
 var sendJSONresponse = function (res, status, content) {
     res.status(status);
@@ -19,7 +25,8 @@ router.post('/inscription', function (req, res) {
         });
         return;
     }
-
+var account = new Account();
+console.log('creation compte1', account);
     var user = new User();
 
     user.lastname = req.body.lastname;
@@ -29,6 +36,8 @@ router.post('/inscription', function (req, res) {
     user.tel = req.body.tel;
     user.verified = false;
     user.media = 'avatar.ico';
+    user.account_Id = account;
+console.log ('creation compte2');
 
     user.setPassword(req.body.password);
 
@@ -44,7 +53,13 @@ router.post('/inscription', function (req, res) {
             });
         }
     });
-
+        console.log('PARAMS USER', user._id);
+        account.user_Id = user._id; // set the Account userid (comes from the request)
+//        console.log('PARAMS USER_ID', account.user_Id);
+//
+        account.save();
+        
+    
 });
 
 router.post('/login', function (req, res) {
@@ -90,27 +105,12 @@ router.get('/', function (req,res) {
 
 router.get('/:id', function (req, res) {
     User.findById(req.params.id, function (err, user) {
-        //console.log('User media',user.media);
-        //console.log(user);
+        console.log('User media',user.media);
+        console.log(user);
         res.json(user);
     });
 
 
-});
-
-
-// delete the User with this id
-
-router.delete('/:user_id', function (req, res) {
-    User.remove({
-        _id: req.params.user_id
-    }, function (err, user) {
-           if (err)
-            res.send(err);
-            res.json({
-            message: 'User Delete'
-        });
-    });
 });
 
 router.put('/updateProfile', function (req, res) {

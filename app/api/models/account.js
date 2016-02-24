@@ -1,22 +1,21 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
-var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
-});
 
-var AccountSchema   = new Schema({
-	userid: String,
-	solde: String,
-	advertsid: String,
+
+var accountSchema   = new Schema({
+	user_Id: {type: Schema.Types.ObjectId, ref: 'userSchema'},
+	solde: {type: Number, default: 120},
+	adverts_Id: [{ 
+            type: Schema.Types.ObjectId, ref: 'advertSchema', required: false
+    }],
+        starRating: [{type: Number, default: 3}],
 	created_at: {type: Date, default: Date.now},
-    updated_at: {type: Date, default: Date.now}
+        updated_at: {type: Date, default: Date.now}
 },
 {
 	collection: 'account'
 });
 
-module.exports = mongoose.model('Account', AccountSchema);
+module.exports = mongoose.model('account', accountSchema);
 

@@ -20,22 +20,33 @@
     <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
         <div class="btn-group" role="group" ng-mouseenter="myVar1 = 'btn-primary';
                         myVar2 = 'btn-default';
-                        myVar3 = 'btn-default'">
+                        myVar3 = 'btn-default';
+                        myVar4 = 'btn-default'">
             <button type="button"  class="btn" ng-class="myVar1" href="#tab1" data-toggle="tab"><div style="height:30px">Profil</div>
             </button>
         </div>
         <div class="btn-group" role="group" ng-mouseenter="myVar2 = 'btn-primary';
                         myVar1 = 'btn-default';
-                        myVar3 = 'btn-default'">
+                        myVar3 = 'btn-default';
+                        myVar4 = 'btn-default'">
             <button type="button"  class="btn"  ng-class="myVar2" href="#tab2" data-toggle="tab"><div style="height:30px">Mes annonces</div>
             </button>
         </div>
         <div class="btn-group" role="group" ng-mouseenter="myVar3 = 'btn-primary';
+                        myVar1 = 'btn-default';
                         myVar2 = 'btn-default';
-                        myVar1 = 'btn-default'">
+                        myVar4 = 'btn-default'">
             <button type="button"  class="btn" ng-class="myVar3" href="#tab3" data-toggle="tab">
                 <div style="height:30px">Mes messages <span ng-if="vmp.messages.length||vmp.msgCancel.length>0">
                         ({{vmp.messages.length  + vmp.msgCancel.length}})</span> / Mon compte</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group" ng-mouseenter="myVar4 = 'btn-primary';
+                        myVar1 = 'btn-default';
+                        myVar2 = 'btn-default';
+                        myVar3 = 'btn-default'">
+            <button type="button"  class="btn"  ng-class="myVar4" href="#tab4" data-toggle="tab"><div style="height:30px">Mes services 
+                    <span ng-if="vmp.services.length>0">({{vmp.services.length}})</span></div>
             </button>
         </div>
     </div>
@@ -141,7 +152,8 @@
                                 <div class="col-md-3"> 
                                     <h5>De : {{reply.author}} </h5>
                                     <h5><span>Le : {{reply.created_at| date :'dd MMM yyyy'}}</span><span>&nbsp; à : {{reply.created_at| date :'H mm'}}</span></h5>
-                                    <h5>Dispo le : {{reply.work_date}}</h5>
+                                    <h5>Dispo le : {{reply.work_date| date :'dd MMM yyyy'}}</h5>
+                                    <h5>à partir de : METTRE UN TIMEPICKER+ heure in db</h5>
                                 </div>
                                 <div class="col-md-5"> 
                                     <div>Objet :<span><strong> {{reply.title}}</strong></span></div>
@@ -157,13 +169,13 @@
                         </div>
                     </div>                    
                 </div> 
-                <div ng-if="vmp.adverts.length === 0">Vous n'avez pas encore posté d'annonce</div> 
+                <div ng-if="vmp.adverts.length === 0">Vous n'avez pas d'annonce en cours</div> 
             </div>
         </div>
 
         <div class="tab-pane fade in" id="tab3" ng-init="vmp.approvedReplies()">
             <div class="col-md-10 col-md-offset-1">
-                <div class ="advertHome" ng-init="vmp.cancelledReplies()">
+                <div ng-if="vmp.msgCancel.length|| vmp.messages.length!==0" class ="advertHome" ng-init="vmp.cancelledReplies()">
                 <h3>Mes messages</h3>
                 
                 <div class="wellReply" style="min-height: 100px;"ng-repeat="message in vmp.msgCancel">
@@ -183,17 +195,70 @@
             </div>
             
             <div class="col-md-10 col-md-offset-1">
-                <div class ="advertHome" >
-                
+                <div class ="advertHome" ng-init="vmp.getMyAccount()">
                 <h3>Mon compte</h3>
-                
+                Solde : {{vmp.account.solde}}
                 </div>
             </div>
           
             
             
         </div>
+        <div class="tab-pane fade in" id="tab4" ng-init="vmp.listService()">
+            <div class="col-md-10 col-md-offset-1">
+                <div class ="advertHome" ng-init="">
+                <h3>Mes services à venir</h3>
+                
+                <div class="wellReply" style="min-height: 100px;" ng-repeat="service in vmp.services">
+                    <h4>Vous avez validé la réponse "{{service.replies[0].title}}" pour 
+                        <span ng-if="service.type === 'offre'">l'</span>
+                        <span ng-if="service.type === 'demande'">la </span>
+                        "{{service.type}}" <strong>{{service.title}}</strong></h4>
+                   <p>Ce service est programmé pour  <strong class='text-capitalize'>{{service.replies[0].work_date| date :'dd MMM yyyy'}}</strong></p>
+                   <p>et vous sera rendu par <strong>{{service.replies[0].author}}</strong></p>
+                   <p>Une fois le service rendu, veuillez compléter le formulaire suivant avec votre nouvel(le) ami(e)</p> 
+                   <p> pour procéder à l'échange de temps.</p>
+                    
+                    <a ng-model="collapsed" ng-click="collapsed = !collapsed">  
+                        <button class="btn btn-primary btn-xs" >Voir le formulaire</button></a>
+                 
+               <div ng-show ="collapsed" class='well' style='background:#e1e1e1'>          
+                    <form class='form-inline'>
+                        <p>Durée de l'intervention : <span><input type="number" ng-model='vmp.hour'> heure(s) 
+                                <input type="number" ng-model="vmp.min"> minutes</span></p>
 
+                        <p>Le compteur temps de <strong class= 'text-capitalize'>{{vmp.currentUser.firstname}}</strong> va être
+                            <span ng-if="service.type === 'offre'">crédité </span>
+                            <span ng-if="service.type === 'demande'">débité </span>
+                            de &nbsp;<span ng-bind='vmp.hour'> {{vmp.hour}}</span>&nbsp heure(s) &nbsp;<span ng-bind='vmp.min'> : {{vmp.min}}</span>&nbsp;minutes 
+                        </p>
+                        <p>Le compteur temps de <strong class= 'text-capitalize'>{{service.replies[0].author}}</strong> va être
+                            <span ng-if="service.type === 'offre'">débité </span> 
+                            <span ng-if="service.type === 'demande'">crédité </span>
+                            de &nbsp;<span ng-bind='vmp.hour'> {{vmp.hour}}</span>&nbsp heure(s)&nbsp;<span ng-bind='vmp.min'> : {{vmp.min}}</span>&nbsp;minutes 
+                        </p>
+
+                        <p>Donnez une note à <span class='form-control-static text-capitalize'><strong>{{service.replies[0].author}}</strong></span>?
+                            <span><uib-rating ng-model="vmp.rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = value"  aria-labelledby="default-rating"></uib-rating></span>
+                            <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>   
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-lg" style="padding-left:30px; padding-right:30px;" ng-click="vmp.credit(service.type,service.replies[0].author_id)">Envoyer</button> 
+                        </div>
+                    </form>
+               </div>
+                    
+               </div>
+                
+
+                
+                </div>
+            </div>
+            
+
+          
+            
+            
+        </div>
         
         
         

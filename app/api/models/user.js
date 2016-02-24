@@ -39,6 +39,9 @@ var userSchema = new Schema({
       type: Boolean,
       default: false
     },
+    account_Id: {
+      type: Schema.Types.ObjectId, ref: 'accountSchema'
+    },
     media: String
   }, {
     collection: "user"

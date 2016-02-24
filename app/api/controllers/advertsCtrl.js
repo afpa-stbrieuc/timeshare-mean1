@@ -90,7 +90,8 @@ router.get('/searchAuthor/:advert_author_id', function(req, res) {
     console.log('req Type : ', req.params.advert_author_id);
     Advertdb.find({
         author_id: req.params.advert_author_id,
-        cancelled: false
+        cancelled: false,
+        answered : false
     }, function(err, adverts) {
         if (err)
             res.send(err);
@@ -176,9 +177,11 @@ router.put('/replies/:advert_id', function (req, res) {
 
 //Update the advert marking it answered=true
 router.put('/answered/:advert_id', function (req, res) {
-    Advertdb.findById(req.params.advert_id, function (err, advert) {
+    Advertdb.findById(req.params.advert_id, function (err, advert) {  
+        
         if (err)
             res.send(err);
+        
         advert.answered = true;
         advert.save(function (err) {
             if (err)
@@ -190,7 +193,7 @@ router.put('/answered/:advert_id', function (req, res) {
 });
 //Update the advert marking it cancelled=true
 router.put('/cancelled/:advert_id', function (req, res) {
-    Advertdb.findById(req.params.advert_id, function (err, advert) {
+    Advertdb.findById(req.params.advert_id, function (err, advert) {   
         if (err)
             res.send(err);
         advert.cancelled = true;
@@ -202,5 +205,27 @@ router.put('/cancelled/:advert_id', function (req, res) {
         });
     });
 });
+
+router.get('/service/:advert_author_id', function (req, res) {
+    console.log('req Type : ', req.params.advert_author_id);
+    Advertdb.find({
+        author_id: req.params.advert_author_id,
+        cancelled: false,
+        answered: true,
+        finished: false
+    }).populate({
+        path: 'replies',
+        match: {
+            rep_approved: true}
+    })
+            .exec(function (err, advert) {
+                if (err)
+                    res.send(err);
+
+                res.json(advert);
+                console.log('Annonce validee/rep validée aussi:', advert);
+            });
+});
+
 
 module.exports = router
