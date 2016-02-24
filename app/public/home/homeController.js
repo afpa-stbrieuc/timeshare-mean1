@@ -2,12 +2,6 @@
 
 
 (function () {
-    angular
-            .module('timeShareApp')
-            .controller('homeController', homeController);
-    homeController.$inject = ['$location', 'authentication', '$scope', '$http'];
-
-
 
     function homeController($location, authentication, $scope, $http) {
 
@@ -23,6 +17,10 @@
                 console.log($scope.adverts);
                 $scope.advert = '';
             });
+            
+            $http.get('/api/users').success(function (response) {
+                $scope.user = response;
+            });
         };
         refresh();
 
@@ -33,22 +31,10 @@
             });
         };
 
-
-        //unsort default view
-//        var refresh = function () {
-//            $http.get('/api/adverts').success(function (response) {
-//                $scope.adverts = response;
-//            });
-//
-//            $http.get('/api/users').success(function (response) {
-//                $scope.user = response;
-//            });
-//
-//        };
-//        refresh();
-
-
-
     }
 
+    angular
+            .module('timeShareApp')
+            .controller('homeController', homeController);
+    homeController.$inject = ['$location', 'authentication', '$scope', '$http'];
 })();

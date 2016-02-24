@@ -354,13 +354,13 @@ module.exports = function(grunt) {
                 }
             },
 
-            jsbeautifier: {
-                files: [
-                    '!<%= project.appPublic %>/bower_components/**',
-                    '<%= project.appPublic %>/**/*.js'
-                ],
-                options: {}
-            },
+//            jsbeautifier: {
+//                files: [
+//                    '!<%= project.appPublic %>/bower_components/**',
+//                    '<%= project.appPublic %>/**/*.js'
+//                ],
+//                options: {}
+//            },
 
         // By default, your `index.html`'s <!-- Usxemin block --> will take care of
         // minification. These next options are pre-configured if you do not wish
@@ -432,7 +432,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'wiredep',
-        'jsbeautifier',
+//        'jsbeautifier',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
