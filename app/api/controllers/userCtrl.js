@@ -90,12 +90,27 @@ router.get('/', function (req,res) {
 
 router.get('/:id', function (req, res) {
     User.findById(req.params.id, function (err, user) {
-        console.log('User media',user.media);
-        console.log(user);
+        //console.log('User media',user.media);
+        //console.log(user);
         res.json(user);
     });
 
 
+});
+
+
+// delete the User with this id
+
+router.delete('/:user_id', function (req, res) {
+    User.remove({
+        _id: req.params.user_id
+    }, function (err, user) {
+           if (err)
+            res.send(err);
+            res.json({
+            message: 'User Delete'
+        });
+    });
 });
 
 router.put('/updateProfile', function (req, res) {
