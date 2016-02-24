@@ -354,6 +354,33 @@ module.exports = function(grunt) {
                 }
             },
 
+        buildcontrol: {
+            options: {
+                dir: 'dist',
+                commit: true,
+                push: true,
+                message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+            },
+            pages: {
+                options: {
+                    remote: 'git@github.com:example_user/example_webapp.git',
+                    branch: 'gh-pages'
+                }
+            },
+            heroku: {
+                options: {
+                    remote: 'https://git.heroku.com/totomean1.git',
+                    branch: 'master'
+                }
+            },
+            local: {
+                options: {
+                    remote: '../',
+                    branch: 'build'
+                }
+            }
+        },
+
 //            jsbeautifier: {
 //                files: [
 //                    '!<%= project.appPublic %>/bower_components/**',
