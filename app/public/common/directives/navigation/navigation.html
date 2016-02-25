@@ -16,11 +16,15 @@
                     <li><a scroll-to="bienvenue" >Comment ça marche ?</a></li>
                     <li><a scroll-to="quiSommesNous">Qui sommes-nous ?</a></li>
                 </ul>
-               <ul class="nav navbar-nav" ng-if="navvm.page !== '/'">
+               <ul class="nav navbar-nav" ng-if="navvm.page !== '/' && navvm.page !== '/back'">
                     <li><a href="/#home" >Comment ça marche ?</a></li>
                     <li><a href="/#home">Qui sommes-nous ?</a></li>
                 </ul>
-                
+                <ul class="nav navbar-nav" ng-if="navvm.page === '/back'">
+                    <!--<li><a href="/#home" >Annonces</a></li>
+                    <li><a href="/#home">Utilisateurs</a></li>
+                    <li><a href="/#home">Compteur Temps</a></li>-->
+                </ul>
                 <ul class="nav navbar-nav navbar-right">        
                     <!--<a href="#"><span class="glyphicon glyphicon-user"></span>&nbspNom du user</a>&nbsp
                     <a href="#" class="btn-trans btn-sm">Déconnexion</a>-->

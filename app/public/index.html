@@ -23,8 +23,8 @@
 
         </head>
     <body>
-        <div id="wrap">
-        <div ng-view="">
+        <div id="wrap" class="view-container">
+        <div ng-view="" class="view">
         </div>
             <div class="col-md-offset-11" scroll-to="menuApp">
                 <span class="glyphicon glyphicon-arrow-up text-right" style="top:-30px"></span>
@@ -43,6 +43,7 @@
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/json3/lib/json3.min.js"></script>
         <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
@@ -51,7 +52,6 @@
         <script src="bower_components/angular-translate/angular-translate.js"></script>
         <script src="bower_components/angular-dialog-service/dist/dialogs.js"></script>
         <script src="bower_components/angular-dialog-service/dist/dialogs-default-translations.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-aria/angular-aria.js"></script>
         <script src="bower_components/angular-messages/angular-messages.js"></script>
         <script src="bower_components/angular-material/angular-material.js"></script>
@@ -87,6 +87,11 @@
         <script src="users/register/registerCtrl.js"></script>
         <script src="users/profile/profileCtrl.js"></script>
         <script src="users/passwordreset/passwordresetCtrl.js"></script>
+        <!-- -->
+        <script src="backOffice/backOfficeController.js"></script>
+        <script src="backOffice/backAdvertController.js"></script>
+        <script src="backOffice/backUserController.js"></script>
+        <script src="backOffice/backAccountController.js"></script>
         <!-- -->
         <script src="adverts/adverts/advertsController.js"></script>
         <script src="adverts/formAdvert/formController.js"></script>

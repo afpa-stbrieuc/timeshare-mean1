@@ -222,6 +222,51 @@ footer#themeBrand{
 .glyphicon-star :focus, .glyphicon-star-empty:focus {
     outline: none;
 }
+
+/*TEST NG ANIMATE*/
+
+.backHome {
+  display:block;
+  font-size:20px;
+}
+.backAds {
+  background:#e1e1e1;
+  color:#333;
+  font-size:20px;
+}
+.view-container {
+  position:relative;
+}
+.view-container > .view.ng-animate {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  min-height:500px;
+}
+.view.ng-enter, .view.ng-leave,
+.backHome.ng-anchor {
+  transition:0.5s linear all;
+}
+.view.ng-enter {
+  transform:translateX(100%);
+}
+.view.ng-enter.ng-enter-active, .view.ng-leave {
+  transform:translateX(0%);
+}
+.view.ng-leave.ng-leave-active {
+  transform:translateX(-100%);
+}
+.backHome.ng-anchor-out {
+  background:#BC2A20;
+}
+
+
+
+
+
+
+
 /***
 User Profile Sidebar by @keenthemes
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme

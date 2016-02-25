@@ -1,11 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
-var Account = require('../models/account');
+
 var passport = require('passport');
 var mongoose = require('mongoose');
 
+var User = require('../models/user');
+var Account = require('../models/account');
+      
 
+
+var sendJSONresponse = function (res, status, content) {
+    res.status(status);
+    res.json(content);
+};
 var nodemailer = require("nodemailer");
 
 var transport = nodemailer.createTransport({
@@ -18,15 +25,6 @@ var transport = nodemailer.createTransport({
 
 
 
-
-
-
-        
-
-var sendJSONresponse = function (res, status, content) {
-    res.status(status);
-    res.json(content);
-};
 
 router.post('/inscription', function (req, res) {
     console.log("c est parti pour inscrire cette personne");

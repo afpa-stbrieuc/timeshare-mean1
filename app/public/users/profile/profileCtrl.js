@@ -78,29 +78,7 @@
         };
         refresh();
 
-////delete advert and its replies //function for ADMIN ONLY
-//        vmp.deleteAd = function (advert) {
-//            console.log('sup', advert);
-//            if (vmp.currentUser._id !== null) {
-//                var id = advert._id;
-//                $http.get('api/adverts/' + id).success(function (advert) {
-//                    console.log('supRep', advert.replies);
-//                    var replies = advert.replies;
-//                    angular.forEach(replies, function (reply, key) {
-//                        $http.delete('api/replies/' + reply).success(function () {
-//                            console.log('reponses supprimées', reply);
-//                        });
-//                    });
-//                }).then(function (advert) {
-//                    var id = advert.data._id;
-//                    $http.delete('/api/adverts/' + id).success(function () {
-//                        console.log('annonce supprimée', advert._id);
-//                        refresh();
-//                        
-//                    });
-//                });
-//            }
-//        };
+
 
         //mark the advert and its replies as cancelled
         vmp.cancelAd = function (advert) {

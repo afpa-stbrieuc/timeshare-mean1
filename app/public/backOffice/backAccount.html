@@ -1,0 +1,24 @@
+<div class="backAds backHome" ng-animate-ref="accounts">
+   <a href="#/back">Back to backOffice</a>
+<hr /> 
+
+ <div  class ="table-responsive" >  
+  <table class="table table-hover"> 
+      <tr>
+          <th>N°Compte</th>
+          <th>ID Utilisateur</th>
+          <td>Solde</td>
+          <th>Editer</th>
+          <th>Supprimer</th>
+      </tr>
+      <tr ng-repeat="account in bc.accounts">
+          <td>{{ account._id }}</td>
+          <td>{{ account.user_Id }}</td>
+           <td>{{ account.solde }}</td>
+           <td><span class="glyphicon glyphicon-edit"></span></td>
+           <td><span class="glyphicon glyphicon-remove-sign"></span></td>
+      </tr>    
+</table>
+ </div> 
+</div>
+

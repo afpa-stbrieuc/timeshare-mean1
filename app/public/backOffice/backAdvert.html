@@ -1,0 +1,30 @@
+<div class="backAds backHome" ng-animate-ref="ads">
+   <a href="#/back">Back to backOffice</a>
+<hr /> 
+
+
+
+ <div  class ="table-responsive" >  
+  <table class="table table-hover"> 
+      <tr>
+          <th>ID Annonce</th>
+          <th>Type</th>
+          <th>Auteur</th>
+          <th>Réponses</th>
+          <th>En cours</th>
+          <th>Editer</th>
+          <th>Supprimer</th>
+      </tr>
+      <tr ng-repeat="advert in ba.adverts">
+          <td>{{ advert._id }}</td>
+          <td>{{ advert.type }}</td>
+          <td>{{ advert.author }}</td>
+           <td>{{ advert.replies.length }}</td>
+           <td>{{ advert.cancelled }}</td>
+           <td><span class="glyphicon glyphicon-edit"></span></td>
+           <td><span class="glyphicon glyphicon-remove-sign"></span></td>
+      </tr>    
+</table>
+ </div> 
+
+</div>
