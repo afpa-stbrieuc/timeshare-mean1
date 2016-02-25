@@ -59,7 +59,7 @@
 
                 <button type="button" ng-click="checked = !checked"  class="btn btn-lg btn-primary btn-block">Mettre à jour mon Profil</button>
                 <div class="btn-group" > <!-- <label class="btn btn-primary"><input type="checkbox" ng-model="checked">changer mes informations</label> --> </div>
-                <div role="alert" ng-show="vmp.formError" class="alert alert-danger">{{vmp.formError}}</div>    
+                <div role="alert" ng-show="vmp.formError" class="alert alert-danger">{{vmp.formError.message}}</div>    
 
                 <form class="form" ng-submit="vmp.onUpdate()" >
                     <div class="row advertHome">
