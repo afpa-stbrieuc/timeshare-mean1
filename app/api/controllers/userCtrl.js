@@ -1,16 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
-var Account = require('../models/account');
+
 var passport = require('passport');
 var mongoose = require('mongoose');
 
-
-
-
-
-
-        
+var User = require('../models/user');
+var Account = require('../models/account');
+      
 
 var sendJSONresponse = function (res, status, content) {
     res.status(status);

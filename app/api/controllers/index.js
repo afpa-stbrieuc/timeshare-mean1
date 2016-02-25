@@ -7,6 +7,7 @@ var express = require('express'),
         });
 
 router.use('/api/account', require('./accountCtrl'));
+router.use('/api/back', require('./backOfficeCtrl'));
 router.use('/api/users', require('./userCtrl'));
 router.use('/api/adverts', require('./advertsCtrl'));
 router.use('/api/replies', require('./repliesCtrl'));

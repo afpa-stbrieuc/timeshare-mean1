@@ -50,8 +50,25 @@
             .when('/mentions', {
                 templateUrl: 'mentions.html'
             })
-            .when('/admin', {
-                templateUrl: 'backOffice.html'
+            .when('/back', {
+                templateUrl: 'backOffice/backOffice.html',
+                controller: 'backOfficeController',
+                controllerAs: 'bo'
+            })
+            .when('/back/ads', {
+                templateUrl: 'backOffice/backAdvert.html',
+                controller: 'backAdvertController',
+                controllerAs: 'ba'
+            })
+            .when('/back/users', {
+                templateUrl: 'backOffice/backUser.html',
+                controller: 'backUserController',
+                controllerAs: 'bu'
+            })
+            .when('/back/accounts', {
+                templateUrl: 'backOffice/backAccount.html',
+                controller: 'backAccountController',
+                controllerAs: 'bc'
             })
             .when('/404', {
                 templateUrl: '404.html'

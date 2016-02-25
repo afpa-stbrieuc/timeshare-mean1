@@ -1,0 +1,26 @@
+<div class="backAds backHome" ng-animate-ref="users">
+   <a href="#/back">Back to backOffice</a>
+<hr /> 
+<div  class ="table-responsive" >  
+  <table class="table table-hover"> 
+      <tr>
+          <th>ID Utilisateur</th>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Adresse</th>
+          <th>Téléphone</th>
+          <th>Editer</th>
+          <th>Supprimer</th>
+      </tr>
+      <tr ng-repeat="user in bu.users">
+          <td>{{ user._id }}</td>
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.mail }}</td>
+           <td>{{ user.adress }}</td>
+           <td>{{ user.tel }}</td>
+           <td><span class="glyphicon glyphicon-edit"></span></td>
+           <td><span class="glyphicon glyphicon-remove-sign"></span></td>
+      </tr>    
+</table>
+ </div> 
+</div>
