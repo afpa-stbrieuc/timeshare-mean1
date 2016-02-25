@@ -6,6 +6,17 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 
 
+var nodemailer = require("nodemailer");
+
+var transport = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'apptimeshare@gmail.com',
+    pass: 'carosaidtonio'
+  }
+});
+
+
 
 
 
@@ -147,6 +158,60 @@ router.put('/updateProfile', function (req, res) {
     });
 });
 
+
+
+//password reset
+
+router.post('/reset', function (req, res) {
+    console.log("encore un qui a perdu sa tête!");
+    console.log(req.body.mail);
+    if (!req.body.mail) {
+        sendJSONresponse(res, 400, {
+            "message": "vous devez tapper votre adresse mail (exemple@exemple.fr)"
+        });
+        return;
+    };
+        var user = User.findOne({ mail: req.body.mail }, function (err, user) {
+        console.log(user);
+
+        if (user) {
+            var pwreset = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+            user.setPassword(pwreset);
+            console.log("mot de passe généré");
+
+            var mailOptions = {
+                from: "TimeShareApp <apptimeshare@gmail.com>",
+                to: req.body.mail,
+                subject: "TimeShare App - Confidentiel - Votre nouveau mot de passe",
+                //        text:  // text//req.query.text
+                html: '<p>Bonjour <b> '+ user.lastname +'!</b><br> Vous avez demandé de récupérer votre mot de passe <br> veuillez trouver ci dessous vos information de connexion : <br><b> email: ' + user.mail + ' <br> Mot de passe: ' + pwreset +'</b> <br><br> Merci de votre fidélité</p>'
+
+            };
+            console.log(mailOptions);
+            transport.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                    res.json({
+                        "message": "error de récupération"
+                    });
+                } else {
+                    console.log('Message envoyé: ' + info.response);
+                    sendJSONresponse(res, 200, {
+                        "message": "veuillez consulté votre adresse mail , un message de récupération vous a été envoyé"
+                    });
+                };
+            });
+                     
+           
+        } else {
+            console.log('Vous avez la mauvaise adresse mail');
+            sendJSONresponse(res, 400, {
+                "message": "Vous avez la mauvaise adresse mail"
+            });
+        }
+
+    });
+});
 //Update the user with uploaded media file
 router.put('/media/:user_id', function (req, res) {
     User.findById(req.params.user_id, function (err, user) {

@@ -73,6 +73,14 @@
             $window.localStorage.removeItem('timeshare-token');
         };
 
+        passwordReset = function(user) {
+             return $http.post('/api/users/reset', user).success(function() {
+ 
+                console.log("c fait envoi mail reset au serveur");
+            });
+            
+        };
+
 
 
         return {
@@ -84,6 +92,7 @@
             updateProfile: updateProfile,
             login: login,
             logout: logout,
+            passwordReset: passwordReset
         };
     }
 

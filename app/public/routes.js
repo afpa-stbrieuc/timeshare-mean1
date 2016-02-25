@@ -17,6 +17,11 @@
                 controller: 'registerCtrl',
                 controllerAs: 'vmr'
             })
+            .when('/passwordreset', {
+                templateUrl: 'users/passwordReset/passwordReset.html',
+                controller: 'passwordResetCtrl',
+                controllerAs: 'vmpr'
+            })
             .when('/profil', {
                 templateUrl: 'users/profile/profile.html',
                 controller: 'profileCtrl',
