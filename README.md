@@ -2,7 +2,7 @@
 
 ##About
 
-TimeShare App is web app made in NodeJs/MongoDB/AngularJs, it allows user to offer or to ask for a service and get paid with time (minutes). ( i offer a service then i win 1hours, so i can ask for service and i pay with the 1 hours i won ( sorry for my english ^^)).
+TimeShare App is web app made in NodeJs/MongoDB/AngularJs, it allows user to offer or to ask for a service and get paid with time (minutes). ( I offer a service then I win 1hours, so I can ask for service and I pay with the 1 hours I won ( sorry for my english ^^)).
 
 This project is developped with ExpressJs (Server Side) and AngularJs + Bootstrap (Client Side)
 
